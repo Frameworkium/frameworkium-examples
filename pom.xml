@@ -3,7 +3,7 @@
 
   <groupId>com.frameworkium</groupId>
   <artifactId>Frameworkium</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0</version>
 
   <name>Frameworkium</name>
   <description>A template designed to get up and running quickly with Selenium and Appium.</description>
@@ -34,6 +34,7 @@
     <seleniumGridURL/>
     <platform/>
     <platformVersion/>
+    <device />
     <deviceName/>
     <browserVersion/>
     <groups/>
@@ -48,115 +49,20 @@
     <allure.issues.tracker.pattern/>
   </properties>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-server</artifactId>
-      <version>2.45.0</version>
-      <exclusions>
-        <exclusion>
-          <groupId>com.opera</groupId>
-          <artifactId>operadriver</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>com.opera</groupId>
-      <artifactId>operadriver</artifactId>
-      <version>1.5</version>
-      <exclusions>
-        <exclusion>
-          <groupId>org.seleniumhq.selenium</groupId>
-          <artifactId>selenium-remote-driver</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>com.github.detro.ghostdriver</groupId>
-      <artifactId>phantomjsdriver</artifactId>
-      <version>1.1.0</version>
-      <exclusions>
-        <exclusion>
-          <groupId>org.seleniumhq.selenium</groupId>
-          <artifactId>selenium-remote-driver</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.testng</groupId>
-      <artifactId>testng</artifactId>
-      <version>6.8.21</version>
-    </dependency>
-    <dependency>
-      <groupId>ru.yandex.qatools.allure</groupId>
-      <artifactId>allure-testng-adaptor</artifactId>
-      <version>${allure.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>ru.yandex.qatools.htmlelements</groupId>
-      <artifactId>htmlelements-java</artifactId>
-      <version>1.13</version>
-    </dependency>
-    <dependency>
-      <groupId>com.google.inject</groupId>
-      <artifactId>guice</artifactId>
-      <version>3.0</version>
-    </dependency>
-    <dependency>
-      <groupId>io.appium</groupId>
-      <artifactId>java-client</artifactId>
-      <version>2.2.0</version>
-    </dependency>
-    <dependency>
-      <groupId>com.saucelabs</groupId>
-      <artifactId>sauce_testng</artifactId>
-      <version>2.1.18</version>
-    </dependency>
-    <dependency>
-      <groupId>com.saucelabs</groupId>
-      <artifactId>saucerest</artifactId>
-      <version>1.0.25</version>
-    </dependency>
-    <dependency>
-      <groupId>com.google.truth</groupId>
-      <artifactId>truth</artifactId>
-      <version>0.25</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-api</artifactId>
-      <version>2.2</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-core</artifactId>
-      <version>2.2</version>
-    </dependency>
-    <dependency>
-      <groupId>com.jayway.restassured</groupId>
-      <artifactId>rest-assured</artifactId>
-      <version>2.4.0</version>
-    </dependency>
-    <dependency>
-    	<groupId>joda-time</groupId>
-    	<artifactId>joda-time</artifactId>
-    	<version>2.7</version>
-    </dependency>
-  </dependencies>
-
   <repositories>
     <repository>
-      <id>saucelabs-repository</id>
-      <url>https://repository-saucelabs.forge.cloudbees.com/release</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
     </repository>
   </repositories>
-  <pluginRepositories/>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.github.robertgates55</groupId>
+      <artifactId>frameworkium-core</artifactId>
+        <version>1.0.2</version>
+    </dependency>
+  </dependencies>
 
   <build/>
   
@@ -219,15 +125,8 @@
               </includes>
               <groups>${groups}</groups>
               <testFailureIgnore>false</testFailureIgnore>
-              <argLine>-javaagent:'${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar'</argLine>
+              <argLine>-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"</argLine>
             </configuration>
-            <dependencies>
-              <dependency>
-                <groupId>org.aspectj</groupId>
-                <artifactId>aspectjweaver</artifactId>
-                <version>${aspectj.version}</version>
-              </dependency>
-            </dependencies>
           </plugin>
         </plugins>
       </build>

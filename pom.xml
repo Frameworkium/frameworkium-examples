@@ -3,7 +3,7 @@
 
   <groupId>com.frameworkium</groupId>
   <artifactId>Frameworkium</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
 
   <name>Frameworkium</name>
   <description>A template designed to get up and running quickly with Selenium and Appium.</description>
@@ -40,6 +40,7 @@
     <groups/>
     <sauce/>
     <browserStack/>
+    <maximise/>
     <build/>
     <appPath/>
     <jiraURL/>
@@ -60,7 +61,7 @@
     <dependency>
       <groupId>com.github.robertgates55</groupId>
       <artifactId>frameworkium-core</artifactId>
-        <version>1.0.2</version>
+        <version>1.0.3</version>
     </dependency>
   </dependencies>
 
@@ -113,6 +114,7 @@
                 <device>${device}</device>
                 <sauce>${sauce}</sauce>
                 <browserStack>${browserStack}</browserStack>
+                <maximise>${maximise}</maximise>
                 <build>${build}</build>
                 <appPath>${appPath}</appPath>
                 <jiraURL>${jiraURL}</jiraURL>

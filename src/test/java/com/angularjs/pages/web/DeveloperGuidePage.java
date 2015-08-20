@@ -2,12 +2,9 @@ package com.angularjs.pages.web;
 
 import com.frameworkium.pages.internal.BasePage;
 import com.frameworkium.pages.internal.Visible;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.htmlelements.annotations.Name;
-
-import static com.paulhammant.ngwebdriver.WaitForAngularRequestsToFinish.waitForAngularRequestsToFinish;
 
 public class DeveloperGuidePage extends BasePage<DeveloperGuidePage> {
 
@@ -31,7 +28,7 @@ public class DeveloperGuidePage extends BasePage<DeveloperGuidePage> {
 
     public void clickBootstrapSearchItem() {
         bootstrapSearchItem.click();
-        waitForAngularRequestsToFinish((JavascriptExecutor) driver);
+        waitForAngularRequestsToFinish();
     }
 
     public String getGuideTitle() {

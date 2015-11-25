@@ -124,7 +124,7 @@ public class TheInternetExampleTests extends BaseTest {
         assertThat(downloadPage.getDownloadableFileLinkNames()).contains("some-file.txt");
 
         // If you know the size to expect
-        int size = 4;
+        int size = 307;
 
         // Confirm size of the downloaded file is as expected
         assertThat(downloadPage.getSizeOfFile("some-file.txt")).isEqualTo(size);

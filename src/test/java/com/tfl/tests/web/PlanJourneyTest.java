@@ -17,8 +17,11 @@ public class PlanJourneyTest extends BaseTest {
     @Test(description = "Plan a journey test")
     public final void planJourneyTest() {
 
-        // Navigate to homepage then click the the plan journey link
-        PlanJourneyPage planJourneyPage = HomePage.open().then().clickPlanJourneyLink();
+        // Navigate to homepage
+        HomePage homePage = HomePage.open();
+
+        // Click the the plan journey link
+        PlanJourneyPage planJourneyPage = homePage.clickPlanJourneyLink();
 
         // Plan a journey between two locations
         JourneyPlannerResultsPage resultsPage = planJourneyPage.planJourney("Clapham Junction", "Oxford Circus");

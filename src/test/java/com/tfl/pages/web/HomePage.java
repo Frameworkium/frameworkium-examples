@@ -16,7 +16,7 @@ public class HomePage extends BasePage<HomePage> {
     @Name("Plan A Journey Link")
     @Visible
     @FindBy(css = "li.plan-journey a")
-    private Link planJourneyLink;
+    private WebElement planJourneyLink;
 
     @Name("Tube Line Status Board")
     @Visible

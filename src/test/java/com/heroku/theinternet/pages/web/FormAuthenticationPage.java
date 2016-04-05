@@ -27,8 +27,8 @@ public class FormAuthenticationPage extends BasePage<FormAuthenticationPage> {
     @FindBy(xpath = "//button[contains(.,'Login')]")
     private WebElement loginButton;
 
-    @Step("Successfully Log in")
-    public FormAuthenticationSuccessPage validLogin(String username, String password) {
+    @Step("Log in - {0}/{1}")
+    public <T extends BasePage<T>> T login(String username, String password, Class<T> pageObjectClass) {
 
         usernameField.clear();
         usernameField.sendKeys(username);
@@ -37,8 +37,8 @@ public class FormAuthenticationPage extends BasePage<FormAuthenticationPage> {
         passwordField.sendKeys(password);
 
         loginButton.click();
-
-        return PageFactory.newInstance(FormAuthenticationSuccessPage.class);
+        return PageFactory.newInstance(pageObjectClass);
     }
+
 
 }

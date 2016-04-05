@@ -71,8 +71,8 @@ public class TheInternetExampleTests extends BaseTest {
         dragAndDropPage.dragAontoB();
 
         // Assert on the order of the headings
-        assertThat(dragAndDropPage.getListOfHeadings()).named("Order of headings").containsSequence(
-                Arrays.asList("B", "A"));
+        assertThat(dragAndDropPage.getListOfHeadings()).named("Order of headings").containsExactly(
+                "B", "A");
     }
 
     @Issue("HEROKU-4")
@@ -154,9 +154,13 @@ public class TheInternetExampleTests extends BaseTest {
         // Navigate to the form authentication page
         FormAuthenticationPage formAuthenticationPage = WelcomePage.open().then().clickFormAuthenticationLink();
 
+        // Log in with the bad password and expect to land where we are
+        formAuthenticationPage =
+                formAuthenticationPage.login("tomsmith", "BadBadPassword",FormAuthenticationPage.class);
+
         // Log in with the username password provided
         FormAuthenticationSuccessPage successPage =
-                formAuthenticationPage.validLogin("tomsmith", "SuperSecretPassword!");
+                formAuthenticationPage.login("tomsmith", "SuperSecretPassword!",FormAuthenticationSuccessPage.class);
 
         // Confirm that we're on the success page
         assertThat(successPage.getSource()).contains("Welcome to the Secure Area");

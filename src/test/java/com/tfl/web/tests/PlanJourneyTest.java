@@ -1,4 +1,4 @@
-package com.tfl.tests.web;
+package com.tfl.web.tests;
 
 import static com.google.common.truth.Truth.assertThat;
 
@@ -7,9 +7,9 @@ import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Issue;
 
 import com.frameworkium.tests.internal.BaseTest;
-import com.tfl.pages.web.HomePage;
-import com.tfl.pages.web.JourneyPlannerResultsPage;
-import com.tfl.pages.web.PlanJourneyPage;
+import com.tfl.web.pages.HomePage;
+import com.tfl.web.pages.JourneyPlannerResultsPage;
+import com.tfl.web.pages.PlanJourneyPage;
 
 public class PlanJourneyTest extends BaseTest {
 

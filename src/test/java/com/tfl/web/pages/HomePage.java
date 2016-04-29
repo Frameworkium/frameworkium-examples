@@ -1,11 +1,10 @@
-package com.tfl.pages.web;
+package com.tfl.web.pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import ru.yandex.qatools.allure.annotations.Step;
 import ru.yandex.qatools.htmlelements.annotations.Name;
-import ru.yandex.qatools.htmlelements.element.Link;
 
 import com.frameworkium.pages.internal.BasePage;
 import com.frameworkium.pages.internal.PageFactory;

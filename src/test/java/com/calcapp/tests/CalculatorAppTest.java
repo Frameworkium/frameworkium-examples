@@ -30,6 +30,6 @@ public class CalculatorAppTest extends BaseTest {
 
         String result = PageFactory.newInstance(CalculatorPage.class).computeSum(a, b).then().getResult();
 
-        assertThat(result).comparesEqualTo(sum.toString());
+        assertThat(result).isEqualTo(sum.toString());
     }
 }

@@ -1,4 +1,4 @@
-package com.tfl.pages.web;
+package com.tfl.web.pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

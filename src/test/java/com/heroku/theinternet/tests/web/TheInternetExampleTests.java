@@ -3,6 +3,7 @@ package com.heroku.theinternet.tests.web;
 import static com.google.common.truth.Truth.assertThat;
 
 import java.io.File;
+import java.util.List;
 
 import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
@@ -283,15 +284,19 @@ public class TheInternetExampleTests extends BaseTest {
                 WelcomePage.open().then().clickSortableDataTablesLink();
 
         //Assert that Table 1 contains "http://www.jdoe.com" in the web site column
-        assertThat(sortableDataTablesPage.getTable1ColumnContents("Web Site")).contains("http://www.jdoe.com");
+        assertThat(sortableDataTablesPage.getTable1ColumnContents("Web Site"))
+                .contains("http://www.jdoe.com");
 
         //Sort Table 2 by last name column
         sortableDataTablesPage.sortTable2ByColumnName("Last Name");
 
+        List<String> lastNameColumn =
+                sortableDataTablesPage.getTable2ColumnContents("Last Name");
+
         //Confirm that the column is then ordered by the last name
-        assertThat(sortableDataTablesPage.getTable2ColumnContents("Last Name")).isOrdered();
+        assertThat(lastNameColumn).isOrdered();
 
         //Confirm that "Bach" is then the first surname in table 2
-        assertThat(sortableDataTablesPage.getTable2ColumnContents("Last Name").get(0)).isEqualTo("Bach");
+        assertThat(lastNameColumn.get(0)).isEqualTo("Bach");
     }
 }

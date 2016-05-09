@@ -15,7 +15,7 @@ public class BikePointsResponse extends BaseService<BikePointsResponse> {
     @DeserialiseAs
     private Place[] bikePoints;
 
-    private Random r = new Random();
+    private final Random r = new Random();
 
     /**
      * @return a list of common names

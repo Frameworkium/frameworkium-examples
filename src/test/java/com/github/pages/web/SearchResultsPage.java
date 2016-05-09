@@ -1,18 +1,16 @@
 package com.github.pages.web;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.frameworkium.core.ui.annotations.Visible;
+import com.frameworkium.core.ui.pages.BasePage;
+import com.frameworkium.core.ui.pages.PageFactory;
+import com.github.pages.web.components.HeaderComponent;
 import org.openqa.selenium.support.FindBy;
-
 import ru.yandex.qatools.allure.annotations.Step;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.Link;
 
-import com.frameworkium.core.ui.pages.BasePage;
-import com.frameworkium.core.ui.pages.PageFactory;
-import com.frameworkium.core.ui.annotations.Visible;
-import com.github.pages.web.components.HeaderComponent;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class SearchResultsPage extends BasePage<SearchResultsPage> {
 
@@ -37,10 +35,8 @@ public class SearchResultsPage extends BasePage<SearchResultsPage> {
     @Step("Get the list of code repository names")
     public List<String> getRepoNames() {
 
-        List<String> names = new ArrayList<String>();
-        for (Link link : repoLinks) {
-            names.add(link.getText());
-        }
-        return names;
+        return repoLinks.stream()
+                .map(Link::getText)
+                .collect(Collectors.toList());
     }
 }

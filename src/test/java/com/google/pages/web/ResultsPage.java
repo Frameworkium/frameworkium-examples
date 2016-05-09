@@ -1,16 +1,14 @@
 package com.google.pages.web;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.frameworkium.core.ui.annotations.Visible;
+import com.frameworkium.core.ui.pages.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 import ru.yandex.qatools.allure.annotations.Step;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 
-import com.frameworkium.core.ui.pages.BasePage;
-import com.frameworkium.core.ui.annotations.Visible;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ResultsPage extends BasePage<ResultsPage> {
 
@@ -18,16 +16,13 @@ public class ResultsPage extends BasePage<ResultsPage> {
     @Visible
     @FindBy(css = ".rc .r a")
     private List<WebElement> resultTitles;
-    
+
     @Step("Get search result titles")
     public List<String> getResultTitles() {
-       List<String> resultTitlesAsString = new ArrayList<String>();
-       
-       for(WebElement result : resultTitles) {
-           resultTitlesAsString.add(result.getText());
-       }
-       
-       return resultTitlesAsString;
+
+        return resultTitles.stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
     }
-    
+
 }

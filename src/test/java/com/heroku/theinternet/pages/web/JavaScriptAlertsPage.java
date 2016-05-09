@@ -2,13 +2,14 @@ package com.heroku.theinternet.pages.web;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import ru.yandex.qatools.allure.annotations.Step;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 
 import com.frameworkium.core.ui.pages.BasePage;
 import com.frameworkium.core.ui.annotations.Visible;
+
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 public class JavaScriptAlertsPage extends BasePage<JavaScriptAlertsPage> {
 
@@ -37,7 +38,7 @@ public class JavaScriptAlertsPage extends BasePage<JavaScriptAlertsPage> {
 
         driver.switchTo().alert().accept();
 
-        wait.until(ExpectedConditions.visibilityOf(resultArea));
+        wait.until(visibilityOf(resultArea));
 
         return this;
     }
@@ -48,7 +49,7 @@ public class JavaScriptAlertsPage extends BasePage<JavaScriptAlertsPage> {
 
         driver.switchTo().alert().dismiss();
 
-        wait.until(ExpectedConditions.visibilityOf(resultArea));
+        wait.until(visibilityOf(resultArea));
 
         return this;
     }
@@ -59,7 +60,7 @@ public class JavaScriptAlertsPage extends BasePage<JavaScriptAlertsPage> {
 
         driver.switchTo().alert().accept();
 
-        wait.until(ExpectedConditions.visibilityOf(resultArea));
+        wait.until(visibilityOf(resultArea));
 
         return this;
     }
@@ -70,7 +71,7 @@ public class JavaScriptAlertsPage extends BasePage<JavaScriptAlertsPage> {
 
         driver.switchTo().alert().dismiss();
 
-        wait.until(ExpectedConditions.visibilityOf(resultArea));
+        wait.until(visibilityOf(resultArea));
 
         return this;
     }

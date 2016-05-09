@@ -1,6 +1,7 @@
 package com.github.pages.web.components;
 
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.Rectangle;
 import org.openqa.selenium.support.FindBy;
 
 import ru.yandex.qatools.allure.annotations.Step;
@@ -16,12 +17,12 @@ import com.github.pages.web.HomePage;
 import com.github.pages.web.SearchResultsPage;
 
 @Name("Github Header")
-@FindBy(css = "div.header")
+@FindBy(css = "header")
 public class HeaderComponent extends HtmlElement {
 
     @Name("Home Logo/Link")
     @Visible
-    @FindBy(css = "a.header-logo-wordmark")
+    @FindBy(css = "a.header-logo-invertocat")
     private Link homeLink;
 
     @Name("Search Box")
@@ -30,7 +31,7 @@ public class HeaderComponent extends HtmlElement {
 
     @Name("Explore Link")
     @Visible
-    @FindBy(css = "ul.header-nav li.header-nav-item > a")
+    @FindBy(css = "header nav a.nav-item-explore")
     private Link exploreLink;
 
     @Step("Go Home")
@@ -52,4 +53,8 @@ public class HeaderComponent extends HtmlElement {
         return PageFactory.newInstance(SearchResultsPage.class);
     }
 
+    @Override
+    public Rectangle getRect() {
+        return null;
+    }
 }

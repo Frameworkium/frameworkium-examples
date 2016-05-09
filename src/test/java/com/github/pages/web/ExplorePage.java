@@ -19,12 +19,13 @@ public class ExplorePage extends BasePage<ExplorePage> {
 
     @Name("Explore Content")
     @Visible
-    @FindBy(css = "div.explore-pjax-container.explore-page.js-explore-page")
+    @FindBy(css = "div.explore-marketing-header")
     private WebElement marketingBanner;
 
     @Step("Navigate to the Github homepage")
     public static ExplorePage open() {
-        return PageFactory.newInstance(ExplorePage.class, "http://github.com");
+        return PageFactory.newInstance(
+                ExplorePage.class, "https://github.com/explore");
     }
 
     public HeaderComponent theHeader() {

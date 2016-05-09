@@ -29,6 +29,6 @@ public class ComponentExampleTest extends BaseTest {
 
         // Go back to the homepage
         HomePage homepage = searchResultsPage.with().theHeader().clickLogo();
-        assertThat(homepage.getTitle()).isEqualTo("GitHub · Build software better, together.");
+        assertThat(homepage.getTitle()).contains("GitHub");
     }
 }

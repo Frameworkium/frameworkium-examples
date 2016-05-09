@@ -19,12 +19,12 @@ public class HomePage extends BasePage<HomePage> {
 
     @Name("Marketing Sign-Up Banner")
     @Visible
-    @FindBy(css = "div.marketing-section-signup")
-    private WebElement marketingBanner;
+    @FindBy(css = "div.homepage-hero-intro")
+    private WebElement homepageHeroIntro;
 
     @Step("Navigate to the Github homepage")
     public static HomePage open() {
-        return PageFactory.newInstance(HomePage.class, "http://github.com");
+        return PageFactory.newInstance(HomePage.class, "https://github.com");
     }
 
     public HeaderComponent theHeader() {

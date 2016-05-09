@@ -29,8 +29,8 @@ public class PlanJourneyPage extends BasePage<PlanJourneyPage> {
 
 
     @Step("Plan journey from {0} to {1}")
-    public JourneyPlannerResultsPage planJourney(String from, String to)
-    {
+    public JourneyPlannerResultsPage planJourney(String from, String to) {
+
         fromField.sendKeys(from);
         toField.sendKeys(to);
         planJourneyButton.click();

@@ -18,7 +18,6 @@ public class HomePage extends BasePage<HomePage> {
     private WebElement planJourneyLink;
 
     @Name("Tube Line Status Board")
-    @Visible
     @FindBy(css = "div.board-wrapper")
     private WebElement statusBoard;
     
@@ -28,7 +27,6 @@ public class HomePage extends BasePage<HomePage> {
         return PageFactory.newInstance(HomePage.class, "http://tfl.gov.uk");
     }
 
-    
     @Step("Go to the plan journey page")
     public PlanJourneyPage clickPlanJourneyLink() {
         planJourneyLink.click();

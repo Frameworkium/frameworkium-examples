@@ -24,11 +24,10 @@ public class PlanJourneyTest extends BaseTest {
         PlanJourneyPage planJourneyPage = homePage.clickPlanJourneyLink();
 
         // Plan a journey between two locations
-        JourneyPlannerResultsPage resultsPage =
-                planJourneyPage.planJourney("Clapham Junction", "Oxford Circus");
+        JourneyPlannerResultsPage resultsPage = planJourneyPage
+                .planJourney("Clapham Junction", "Oxford Circus Underground Station");
         
         // Check that the title displayed on the page is "JOURNEY RESULTS"
         assertThat(resultsPage.getTitleText()).isEqualTo("JOURNEY RESULTS");
-        
     }
 }

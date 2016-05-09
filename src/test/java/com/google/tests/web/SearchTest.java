@@ -19,7 +19,8 @@ public class SearchTest extends BaseTest {
        ResultsPage resultsPage = HomePage.open().then().runSearch("Hello World");
        
        //Check that the results contains the expected result
-       assertThat(resultsPage.getResultTitles()).contains("Digital, Social, Mobile Marketing | HelloWorld");
+       assertThat(resultsPage.getResultTitles())
+               .contains("\"Hello, World!\" program - Wikipedia, the free encyclopedia");
        
     }
 }

@@ -1,22 +1,20 @@
 package com.heroku.theinternet.pages.web;
 
-import static com.jayway.restassured.RestAssured.expect;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-
+import com.frameworkium.core.ui.annotations.Visible;
+import com.frameworkium.core.ui.pages.BasePage;
 import org.apache.commons.io.IOUtils;
 import org.openqa.selenium.support.FindBy;
-
 import ru.yandex.qatools.allure.annotations.Step;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.Link;
 
-import com.frameworkium.core.ui.pages.BasePage;
-import com.frameworkium.core.ui.annotations.Visible;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static com.jayway.restassured.RestAssured.when;
 
 public class FileDownloadPage extends BasePage<FileDownloadPage> {
 
@@ -38,12 +36,9 @@ public class FileDownloadPage extends BasePage<FileDownloadPage> {
     @Step("Return all download link names")
     public List<String> getDownloadableFileLinkNames() {
 
-        List<String> listOfFileLinkNames = new ArrayList<String>();
-
-        for (Link lnk : allDownloadLinks) {
-            listOfFileLinkNames.add(lnk.getText());
-        }
-        return listOfFileLinkNames;
+        return allDownloadLinks.stream()
+                .map(Link::getText)
+                .collect(Collectors.toList());
     }
 
     @Step("Get the size of the file {0}")
@@ -52,7 +47,7 @@ public class FileDownloadPage extends BasePage<FileDownloadPage> {
     }
 
     @Step("Get the URL of the file {0}")
-    public String getURLOfFile(String linkText) {
+    private String getURLOfFile(String linkText) {
         return findLinkByText(linkText).getReference();
     }
 
@@ -68,7 +63,9 @@ public class FileDownloadPage extends BasePage<FileDownloadPage> {
 
     private long getSizeOfFileAtURL(String downloadURL) {
 
-        InputStream inputStream = expect().log().headers().when().get(downloadURL).asInputStream();
+        InputStream inputStream = when()
+                .get(downloadURL)
+                .asInputStream();
 
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         try {

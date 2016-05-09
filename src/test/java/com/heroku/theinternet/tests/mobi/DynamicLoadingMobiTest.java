@@ -4,7 +4,7 @@ import static com.google.common.truth.Truth.assertThat;
 
 import org.testng.annotations.Test;
 
-import com.frameworkium.tests.internal.BaseTest;
+import com.frameworkium.core.ui.tests.BaseTest;
 import com.heroku.theinternet.pages.web.DynamicLoadingExamplePage;
 import com.heroku.theinternet.pages.web.WelcomePage;
 

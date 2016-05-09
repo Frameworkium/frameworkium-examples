@@ -7,8 +7,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.yandex.qatools.allure.annotations.Step;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 
-import com.frameworkium.pages.internal.BasePage;
-import com.frameworkium.pages.internal.Visible;
+import com.frameworkium.core.ui.pages.BasePage;
+import com.frameworkium.core.ui.annotations.Visible;
 
 public class JavaScriptAlertsPage extends BasePage<JavaScriptAlertsPage> {
 

@@ -9,8 +9,8 @@ import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.HtmlElement;
 
-import com.frameworkium.pages.internal.BasePage;
-import com.frameworkium.pages.internal.Visible;
+import com.frameworkium.core.ui.pages.BasePage;
+import com.frameworkium.core.ui.annotations.Visible;
 
 public class DynamicLoadingExamplePage extends BasePage<DynamicLoadingExamplePage> {
 

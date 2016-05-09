@@ -9,9 +9,9 @@ import ru.yandex.qatools.allure.annotations.Step;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.Link;
 
-import com.frameworkium.pages.internal.BasePage;
-import com.frameworkium.pages.internal.PageFactory;
-import com.frameworkium.pages.internal.Visible;
+import com.frameworkium.core.ui.pages.BasePage;
+import com.frameworkium.core.ui.pages.PageFactory;
+import com.frameworkium.core.ui.annotations.Visible;
 import com.github.pages.web.components.HeaderComponent;
 
 public class SearchResultsPage extends BasePage<SearchResultsPage> {

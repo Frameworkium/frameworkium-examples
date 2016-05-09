@@ -1,16 +1,14 @@
 package com.heroku.theinternet.pages.web;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.frameworkium.core.ui.annotations.Visible;
+import com.frameworkium.core.ui.pages.BasePage;
 import org.openqa.selenium.support.FindBy;
-
 import ru.yandex.qatools.allure.annotations.Step;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.CheckBox;
 
-import com.frameworkium.pages.internal.BasePage;
-import com.frameworkium.pages.internal.Visible;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class CheckboxesPage extends BasePage<CheckboxesPage> {
 
@@ -28,9 +26,7 @@ public class CheckboxesPage extends BasePage<CheckboxesPage> {
     @Step("Set all the checkboxes to true")
     public CheckboxesPage checkAllCheckboxes() {
 
-        for (CheckBox checkbox : allCheckboxes) {
-            checkbox.set(true);
-        }
+        allCheckboxes.stream().forEach(CheckBox::select);
 
         return this;
     }
@@ -38,13 +34,9 @@ public class CheckboxesPage extends BasePage<CheckboxesPage> {
     @Step("Return the checked status of all the checkboxes")
     public List<Boolean> getAllCheckboxCheckedStatus() {
 
-        List<Boolean> checkedness = new ArrayList<Boolean>();
-
-        for (CheckBox checkbox : allCheckboxes) {
-            checkedness.add(checkbox.isSelected());
-        }
-
-        return checkedness;
+        return allCheckboxes.stream()
+                .map(CheckBox::isSelected)
+                .collect(Collectors.toList());
     }
 
 }

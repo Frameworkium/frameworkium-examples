@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
-import com.frameworkium.tests.internal.BaseTest;
+import com.frameworkium.core.ui.tests.BaseTest;
 import com.google.pages.web.HomePage;
 import com.google.pages.web.ResultsPage;
 

@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 import ru.yandex.qatools.allure.annotations.Issue;
 
-import com.frameworkium.tests.internal.BaseTest;
+import com.frameworkium.core.ui.tests.BaseTest;
 import com.tfl.web.pages.HomePage;
 import com.tfl.web.pages.JourneyPlannerResultsPage;
 import com.tfl.web.pages.PlanJourneyPage;
@@ -24,7 +24,8 @@ public class PlanJourneyTest extends BaseTest {
         PlanJourneyPage planJourneyPage = homePage.clickPlanJourneyLink();
 
         // Plan a journey between two locations
-        JourneyPlannerResultsPage resultsPage = planJourneyPage.planJourney("Clapham Junction", "Oxford Circus");
+        JourneyPlannerResultsPage resultsPage =
+                planJourneyPage.planJourney("Clapham Junction", "Oxford Circus");
         
         // Check that the title displayed on the page is "JOURNEY RESULTS"
         assertThat(resultsPage.getTitleText()).isEqualTo("JOURNEY RESULTS");

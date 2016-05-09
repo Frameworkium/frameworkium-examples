@@ -9,8 +9,8 @@ import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Issue;
 
 import com.calcapp.pages.app.CalculatorPage;
-import com.frameworkium.pages.internal.PageFactory;
-import com.frameworkium.tests.internal.BaseTest;
+import com.frameworkium.core.ui.pages.PageFactory;
+import com.frameworkium.core.ui.tests.BaseTest;
 
 public class CalculatorAppTest extends BaseTest {
 

@@ -2,7 +2,7 @@ package com.angularjs.tests.web;
 
 import com.angularjs.pages.web.DeveloperGuidePage;
 import com.angularjs.pages.web.HomePage;
-import com.frameworkium.tests.internal.BaseTest;
+import com.frameworkium.core.ui.tests.BaseTest;
 
 import org.testng.annotations.Test;
 

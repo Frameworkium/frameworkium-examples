@@ -9,8 +9,8 @@ import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.TextBlock;
 import ru.yandex.qatools.htmlelements.element.TextInput;
 
-import com.frameworkium.pages.internal.BasePage;
-import com.frameworkium.pages.internal.Visible;
+import com.frameworkium.core.ui.pages.BasePage;
+import com.frameworkium.core.ui.annotations.Visible;
 
 public class CalculatorPage extends BasePage<CalculatorPage> {
 

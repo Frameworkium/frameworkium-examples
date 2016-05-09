@@ -9,8 +9,8 @@ import ru.yandex.qatools.htmlelements.element.HtmlElement;
 import ru.yandex.qatools.htmlelements.element.Link;
 import ru.yandex.qatools.htmlelements.element.TextInput;
 
-import com.frameworkium.pages.internal.PageFactory;
-import com.frameworkium.pages.internal.Visible;
+import com.frameworkium.core.ui.pages.PageFactory;
+import com.frameworkium.core.ui.annotations.Visible;
 import com.github.pages.web.ExplorePage;
 import com.github.pages.web.HomePage;
 import com.github.pages.web.SearchResultsPage;

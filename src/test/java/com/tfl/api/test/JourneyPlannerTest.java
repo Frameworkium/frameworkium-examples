@@ -2,9 +2,9 @@ package com.tfl.api.test;
 
 import com.frameworkium.core.api.tests.BaseTest;
 import com.google.common.collect.ImmutableMap;
+import com.tfl.api.services.journeyPlanner.JourneyPlannerDisambiguationResponse;
+import com.tfl.api.services.journeyPlanner.JourneyPlannerItineraryResponse;
 import org.testng.annotations.Test;
-import com.tfl.api.services.journeyPlanner.JourneyPlannerDisambiguation;
-import com.tfl.api.services.journeyPlanner.JourneyPlannerItineraryService;
 import com.tfl.api.services.journeyPlanner.JourneyPlannerService;
 
 import java.util.Map;
@@ -16,19 +16,20 @@ public class JourneyPlannerTest extends BaseTest {
     @Test
     public void journey_planner_london_search_journey_duration() {
 
-        JourneyPlannerDisambiguation journeyPlannerDisambiguation =
+        JourneyPlannerDisambiguationResponse disambiguationResponse =
                 JourneyPlannerService.newInstance(
                         "Blue Fin Building, Southwark",
                         "Waterloo Station, London",
-                        JourneyPlannerDisambiguation.class);
+                        JourneyPlannerDisambiguationResponse.class);
 
-        String from = journeyPlannerDisambiguation.getFrom();
-        String to = journeyPlannerDisambiguation.getFirstDisambiguatedTo();
+        String from = disambiguationResponse.getFrom();
+        String to = disambiguationResponse.getFirstDisambiguatedTo();
 
-        assertThat(
-                JourneyPlannerService.newInstance(from, to, JourneyPlannerItineraryService.class)
-                        .getShortestJourneyDuration())
-                .isLessThan(30);
+        int shortestJourneyDuration = JourneyPlannerService
+                .newInstance(from, to, JourneyPlannerItineraryResponse.class)
+                .getShortestJourneyDuration();
+
+        assertThat(shortestJourneyDuration).isLessThan(30);
     }
 
     @Test
@@ -36,16 +37,16 @@ public class JourneyPlannerTest extends BaseTest {
 
         Map<String, String> params = ImmutableMap.of("nationalSearch", "True");
 
-        JourneyPlannerItineraryService journeyPlannerItineraryService =
+        JourneyPlannerItineraryResponse response =
                 JourneyPlannerService.newInstance(
                         "Blue Fin Building, Southwark",
                         "Surrey Research Park, Guildford",
                         params,
-                        JourneyPlannerItineraryService.class);
+                        JourneyPlannerItineraryResponse.class);
 
-        assertThat(
-                journeyPlannerItineraryService.getShortestJourneyDuration())
-                .isGreaterThan(45);
+        int shortestJourneyDuration = response.getShortestJourneyDuration();
+
+        assertThat(shortestJourneyDuration).isGreaterThan(45);
     }
 
 }

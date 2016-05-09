@@ -10,8 +10,7 @@ import static com.jayway.restassured.RestAssured.given;
 
 public interface BikePointService {
 
-    static <T extends BaseService<T>> T newInstance(
-            Class<T> serviceClass) {
+    static <T extends BaseService<T>> T newInstance(Class<T> serviceClass) {
         return newInstance(Collections.emptyMap(), serviceClass);
     }
 

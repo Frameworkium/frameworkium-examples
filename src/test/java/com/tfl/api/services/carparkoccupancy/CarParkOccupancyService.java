@@ -1,48 +1,18 @@
 package com.tfl.api.services.carparkoccupancy;
 
-import com.frameworkium.core.api.annotations.DeserialiseAs;
-import com.frameworkium.core.api.services.BaseService;
 import com.frameworkium.core.api.services.ServiceFactory;
-import ru.yandex.qatools.allure.annotations.Step;
-import com.tfl.api.entities.Bay;
-import com.tfl.api.entities.CarParkOccupancy;
 
-import java.util.ArrayList;
-import java.util.List;
+public interface CarParkOccupancyService {
 
-public class CarParkOccupancyService extends BaseService<CarParkOccupancyService> {
-
-    @DeserialiseAs
-    private CarParkOccupancy[] carParkOccupancies;
-
-    public static CarParkOccupancyService newInstance() {
+    static CarParkOccupancyResponse newInstance() {
         return ServiceFactory.newInstance(
-                CarParkOccupancyService.class, "https://api.tfl.gov.uk/Occupancy/CarPark");
+                CarParkOccupancyResponse.class,
+                "https://api.tfl.gov.uk/Occupancy/CarPark");
     }
 
-    @Step
-    public CarParkOccupancy[] getAllCPOs() {
-        return carParkOccupancies;
-    }
-
-    @Step
-    public List<String> getCarParkNames() {
-        List<String> carParkNames = new ArrayList<>();
-        for (CarParkOccupancy cpo : carParkOccupancies) {
-            carParkNames.add(cpo.name);
-        }
-        return carParkNames;
-    }
-
-    @Step
-    public int getNumFreeSpaces() {
-        int totalFree = 0;
-
-        for (CarParkOccupancy cpo : carParkOccupancies) {
-            for (Bay bay : cpo.bays) {
-                totalFree += bay.free;
-            }
-        }
-        return totalFree;
+    static CarParkOccupancySingleResponse newInstance(String id) {
+        return ServiceFactory.newInstance(
+                CarParkOccupancySingleResponse.class,
+                "https://api.tfl.gov.uk/Occupancy/CarPark/" + id);
     }
 }

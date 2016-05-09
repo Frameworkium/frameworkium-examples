@@ -2,29 +2,34 @@ package com.tfl.api.services.bikepoint;
 
 import com.frameworkium.core.api.annotations.DeserialiseAs;
 import com.frameworkium.core.api.services.BaseService;
-import com.frameworkium.core.api.services.ServiceFactory;
 import ru.yandex.qatools.allure.annotations.Step;
-import com.tfl.api.entities.PlacesResponse;
+import com.tfl.api.entities.Place;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
-import static com.jayway.restassured.RestAssured.given;
-
-public class BikePointsPlacesService extends BaseService<BikePointsPlacesService> {
+public class BikePointsResponse extends BaseService<BikePointsResponse> {
 
     @DeserialiseAs
-    private PlacesResponse placesResponse;
+    private Place[] bikePoints;
+
+    private Random r = new Random();
 
     /**
      * @return a list of common names
      */
     @Step
     public List<String> getAllNames() {
-        return Arrays.stream(placesResponse.places)
+        return Arrays.stream(bikePoints)
                 .map(bp -> bp.commonName)
                 .collect(Collectors.toList());
+    }
+
+    @Step
+    public Place getRandomBikePoint() {
+        return bikePoints[r.nextInt(bikePoints.length)];
     }
 
 }

@@ -20,7 +20,7 @@ public interface JourneyPlannerService {
 
         return ServiceFactory.newInstance(
                 serviceClass,
-                "http://api.tfl.gov.uk/Journey/JourneyResults/" + from + "/to/" + to,
+                String.format("http://api.tfl.gov.uk/Journey/JourneyResults/%s/to/%s", from, to),
                 given().parameters(params));
     }
 }

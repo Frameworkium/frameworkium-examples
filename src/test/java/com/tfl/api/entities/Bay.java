@@ -6,7 +6,9 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Bay {
     public String bayType;
-    public int free;
+    public Integer bayCount;
+    public Integer free;
+    public Integer occupied;
 
     @Override
     public boolean equals(Object obj) {

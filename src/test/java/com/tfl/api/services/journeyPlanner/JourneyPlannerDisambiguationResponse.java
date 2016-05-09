@@ -5,10 +5,8 @@ import com.frameworkium.core.api.services.BaseService;
 import ru.yandex.qatools.allure.annotations.Step;
 import com.tfl.api.entities.JourneyPlanner.DisambiguationResult;
 
-import static com.jayway.restassured.RestAssured.given;
-
-public class JourneyPlannerDisambiguation
-        extends BaseService<JourneyPlannerDisambiguation> {
+public class JourneyPlannerDisambiguationResponse
+        extends BaseService<JourneyPlannerDisambiguationResponse> {
 
     @DeserialiseAs
     private DisambiguationResult result;

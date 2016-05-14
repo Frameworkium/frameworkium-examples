@@ -55,6 +55,7 @@ public class HeaderComponent extends HtmlElement {
 
     @Override
     public Rectangle getRect() {
+        // TODO: Remove when HtmlElements upgrade to selenium 2.53
         return null;
     }
 }

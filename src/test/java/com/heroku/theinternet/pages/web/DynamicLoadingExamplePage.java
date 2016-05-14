@@ -21,29 +21,28 @@ public class DynamicLoadingExamplePage extends BasePage<DynamicLoadingExamplePag
 
     @Name("Hidden element")
     @FindBy(id = "finish")
-    private HtmlElement hiddenElement;
+    private HtmlElement dynamicElement;
 
     @Step("Click Start")
     public DynamicLoadingExamplePage clickStart() {
         startButton.click();
-        wait.until(ExpectedConditions.visibilityOf(hiddenElement));
+        wait.until(ExpectedConditions.visibilityOf(dynamicElement));
         return this;
     }
 
     @Step("Wait for the hidden element to be displayed")
     public DynamicLoadingExamplePage waitForElementToBeDisplayed() {
-        wait.until(ExpectedConditions.visibilityOf(hiddenElement));
+        wait.until(ExpectedConditions.visibilityOf(dynamicElement));
         return this;
     }
 
     public boolean isElementDisplayed() {
-        return hiddenElement.isDisplayed();
+        return dynamicElement.isDisplayed();
     }
 
     public boolean isElementPresent() {
         try {
-            hiddenElement.getTagName();
-            return true;
+            return dynamicElement.isDisplayed();
         } catch (NoSuchElementException e) {
             return false;
         }

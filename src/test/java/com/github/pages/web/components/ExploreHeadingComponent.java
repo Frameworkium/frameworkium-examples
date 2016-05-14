@@ -1,5 +1,6 @@
 package com.github.pages.web.components;
 
+import org.openqa.selenium.Rectangle;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -42,4 +43,9 @@ public class ExploreHeadingComponent extends HtmlElement {
         return PageFactory.newInstance(ExplorePage.class);
     }
 
+    @Override
+    public Rectangle getRect() {
+        // TODO: Remove when HtmlElements upgrade to selenium 2.53
+        return null;
+    }
 }

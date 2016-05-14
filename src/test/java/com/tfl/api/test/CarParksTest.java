@@ -3,8 +3,8 @@ package com.tfl.api.test;
 import com.frameworkium.core.api.tests.BaseTest;
 import com.tfl.api.entities.CarParkOccupancy;
 import com.tfl.api.services.carparkoccupancy.CarParkOccupancyResponse;
-import com.tfl.api.services.carparkoccupancy.CarParkOccupancySingleResponse;
 import com.tfl.api.services.carparkoccupancy.CarParkOccupancyService;
+import com.tfl.api.services.carparkoccupancy.CarParkOccupancySingleResponse;
 import org.testng.annotations.Test;
 
 import java.util.Random;
@@ -19,7 +19,9 @@ public class CarParksTest extends BaseTest {
         int totalFreeSpaces = CarParkOccupancyService
                 .newInstance()
                 .getTotalNumFreeSpaces();
-        assertThat(totalFreeSpaces).isGreaterThan(10);
+
+        assertThat(totalFreeSpaces)
+                .isGreaterThan(10);
     }
 
     @Test
@@ -37,18 +39,21 @@ public class CarParksTest extends BaseTest {
                 .isEqualTo(response.getTotalNumFreeSpaces() + response.getTotalNumOccupiedSpaces());
     }
 
-    @Test
+    @Test(enabled = false) // another possible bug, specific COP has 0 bays
     public void single_car_park_request_information_the_same() {
+        // N.B. this test might fail if the number of free/used bays changes
+        // between the first and subsequent service call
 
         CarParkOccupancy randomCPO = getRandomCarParkOccupancy();
 
-        // Get said CP via ID
+        // Get said CPO via ID
         CarParkOccupancySingleResponse specificCarParkQuery =
                 CarParkOccupancyService.newInstance(randomCPO.id);
         CarParkOccupancy specificCPO = specificCarParkQuery.getCPO();
 
         // Make sure they are the same
         assertThat(specificCPO).isEqualTo(randomCPO);
+
     }
 
     @Test

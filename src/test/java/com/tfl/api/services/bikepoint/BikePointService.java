@@ -11,11 +11,11 @@ import static com.jayway.restassured.RestAssured.given;
 public interface BikePointService {
 
     static <T extends BaseService<T>> T newInstance(Class<T> serviceClass) {
-        return newInstance(Collections.emptyMap(), serviceClass);
+        return newInstance(serviceClass, Collections.emptyMap());
     }
 
     static <T extends BaseService<T>> T newInstance(
-            Map<String, String> params, Class<T> serviceClass) {
+            Class<T> serviceClass, Map<String, String> params) {
 
         return ServiceFactory.newInstance(
                 serviceClass,

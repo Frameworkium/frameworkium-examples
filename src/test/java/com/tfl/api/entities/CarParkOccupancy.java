@@ -13,4 +13,10 @@ public class CarParkOccupancy {
     public boolean equals(Object obj) {
         return EqualsBuilder.reflectionEquals(this, obj);
     }
+
+    public boolean equalsIgnoringBayDetails(Object obj) {
+        CarParkOccupancy other = (CarParkOccupancy) obj;
+        return EqualsBuilder.reflectionEquals(this, other, "bays")
+                && bays.length == other.bays.length;
+    }
 }

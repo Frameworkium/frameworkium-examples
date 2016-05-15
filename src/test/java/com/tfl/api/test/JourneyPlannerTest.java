@@ -18,15 +18,16 @@ public class JourneyPlannerTest extends BaseTest {
 
         JourneyPlannerDisambiguationResponse disambiguationResponse =
                 JourneyPlannerService.newInstance(
+                        JourneyPlannerDisambiguationResponse.class,
                         "Blue Fin Building, Southwark",
-                        "Waterloo Station, London",
-                        JourneyPlannerDisambiguationResponse.class);
+                        "Waterloo Station, London"
+                );
 
         String from = disambiguationResponse.getFrom();
         String to = disambiguationResponse.getFirstDisambiguatedTo();
 
         int shortestJourneyDuration = JourneyPlannerService
-                .newInstance(from, to, JourneyPlannerItineraryResponse.class)
+                .newInstance(JourneyPlannerItineraryResponse.class, from, to)
                 .getShortestJourneyDuration();
 
         assertThat(shortestJourneyDuration).isLessThan(30);
@@ -39,10 +40,11 @@ public class JourneyPlannerTest extends BaseTest {
 
         JourneyPlannerItineraryResponse response =
                 JourneyPlannerService.newInstance(
+                        JourneyPlannerItineraryResponse.class,
                         "Blue Fin Building, Southwark",
                         "Surrey Research Park, Guildford",
-                        params,
-                        JourneyPlannerItineraryResponse.class);
+                        params
+                );
 
         int shortestJourneyDuration = response.getShortestJourneyDuration();
 

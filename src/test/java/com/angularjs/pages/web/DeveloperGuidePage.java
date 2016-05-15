@@ -26,9 +26,10 @@ public class DeveloperGuidePage extends BasePage<DeveloperGuidePage> {
         return this;
     }
 
-    public void clickBootstrapSearchItem() {
+    public DeveloperGuidePage clickBootstrapSearchItem() {
         bootstrapSearchItem.click();
         waitForAngularRequestsToFinish();
+        return this;
     }
 
     public String getGuideTitle() {

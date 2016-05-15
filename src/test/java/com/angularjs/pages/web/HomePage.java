@@ -11,11 +11,11 @@ public class HomePage extends BasePage<HomePage> {
 
     @Name("Develop navigation bar item")
     @Visible
-    @FindBy(css = "ul.nav li.dropdown a.dropdown-toggle i.icon-book")
+    @FindBy(css = "ul.nav > li.dropdown > a.dropdown-toggle > i.icon-book")
     private WebElement developDropdown;
 
     @Name("Developer Guide menu item")
-    @FindBy(css = "li a[href='http://docs.angularjs.org/guide']")
+    @FindBy(css = "li > a[href='http://docs.angularjs.org/guide']")
     private WebElement developerGuideMenuItem;
 
     public static HomePage open() {
@@ -23,6 +23,8 @@ public class HomePage extends BasePage<HomePage> {
     }
 
     public DeveloperGuidePage clickDeveloperGuide() {
+        // clicking it twice seems to make it actually appear
+        developDropdown.click();
         developDropdown.click();
         developerGuideMenuItem.click();
         return PageFactory.newInstance(DeveloperGuidePage.class);

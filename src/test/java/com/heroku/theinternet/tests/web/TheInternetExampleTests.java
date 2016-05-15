@@ -1,15 +1,5 @@
 package com.heroku.theinternet.tests.web;
 
-import static com.google.common.truth.Truth.assertThat;
-
-import java.io.File;
-import java.util.List;
-
-import org.openqa.selenium.Keys;
-import org.testng.annotations.Test;
-
-import ru.yandex.qatools.allure.annotations.Issue;
-
 import com.frameworkium.core.ui.tests.BaseTest;
 import com.heroku.theinternet.pages.web.BasicAuthSuccessPage;
 import com.heroku.theinternet.pages.web.CheckboxesPage;
@@ -28,9 +18,16 @@ import com.heroku.theinternet.pages.web.JQueryUIMenuPage;
 import com.heroku.theinternet.pages.web.JQueryUIPage;
 import com.heroku.theinternet.pages.web.JavaScriptAlertsPage;
 import com.heroku.theinternet.pages.web.KeyPressesPage;
-import com.heroku.theinternet.pages.web.SecureFileDownloadPage;
 import com.heroku.theinternet.pages.web.SortableDataTablesPage;
 import com.heroku.theinternet.pages.web.WelcomePage;
+import org.openqa.selenium.Keys;
+import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Issue;
+
+import java.io.File;
+import java.util.List;
+
+import static com.google.common.truth.Truth.assertThat;
 
 public class TheInternetExampleTests extends BaseTest {
 
@@ -144,11 +141,11 @@ public class TheInternetExampleTests extends BaseTest {
     @Test(description = "File Upload")
     public void fileUpload() {
 
-        // Navigate to the upload page
-        FileUploadPage fileUploadPage = WelcomePage.open().then().clickFileUploadLink();
-
         // Pick a local file we're going to upload
         File fileToUpload = new File("textfile.txt");
+
+        // Navigate to the upload page
+        FileUploadPage fileUploadPage = WelcomePage.open().then().clickFileUploadLink();
 
         // Upload the file and confirm we land on the success page
         FileUploadSuccessPage successPage = fileUploadPage.uploadFile(fileToUpload);
@@ -190,10 +187,11 @@ public class TheInternetExampleTests extends BaseTest {
         iframePage.clearTextInEditor();
 
         //Enter some text in the editor
-        iframePage.enterTextInEditor("hellllllllo");
+        String text = "hello";
+        iframePage.enterTextInEditor(text);
 
         //Assert that it entered it correctly
-        assertThat(iframePage.getTextInEditor()).isEqualTo("hellllllllo");
+        assertThat(iframePage.getTextInEditor()).isEqualTo(text);
 
         //Enter some bold text in the editor
         iframePage.enterBoldTextInEditor(" some more text");
@@ -236,19 +234,25 @@ public class TheInternetExampleTests extends BaseTest {
         JavaScriptAlertsPage javascriptAlerts = WelcomePage.open().then().clickjavascriptAlertsLink();
 
         javascriptAlerts.clickAlertButtonAndAccept();
-        assertThat(javascriptAlerts.getResultText()).isEqualTo("You successfuly clicked an alert");
+        assertThat(javascriptAlerts.getResultText())
+                .isEqualTo("You successfuly clicked an alert");
 
         javascriptAlerts.clickAlertButtonAndDismiss();
-        assertThat(javascriptAlerts.getResultText()).isEqualTo("You successfuly clicked an alert");
+        assertThat(javascriptAlerts.getResultText())
+                .isEqualTo("You successfuly clicked an alert");
 
         javascriptAlerts.clickConfirmButtonAndAccept();
-        assertThat(javascriptAlerts.getResultText()).isEqualTo("You clicked: Ok");
+        assertThat(javascriptAlerts.getResultText())
+                .isEqualTo("You clicked: Ok");
 
         javascriptAlerts.clickConfirmButtonAndDismiss();
-        assertThat(javascriptAlerts.getResultText()).isEqualTo("You clicked: Cancel");
+        assertThat(javascriptAlerts.getResultText())
+                .isEqualTo("You clicked: Cancel");
 
-        javascriptAlerts.clickPromptButtonAndEnterPrompt("Blah blah blah");
-        assertThat(javascriptAlerts.getResultText()).isEqualTo("You entered: Blah blah blah");
+        String textToEnter = "Blah blah blah";
+        javascriptAlerts.clickPromptButtonAndEnterPrompt(textToEnter);
+        assertThat(javascriptAlerts.getResultText())
+                .isEqualTo("You entered: " + textToEnter);
     }
 
     @Issue("HEROKU-12")
@@ -256,11 +260,13 @@ public class TheInternetExampleTests extends BaseTest {
     public void keypresses() {
 
         // Navigate to the key presses page
-        KeyPressesPage keyPressesPage = WelcomePage.open().then().clickKeyPressesLink();
+        KeyPressesPage keyPressesPage = WelcomePage
+                .open()
+                .clickKeyPressesLink()
+                .enterKeyPress(Keys.ENTER);
 
-        keyPressesPage.enterKeyPress(Keys.ENTER);
-
-        assertThat(keyPressesPage.getResultText()).isEqualTo("You entered: " + Keys.ENTER.name());
+        assertThat(keyPressesPage.getResultText())
+                .isEqualTo("You entered: " + Keys.ENTER.name());
     }
 
     @Issue("HEROKU-13")
@@ -268,11 +274,14 @@ public class TheInternetExampleTests extends BaseTest {
     public void secureFileDownload() {
 
         // Navigate to the secure file downloads page
-        SecureFileDownloadPage secureFileDownloadPage =
-                WelcomePage.open().then().clickSecureFileDownloadsLink("admin", "admin");
+        String headingText = WelcomePage
+                .open()
+                .clickSecureFileDownloadsLink("admin", "admin")
+                .getHeadingText();
 
         // Assert that the page contains the text
-        assertThat(secureFileDownloadPage.getHeadingText()).isEqualTo("Secure File Downloader");
+        assertThat(headingText)
+                .isEqualTo("Secure File Downloader");
     }
 
     @Issue("HEROKU-14")

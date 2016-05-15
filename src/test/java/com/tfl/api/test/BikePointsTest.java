@@ -2,12 +2,12 @@ package com.tfl.api.test;
 
 import com.frameworkium.core.api.tests.BaseTest;
 import com.google.common.collect.ImmutableMap;
-import com.tfl.api.services.bikepoint.BikePointsResponse;
-import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
 import com.tfl.api.entities.Place;
 import com.tfl.api.services.bikepoint.BikePointService;
 import com.tfl.api.services.bikepoint.BikePointsPlacesResponse;
+import com.tfl.api.services.bikepoint.BikePointsResponse;
+import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 import java.util.List;
 import java.util.Map;
@@ -47,7 +47,7 @@ public class BikePointsTest extends BaseTest {
                 "lon", randomBP.lon,
                 "radius", "200");
         BikePointsPlacesResponse latLongBikePoints =
-                BikePointService.newInstance(params, BikePointsPlacesResponse.class);
+                BikePointService.newInstance(BikePointsPlacesResponse.class, params);
 
         // Then said bike point is part of result set
         assertThat(latLongBikePoints.getAllNames()).contains(randomBP.commonName);

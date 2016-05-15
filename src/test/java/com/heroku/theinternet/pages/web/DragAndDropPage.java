@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  * Simple test of the HTML5 Drag and Drop functionality.
  * <p>
  * Not currently natively supported by Selenium, see:
- * https://code.google.com/p/selenium/issues/detail?id=3604
+ * https://github.com/seleniumhq/selenium-google-code-issue-archive/issues/3604
  */
 public class DragAndDropPage extends BasePage<DragAndDropPage> {
 
@@ -48,7 +48,7 @@ public class DragAndDropPage extends BasePage<DragAndDropPage> {
      * @return a String containing the Javascript for JQuery (if not already present on the page)
      * and code for simulating drag and drop.
      */
-    private String javascriptToSumiulateDragDrop() {
+    private String javascriptToSimulateDragDrop() {
         if (dragDropHelperJS.isEmpty()) {
             dragDropHelperJS = RestAssured.get(DRAG_DROP_HELPER_JS_URI).asString();
         }
@@ -65,7 +65,7 @@ public class DragAndDropPage extends BasePage<DragAndDropPage> {
      * @param to   the JQuery selector for the target element where the from element will be dropped
      */
     private void simulateDragAndDrop(String from, String to) {
-        executeJS(javascriptToSumiulateDragDrop());
+        executeJS(javascriptToSimulateDragDrop());
         executeJS("$('" + from + "').simulateDragDrop({ dropTarget: '" + to + "'});");
     }
 

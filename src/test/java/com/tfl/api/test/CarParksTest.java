@@ -7,6 +7,7 @@ import com.tfl.api.services.carparkoccupancy.CarParkOccupancyService;
 import com.tfl.api.services.carparkoccupancy.CarParkOccupancySingleResponse;
 import org.testng.annotations.Test;
 
+import java.util.List;
 import java.util.Random;
 
 import static com.google.common.truth.Truth.assertThat;
@@ -27,19 +28,27 @@ public class CarParksTest extends BaseTest {
     @Test
     public void all_car_park_occupancies_contains_ruislip() {
 
-        CarParkOccupancyResponse carParkOccupancyResponse = CarParkOccupancyService.newInstance();
-        assertThat(carParkOccupancyResponse.getNames()).contains("Ruislip Gardens Stn (LUL)");
+        List<String> carParkNames = CarParkOccupancyService
+                .newInstance()
+                .getNames();
+
+        assertThat(carParkNames)
+                .contains("Ruislip Gardens Stn (LUL)");
     }
 
-    @Test(enabled = false) // possible bug in the tfl service
+    @Test(enabled = false) // possible bug in the service
     public void free_and_occupied_equals_total() {
 
         CarParkOccupancyResponse response = CarParkOccupancyService.newInstance();
+
+        int freeAndOccupiedCount = response.getTotalNumFreeSpaces()
+                + response.getTotalNumOccupiedSpaces();
+
         assertThat(response.getTotalNumSpaces())
-                .isEqualTo(response.getTotalNumFreeSpaces() + response.getTotalNumOccupiedSpaces());
+                .isEqualTo(freeAndOccupiedCount);
     }
 
-    @Test(enabled = false) // another possible bug, specific COP has 0 bays
+    @Test
     public void single_car_park_request_information_the_same() {
         // N.B. this test might fail if the number of free/used bays changes
         // between the first and subsequent service call
@@ -51,9 +60,8 @@ public class CarParksTest extends BaseTest {
                 CarParkOccupancyService.newInstance(randomCPO.id);
         CarParkOccupancy specificCPO = specificCarParkQuery.getCPO();
 
-        // Make sure they are the same
-        assertThat(specificCPO).isEqualTo(randomCPO);
-
+        // Make sure they are the same ignoring the details of the bays
+        assertThat(specificCPO.equalsIgnoringBayDetails(randomCPO)).isTrue();
     }
 
     @Test
@@ -65,7 +73,7 @@ public class CarParksTest extends BaseTest {
                 .getNumFreeSpaces();
 
         // Make sure things are sane
-        assertThat(freeSpaces).isAtLeast(0);
+        assertThat(freeSpaces).isAtLeast(1);
         assertThat(freeSpaces).isLessThan(10000);
     }
 

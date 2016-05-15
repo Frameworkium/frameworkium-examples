@@ -11,12 +11,12 @@ import static com.jayway.restassured.RestAssured.given;
 public interface JourneyPlannerService {
 
     static <T extends BaseService<T>> T newInstance(
-            String from, String to, Class<T> serviceClass) {
-        return newInstance(from, to, Collections.emptyMap(), serviceClass);
+            Class<T> serviceClass, String from, String to) {
+        return newInstance(serviceClass, from, to, Collections.emptyMap());
     }
 
     static <T extends BaseService<T>> T newInstance(
-            String from, String to, Map<String, String> params, Class<T> serviceClass) {
+            Class<T> serviceClass, String from, String to, Map<String, String> params) {
 
         return ServiceFactory.newInstance(
                 serviceClass,

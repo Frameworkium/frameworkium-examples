@@ -1,7 +1,6 @@
 package com.github.pages.web.components;
 
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.Rectangle;
 import org.openqa.selenium.support.FindBy;
 
 import ru.yandex.qatools.allure.annotations.Step;
@@ -51,11 +50,5 @@ public class HeaderComponent extends HtmlElement {
         searchBox.sendKeys(searchText);
         searchBox.sendKeys(Keys.ENTER);
         return PageFactory.newInstance(SearchResultsPage.class);
-    }
-
-    @Override
-    public Rectangle getRect() {
-        // TODO: Remove when HtmlElements upgrade to selenium 2.53
-        return null;
     }
 }

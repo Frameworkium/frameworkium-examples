@@ -23,7 +23,7 @@ public class ComponentExampleTest extends BaseTest {
         // not a good assertion, improving this is an exercise for the reader
         assertThat(explorePage.getTitle()).isEqualTo("Explore · GitHub");
 
-        // Search for "Selenium" and check SeleniumHQ/selenium is one of the returned reops.
+        // Search for "Selenium" and check SeleniumHQ/selenium is one of the returned repos.
         SearchResultsPage searchResultsPage = explorePage.with().theHeader().search("Selenium");
         assertThat(searchResultsPage.getRepoNames()).contains("SeleniumHQ/selenium");
 

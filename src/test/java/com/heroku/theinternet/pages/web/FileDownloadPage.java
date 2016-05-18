@@ -3,6 +3,7 @@ package com.heroku.theinternet.pages.web;
 import com.frameworkium.core.ui.annotations.Visible;
 import com.frameworkium.core.ui.pages.BasePage;
 import org.apache.commons.io.IOUtils;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.allure.annotations.Step;
 import ru.yandex.qatools.htmlelements.annotations.Name;
@@ -51,14 +52,13 @@ public class FileDownloadPage extends BasePage<FileDownloadPage> {
         return findLinkByText(linkText).getReference();
     }
 
-    private Link findLinkByText(String linkText) {
+    private Link findLinkByText(String desiredLinkText) {
 
-        for (Link link : allDownloadLinks) {
-            if (link.getText().equals(linkText)) {
-                return link;
-            }
-        }
-        return null;
+        return allDownloadLinks.stream()
+                .filter(link -> desiredLinkText.equals(link.getText()))
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException(
+                        "All downloads list doesn't contain " + desiredLinkText));
     }
 
     private long getSizeOfFileAtURL(String downloadURL) {

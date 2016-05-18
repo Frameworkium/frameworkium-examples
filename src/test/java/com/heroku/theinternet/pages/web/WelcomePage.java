@@ -80,7 +80,7 @@ public class WelcomePage extends BasePage<WelcomePage> {
     @Visible
     @Name("Secure File Download Link")
     @FindBy(linkText = "Secure File Download")
-    private Link secureFileDownloadLink;
+    private Link secureFileLink;
 
     @Visible
     @Name("Sortable Data Tables Link")
@@ -89,7 +89,8 @@ public class WelcomePage extends BasePage<WelcomePage> {
 
     @Step("Navigate to http://the-internet.herokuapp.com")
     public static WelcomePage open() {
-        return PageFactory.newInstance(WelcomePage.class, "http://the-internet.herokuapp.com");
+        return PageFactory.newInstance(
+                WelcomePage.class, "http://the-internet.herokuapp.com");
     }
 
     @Step("Click the Dynamic Loading link - user: {0}, password {1}")
@@ -97,8 +98,8 @@ public class WelcomePage extends BasePage<WelcomePage> {
         // For this sort of authentication, Selenium cannot handle the dialog
         // box that appears if you click the link.
         // Instead, we can provide the username and password in the URL:
-        return PageFactory.newInstance(BasicAuthSuccessPage.class, "http://" + username + ":" + password + "@"
-                + basicAuthLink.getReference().split("http://")[1]);
+        String url = formatBasicAuthURL(username, password, basicAuthLink.getReference());
+        return PageFactory.newInstance(BasicAuthSuccessPage.class, url);
     }
 
     @Step("Click the Checkboxes link")
@@ -162,7 +163,7 @@ public class WelcomePage extends BasePage<WelcomePage> {
     }
 
     @Step("Click the JavaScript Alerts link")
-    public JavaScriptAlertsPage clickjavascriptAlertsLink() {
+    public JavaScriptAlertsPage clickJavascriptAlertsLink() {
         javascriptAlertsLink.click();
         return PageFactory.newInstance(JavaScriptAlertsPage.class);
     }
@@ -178,13 +179,18 @@ public class WelcomePage extends BasePage<WelcomePage> {
         // For this sort of authentication, Selenium cannot handle the dialog
         // box that appears if you click the link.
         // Instead, we can provide the username and password in the URL:
-        return PageFactory.newInstance(SecureFileDownloadPage.class, "http://" + username + ":" + password + "@"
-                + secureFileDownloadLink.getReference().split("http://")[1]);
+        String url = formatBasicAuthURL(username, password, secureFileLink.getReference());
+        return PageFactory.newInstance(SecureFileDownloadPage.class, url);
     }
 
     @Step("Click the Sortable Data Table link")
     public SortableDataTablesPage clickSortableDataTablesLink() {
         sortableDataTablesLink.click();
         return PageFactory.newInstance(SortableDataTablesPage.class);
+    }
+
+    private String formatBasicAuthURL(String username, String password, String originalURL) {
+        return String.format("http://%s:%s@%s",
+                username, password, originalURL.replace("http://", ""));
     }
 }

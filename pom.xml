@@ -29,25 +29,9 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <env.config>local</env.config>
-    <browser/>
     <threads>1</threads>
-    <seleniumGridURL/>
-    <platform/>
-    <platformVersion/>
-    <device />
-    <deviceName/>
-    <browserVersion/>
     <groups/>
-    <sauce/>
-    <browserStack/>
-    <maximise/>
-    <build/>
-    <appPath/>
-    <jiraURL/>
-    <jiraResultVersion/>
     <aspectj.version>1.8.9</aspectj.version>
-    <allure.version>1.4.11</allure.version>
-    <allure.issues.tracker.pattern/>
   </properties>
 
   <repositories>
@@ -114,23 +98,8 @@
               <parallel>methods</parallel>
               <threadCount>${threads}</threadCount>
               <systemProperties>
-              <!-- TODO: Can we remove these? -->
-                <env.config>${env.config}</env.config>
-                <browser>${browser}</browser>
                 <screenshotDirectory>${project.build.directory}/screenshots</screenshotDirectory>
-                <gridURL>${seleniumGridURL}</gridURL>
-                <platform>${platform}</platform>
-                <platformVersion>${platformVersion}</platformVersion>
-                <browserVersion>${browserVersion}</browserVersion>
-                <device>${device}</device>
-                <sauce>${sauce}</sauce>
-                <browserStack>${browserStack}</browserStack>
-                <maximise>${maximise}</maximise>
-                <build>${build}</build>
-                <appPath>${appPath}</appPath>
-                <jiraURL>${jiraURL}</jiraURL>
-                <jiraResultVersion>${jiraResultVersion}</jiraResultVersion>
-                <allure.issues.tracker.pattern>${allure.issues.tracker.pattern}/browse/%s</allure.issues.tracker.pattern>
+                <allure.issues.tracker.pattern>/browse/%s</allure.issues.tracker.pattern>
               </systemProperties>
               <includes>
                 <include>**/*Test.java</include>

@@ -20,8 +20,6 @@ import java.util.stream.Collectors;
 public class DragAndDropPage extends BasePage<DragAndDropPage> {
 
     private static final String JQUERY_JS_URI = "http://code.jquery.com/jquery-1.11.2.min.js";
-    private static final String DRAG_DROP_HELPER_JS_URI = "https://gist.githubusercontent.com/"
-            + "rcorreia/2362544/raw/3319e506e204af262d27f7ff9fca311e693dc342/drag_and_drop_helper.js";
 
     @Visible
     @Name("Box A")
@@ -33,14 +31,26 @@ public class DragAndDropPage extends BasePage<DragAndDropPage> {
     @FindBy(id = "column-b")
     private WebElement boxB;
 
-    @Visible
     @Name("List of headers")
     @FindBy(css = "header")
     private List<WebElement> boxes;
 
     // Acts as a cache to prevent multiple fetches of the same libraries from the Internet
-    private String jQueryJS = "";
-    private String dragDropHelperJS = "";
+    private static String jQueryJS = "";
+    // https://gist.githubusercontent.com/rcorreia/2362544/raw/3319e506e204af262d27f7ff9fca311e693dc342/drag_and_drop_helper.js
+    private static String dragDropHelperJS = "!function(t){t.fn.simulateDragDrop=function(a)" +
+            "{return this.each(function(){new t.simulateDragDrop(this,a)})}," +
+            "t.simulateDragDrop=function(t,a){this.options=a,this.simulateEvent(t,a)}," +
+            "t.extend(t.simulateDragDrop.prototype,{simulateEvent:function(a,e){var " +
+            "n=\"dragstart\",r=this.createEvent(n);this.dispatchEvent(a,n,r)," +
+            "n=\"drop\";var i=this.createEvent(n,{});i.dataTransfer=r.dataTransfer," +
+            "this.dispatchEvent(t(e.dropTarget)[0],n,i),n=\"dragend\";" +
+            "var s=this.createEvent(n,{});s.dataTransfer=r.dataTransfer,this." +
+            "dispatchEvent(a,n,s)},createEvent:function(t){var a=document." +
+            "createEvent(\"CustomEvent\");return a.initCustomEvent(t,!0,!0,null)," +
+            "a.dataTransfer={data:{},setData:function(t,a){this.data[t]=a}," +
+            "getData:function(t){return this.data[t]}},a},dispatchEvent:" +
+            "function(t,a,e){t.dispatchEvent?t.dispatchEvent(e):t.fireEvent&&t.fireEvent(\"on\"+a,e)}})}(jQuery);";
 
     /**
      * Fetches Javascript from the Internet used to be able to simulate Drag and Drop.
@@ -49,12 +59,13 @@ public class DragAndDropPage extends BasePage<DragAndDropPage> {
      * and code for simulating drag and drop.
      */
     private String javascriptToSimulateDragDrop() {
-        if (dragDropHelperJS.isEmpty()) {
-            dragDropHelperJS = RestAssured.get(DRAG_DROP_HELPER_JS_URI).asString();
-        }
-        Boolean isJQueryAvailable = (Boolean) executeJS("return typeof $ !== 'undefined';");
-        if (!isJQueryAvailable && jQueryJS.isEmpty()) {
-            jQueryJS = RestAssured.get(JQUERY_JS_URI).asString();
+        if (jQueryJS.isEmpty()) {
+            Boolean isJQueryAvailable = (Boolean) executeJS("return typeof $ !== 'undefined';");
+            if (!isJQueryAvailable) {
+                logger.debug("about to get jQuery");
+                jQueryJS = RestAssured.get(JQUERY_JS_URI).asString();
+                logger.debug("got jQuery");
+            }
         }
 
         return jQueryJS + dragDropHelperJS;
@@ -72,12 +83,6 @@ public class DragAndDropPage extends BasePage<DragAndDropPage> {
     @Step("Drag A onto B")
     public DragAndDropPage dragAontoB() {
         simulateDragAndDrop("#column-a", "#column-b");
-        return this;
-    }
-
-    @Step("Drag B onto A")
-    public DragAndDropPage dragBontoA() {
-        simulateDragAndDrop("#column-b", "#column-a");
         return this;
     }
 

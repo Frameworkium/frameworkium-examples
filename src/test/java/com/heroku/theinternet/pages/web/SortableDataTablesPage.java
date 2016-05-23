@@ -46,23 +46,18 @@ public class SortableDataTablesPage extends BasePage<SortableDataTablesPage> {
     }
 
     @Step("Sort table {0} by column name {1}")
-    private void sortTableByColumnName(Table table, String colHeader) {
+    private SortableDataTablesPage sortTableByColumnName(Table table, String colHeader) {
         table.getHeadings()
                 .get(table.getHeadingsAsString().indexOf(colHeader))
                 .click();
+        return this;
     }
 
     @Step("Get column contents of column {1} in table {0}")
     private List<String> getColumnContents(Table table, String colHeader) {
-        // We should be able to use the built in methods to achieve this, but
-        // because the table contains a blank row, the methods fail.
-        // Thus, some manipulation is required:
-        int colIndex = table.getHeadingsAsString().indexOf(colHeader);
 
-        return table.getRowsAsString().stream()
-                .filter(row -> row.size() > 0)
-                .map(row -> row.get(colIndex))
-                .collect(Collectors.toList());
+        int colIndex = table.getHeadingsAsString().indexOf(colHeader);
+        return table.getColumnsAsString().get(colIndex);
     }
 
 }

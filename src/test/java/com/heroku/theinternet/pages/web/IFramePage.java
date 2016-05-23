@@ -1,13 +1,11 @@
 package com.heroku.theinternet.pages.web;
 
+import com.frameworkium.core.ui.annotations.Visible;
+import com.frameworkium.core.ui.pages.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 import ru.yandex.qatools.allure.annotations.Step;
 import ru.yandex.qatools.htmlelements.annotations.Name;
-
-import com.frameworkium.core.ui.pages.BasePage;
-import com.frameworkium.core.ui.annotations.Visible;
 
 public class IFramePage extends BasePage<IFramePage> {
 
@@ -20,71 +18,71 @@ public class IFramePage extends BasePage<IFramePage> {
     @Visible
     @FindBy(css = "div[aria-label='Bold'] button")
     private WebElement boldButton;
-    
+
+    // This is within the iframe so while it'll be physically visible when the
+    // page loads, it WILL NOT be 'visible' to the driver (i.e. selenium will
+    // not be able to 'see' it) until we switchTo it - see below
     @Name("Wysiwyg editor")
-    //This is within the iframe so while it'll be physically visible
-    //when the page loads, it WILL NOT be 'visible' to the
-    //driver (ie selenium will not be able to 'see' it) until we
-    //switchTo it - see below
     @FindBy(id = "tinymce")
     private WebElement wysiwygTextBox;
-    
+
     @Step("Clear text in editor")
     public void clearTextInEditor() {
-        
-        //Switch driver context to the iframe
-        driver.switchTo().frame(wysiwygIFrame);
-        
-        //Perform actions within the iframe
-        wysiwygTextBox.clear();
-        
-        //Switch back to the main page before returning
-        driver.switchTo().parentFrame();
+
+        performActionInIFrame(() ->
+                wysiwygTextBox.clear());
     }
-    
+
     @Step("Enter text in editor")
     public void enterTextInEditor(String text) {
-       
-        //Switch driver context to the iframe
-        driver.switchTo().frame(wysiwygIFrame);
-        
-        //Perform actions within the iframe
-        wysiwygTextBox.sendKeys(text);
-        
-        //Switch back to the main page before returning
-        driver.switchTo().parentFrame();
+
+        performActionInIFrame(() ->
+                wysiwygTextBox.sendKeys(text));
     }
 
     @Step("Get editor text")
     public String getTextInEditor() {
-        
-        //Switch driver context to the iframe
-        driver.switchTo().frame(wysiwygIFrame);
-        
-        //Perform actions within the iframe
+
+        switchToIFrame();
+
+        // Perform actions within the iframe
         String text = wysiwygTextBox.getText();
-                
-        //Switch back to the main page before returning
-        driver.switchTo().parentFrame();
+
+        switchBackToMainPage();
         return text;
     }
-    
-    @Step("Enter Bold Text")
+
+    @Step("Enter Bold Text: '{0}'")
     public void enterBoldTextInEditor(String text) {
 
-        //Click bold button (As it's NOT in the iframe)
+        // Click bold button (As it's NOT in the iframe)
         boldButton.click();
-        //Switch driver context to the iframe
-        driver.switchTo().frame(wysiwygIFrame);
 
-        //Perform actions within the iframe
-        wysiwygTextBox.sendKeys(text);
-        
-        //Switch back to the main page before returning
-        driver.switchTo().parentFrame();
-        //Unclick bold button (still not in the iframe!)
+        performActionInIFrame(() ->
+                wysiwygTextBox.sendKeys(text));
+
+        // Unclick bold button (still not in the iframe!)
         boldButton.click();
     }
-    
-    
+
+    private void performActionInIFrame(Runnable r) {
+
+        switchToIFrame();
+
+        // Perform actions within the iframe
+        r.run();
+
+        switchBackToMainPage();
+    }
+
+    private void switchToIFrame() {
+        // Switch driver context to the iframe
+        driver.switchTo().frame(wysiwygIFrame);
+    }
+
+    private void switchBackToMainPage() {
+        // Switch back to the main page
+        driver.switchTo().parentFrame();
+    }
+
 }

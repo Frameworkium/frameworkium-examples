@@ -1,26 +1,25 @@
 package com.heroku.theinternet.pages.web;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-
-import ru.yandex.qatools.allure.annotations.Step;
-import ru.yandex.qatools.htmlelements.annotations.Name;
-
+import com.frameworkium.core.ui.annotations.Visible;
 import com.frameworkium.core.ui.pages.BasePage;
 import com.frameworkium.core.ui.pages.PageFactory;
-import com.frameworkium.core.ui.annotations.Visible;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.allure.annotations.Step;
+import ru.yandex.qatools.htmlelements.annotations.Name;
+import ru.yandex.qatools.htmlelements.element.TextInput;
 
 public class FormAuthenticationPage extends BasePage<FormAuthenticationPage> {
 
     @Visible
     @Name("Username field")
     @FindBy(css = "input#username")
-    private WebElement usernameField;
+    private TextInput usernameField;
 
     @Visible
     @Name("Password field")
     @FindBy(css = "input#password")
-    private WebElement passwordField;
+    private TextInput passwordField;
 
     @Visible
     @Name("Login button")

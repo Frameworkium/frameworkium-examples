@@ -1,25 +1,7 @@
 package com.heroku.theinternet.tests.web;
 
 import com.frameworkium.core.ui.tests.BaseTest;
-import com.heroku.theinternet.pages.web.BasicAuthSuccessPage;
-import com.heroku.theinternet.pages.web.CheckboxesPage;
-import com.heroku.theinternet.pages.web.DragAndDropPage;
-import com.heroku.theinternet.pages.web.DropdownPage;
-import com.heroku.theinternet.pages.web.DynamicLoadingExamplePage;
-import com.heroku.theinternet.pages.web.FileDownloadPage;
-import com.heroku.theinternet.pages.web.FileUploadPage;
-import com.heroku.theinternet.pages.web.FileUploadSuccessPage;
-import com.heroku.theinternet.pages.web.FormAuthenticationPage;
-import com.heroku.theinternet.pages.web.FormAuthenticationSuccessPage;
-import com.heroku.theinternet.pages.web.FramesPage;
-import com.heroku.theinternet.pages.web.HoversPage;
-import com.heroku.theinternet.pages.web.IFramePage;
-import com.heroku.theinternet.pages.web.JQueryUIMenuPage;
-import com.heroku.theinternet.pages.web.JQueryUIPage;
-import com.heroku.theinternet.pages.web.JavaScriptAlertsPage;
-import com.heroku.theinternet.pages.web.KeyPressesPage;
-import com.heroku.theinternet.pages.web.SortableDataTablesPage;
-import com.heroku.theinternet.pages.web.WelcomePage;
+import com.heroku.theinternet.pages.web.*;
 import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Issue;
@@ -35,12 +17,14 @@ public class TheInternetExampleTests extends BaseTest {
     @Test(description = "Basic Auth")
     public void basicAuth() {
 
-        // Navigate to the basic auth page
-        BasicAuthSuccessPage basicAuthSuccess = WelcomePage.open().then().clickBasicAuth("admin", "admin");
+        String pageSource = WelcomePage.open().then()
+                // Navigate to the basic auth page
+                .clickBasicAuth("admin", "admin")
+                .getSource();
 
         // Assert that the returned page has the text present
-        assertThat(basicAuthSuccess.getSource())
-                .contains("Congratulations! You must have the proper credentials.");
+        assertThat(pageSource).contains(
+                "Congratulations! You must have the proper credentials.");
     }
 
     @Issue("HEROKU-2")
@@ -64,13 +48,14 @@ public class TheInternetExampleTests extends BaseTest {
     public void dragAndDrop() {
 
         // Navigate to the checkboxes page
-        DragAndDropPage dragAndDropPage = WelcomePage.open().then().clickDragAndDropLink();
-
-        // Drag A onto B
-        dragAndDropPage.dragAontoB();
+        List<String> headings = WelcomePage.open().then()
+                .clickDragAndDropLink()
+                // Drag A onto B
+                .dragAontoB()
+                .getListOfHeadings();
 
         // Assert on the order of the headings
-        assertThat(dragAndDropPage.getListOfHeadings())
+        assertThat(headings)
                 .named("Order of headings")
                 .containsExactly("B", "A");
     }
@@ -297,20 +282,19 @@ public class TheInternetExampleTests extends BaseTest {
         SortableDataTablesPage sortableDataTablesPage =
                 WelcomePage.open().then().clickSortableDataTablesLink();
 
-        //Assert that Table 1 contains "http://www.jdoe.com" in the web site column
+        // Assert that Table 1 contains "http://www.jdoe.com" in the web site column
         assertThat(sortableDataTablesPage.getTable1ColumnContents("Web Site"))
                 .contains("http://www.jdoe.com");
 
-        //Sort Table 2 by last name column
-        sortableDataTablesPage.sortTable2ByColumnName("Last Name");
+        List<String> lastNameColumn = sortableDataTablesPage
+                // Sort Table 2 by last name column
+                .sortTable2ByColumnName("Last Name")
+                .getTable2ColumnContents("Last Name");
 
-        List<String> lastNameColumn =
-                sortableDataTablesPage.getTable2ColumnContents("Last Name");
-
-        //Confirm that the column is then ordered by the last name
-        assertThat(lastNameColumn).isOrdered();
-
-        //Confirm that "Bach" is then the first surname in table 2
+        // Confirm that "Bach" is then the first surname in table 2
         assertThat(lastNameColumn.get(0)).isEqualTo("Bach");
+
+        // Confirm that the column is then ordered by the last name
+        assertThat(lastNameColumn).isOrdered();
     }
 }

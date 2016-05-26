@@ -1,16 +1,14 @@
 package com.calcapp.pages.app;
 
-import java.util.List;
-
+import com.frameworkium.core.ui.annotations.Visible;
+import com.frameworkium.core.ui.pages.BasePage;
 import org.openqa.selenium.support.FindBy;
-
 import ru.yandex.qatools.allure.annotations.Step;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.TextBlock;
 import ru.yandex.qatools.htmlelements.element.TextInput;
 
-import com.frameworkium.core.ui.pages.BasePage;
-import com.frameworkium.core.ui.annotations.Visible;
+import java.util.List;
 
 public class CalculatorPage extends BasePage<CalculatorPage> {
 

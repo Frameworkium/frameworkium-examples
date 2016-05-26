@@ -1,19 +1,17 @@
 package com.github.pages.web.components;
 
+import com.frameworkium.core.ui.annotations.Visible;
+import com.frameworkium.core.ui.pages.PageFactory;
+import com.github.pages.web.ExplorePage;
+import com.github.pages.web.HomePage;
+import com.github.pages.web.SearchResultsPage;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.FindBy;
-
 import ru.yandex.qatools.allure.annotations.Step;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.HtmlElement;
 import ru.yandex.qatools.htmlelements.element.Link;
 import ru.yandex.qatools.htmlelements.element.TextInput;
-
-import com.frameworkium.core.ui.pages.PageFactory;
-import com.frameworkium.core.ui.annotations.Visible;
-import com.github.pages.web.ExplorePage;
-import com.github.pages.web.HomePage;
-import com.github.pages.web.SearchResultsPage;
 
 @Name("Github Header")
 @FindBy(css = "header")

@@ -27,7 +27,8 @@ public class FormAuthenticationPage extends BasePage<FormAuthenticationPage> {
     private WebElement loginButton;
 
     @Step("Log in - {0}/{1}")
-    public <T extends BasePage<T>> T login(String username, String password, Class<T> pageObjectClass) {
+    public <T extends BasePage<T>> T login(
+            String username, String password, Class<T> classOfExpectedPageObject) {
 
         usernameField.clear();
         usernameField.sendKeys(username);
@@ -36,8 +37,7 @@ public class FormAuthenticationPage extends BasePage<FormAuthenticationPage> {
         passwordField.sendKeys(password);
 
         loginButton.click();
-        return PageFactory.newInstance(pageObjectClass);
+        return PageFactory.newInstance(classOfExpectedPageObject);
     }
-
 
 }

@@ -1,15 +1,13 @@
 package com.github.tests.web;
 
-import static com.google.common.truth.Truth.assertThat;
-
-import org.testng.annotations.Test;
-
-import ru.yandex.qatools.allure.annotations.Issue;
-
 import com.frameworkium.core.ui.tests.BaseTest;
 import com.github.pages.web.ExplorePage;
 import com.github.pages.web.HomePage;
 import com.github.pages.web.SearchResultsPage;
+import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Issue;
+
+import static com.google.common.truth.Truth.assertThat;
 
 public class ComponentExampleTest extends BaseTest {
 

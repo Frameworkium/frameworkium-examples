@@ -1,16 +1,14 @@
 package com.calcapp.tests;
 
-import static com.google.common.truth.Truth.assertThat;
-
-import java.util.Random;
-
-import org.testng.annotations.Test;
-
-import ru.yandex.qatools.allure.annotations.Issue;
-
 import com.calcapp.pages.app.CalculatorPage;
 import com.frameworkium.core.ui.pages.PageFactory;
 import com.frameworkium.core.ui.tests.BaseTest;
+import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Issue;
+
+import java.util.Random;
+
+import static com.google.common.truth.Truth.assertThat;
 
 public class CalculatorAppTest extends BaseTest {
 

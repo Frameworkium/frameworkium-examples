@@ -2,8 +2,8 @@ package com.tfl.api.services.bikepoint;
 
 import com.frameworkium.core.api.annotations.DeserialiseAs;
 import com.frameworkium.core.api.services.BaseService;
-import ru.yandex.qatools.allure.annotations.Step;
 import com.tfl.api.entities.Place;
+import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.Arrays;
 import java.util.List;

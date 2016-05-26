@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
  * Simple test of the HTML5 Drag and Drop functionality.
  * <p>
  * Not currently natively supported by Selenium, see:
+ * <p>
  * https://github.com/seleniumhq/selenium-google-code-issue-archive/issues/3604
  */
 public class DragAndDropPage extends BasePage<DragAndDropPage> {
@@ -37,6 +38,7 @@ public class DragAndDropPage extends BasePage<DragAndDropPage> {
 
     // Acts as a cache to prevent multiple fetches of the same libraries from the Internet
     private static String jQueryJS = "";
+    // Local minified copy of the script
     // https://gist.githubusercontent.com/rcorreia/2362544/raw/3319e506e204af262d27f7ff9fca311e693dc342/drag_and_drop_helper.js
     private static String dragDropHelperJS = "!function(t){t.fn.simulateDragDrop=function(a)" +
             "{return this.each(function(){new t.simulateDragDrop(this,a)})}," +
@@ -53,10 +55,10 @@ public class DragAndDropPage extends BasePage<DragAndDropPage> {
             "function(t,a,e){t.dispatchEvent?t.dispatchEvent(e):t.fireEvent&&t.fireEvent(\"on\"+a,e)}})}(jQuery);";
 
     /**
-     * Fetches Javascript from the Internet used to be able to simulate Drag and Drop.
+     * Fetches Javascript used to be able to simulate Drag and Drop.
      *
-     * @return a String containing the Javascript for JQuery (if not already present on the page)
-     * and code for simulating drag and drop.
+     * @return a String containing the Javascript for JQuery (if not already
+     * present on the page) and code for simulating drag and drop.
      */
     private String javascriptToSimulateDragDrop() {
         if (jQueryJS.isEmpty()) {
@@ -72,8 +74,10 @@ public class DragAndDropPage extends BasePage<DragAndDropPage> {
     }
 
     /**
-     * @param from the JQuery selector for the element to initially click and then drag
-     * @param to   the JQuery selector for the target element where the from element will be dropped
+     * @param from the JQuery selector for the element to initially click and
+     *             then drag
+     * @param to   the JQuery selector for the target element where the from
+     *             element will be dropped
      */
     private void simulateDragAndDrop(String from, String to) {
         executeJS(javascriptToSimulateDragDrop());

@@ -1,15 +1,13 @@
 package com.tfl.web.tests;
 
-import static com.google.common.truth.Truth.assertThat;
-
-import org.testng.annotations.Test;
-
-import ru.yandex.qatools.allure.annotations.Issue;
-
 import com.frameworkium.core.ui.tests.BaseTest;
 import com.tfl.web.pages.HomePage;
 import com.tfl.web.pages.JourneyPlannerResultsPage;
 import com.tfl.web.pages.PlanJourneyPage;
+import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Issue;
+
+import static com.google.common.truth.Truth.assertThat;
 
 public class PlanJourneyTest extends BaseTest {
 
@@ -26,7 +24,7 @@ public class PlanJourneyTest extends BaseTest {
         // Plan a journey between two locations
         JourneyPlannerResultsPage resultsPage = planJourneyPage
                 .planJourney("Clapham Junction", "Oxford Circus Underground Station");
-        
+
         // Check that the title displayed on the page is "JOURNEY RESULTS"
         assertThat(resultsPage.getTitleText()).isEqualTo("JOURNEY RESULTS");
     }

@@ -1,14 +1,12 @@
 package com.heroku.theinternet.pages.web;
 
+import com.frameworkium.core.ui.annotations.Visible;
+import com.frameworkium.core.ui.pages.BasePage;
+import com.frameworkium.core.ui.pages.PageFactory;
 import org.openqa.selenium.support.FindBy;
-
 import ru.yandex.qatools.allure.annotations.Step;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.Link;
-
-import com.frameworkium.core.ui.pages.BasePage;
-import com.frameworkium.core.ui.pages.PageFactory;
-import com.frameworkium.core.ui.annotations.Visible;
 
 public class WelcomePage extends BasePage<WelcomePage> {
 
@@ -56,7 +54,7 @@ public class WelcomePage extends BasePage<WelcomePage> {
     @Name("Hovers Link")
     @FindBy(linkText = "Hovers")
     private Link hoversLink;
-    
+
     @Visible
     @Name("Frames Link")
     @FindBy(linkText = "Frames")
@@ -143,13 +141,13 @@ public class WelcomePage extends BasePage<WelcomePage> {
         formAuthenticationLink.click();
         return PageFactory.newInstance(FormAuthenticationPage.class);
     }
-    
+
     @Step("Click the Frames link")
     public FramesPage clickFramesLink() {
         framesLink.click();
         return PageFactory.newInstance(FramesPage.class);
     }
-    
+
     @Step("Click the Hovers link")
     public HoversPage clickHoversLink() {
         hoversLink.click();

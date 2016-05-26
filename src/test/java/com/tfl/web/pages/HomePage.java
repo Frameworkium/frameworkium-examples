@@ -1,14 +1,12 @@
 package com.tfl.web.pages;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-
-import ru.yandex.qatools.allure.annotations.Step;
-import ru.yandex.qatools.htmlelements.annotations.Name;
-
+import com.frameworkium.core.ui.annotations.Visible;
 import com.frameworkium.core.ui.pages.BasePage;
 import com.frameworkium.core.ui.pages.PageFactory;
-import com.frameworkium.core.ui.annotations.Visible;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.allure.annotations.Step;
+import ru.yandex.qatools.htmlelements.annotations.Name;
 
 public class HomePage extends BasePage<HomePage> {
 
@@ -20,7 +18,7 @@ public class HomePage extends BasePage<HomePage> {
     @Name("Tube Line Status Board")
     @FindBy(css = "div.board-wrapper")
     private WebElement statusBoard;
-    
+
 
     @Step("Navigate to the TFL homepage")
     public static HomePage open() {
@@ -32,5 +30,5 @@ public class HomePage extends BasePage<HomePage> {
         planJourneyLink.click();
         return PageFactory.newInstance(PlanJourneyPage.class);
     }
-    
+
 }

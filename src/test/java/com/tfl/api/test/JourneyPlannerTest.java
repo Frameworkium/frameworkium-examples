@@ -4,8 +4,8 @@ import com.frameworkium.core.api.tests.BaseTest;
 import com.google.common.collect.ImmutableMap;
 import com.tfl.api.services.journeyPlanner.JourneyPlannerDisambiguationResponse;
 import com.tfl.api.services.journeyPlanner.JourneyPlannerItineraryResponse;
-import org.testng.annotations.Test;
 import com.tfl.api.services.journeyPlanner.JourneyPlannerService;
+import org.testng.annotations.Test;
 
 import java.util.Map;
 

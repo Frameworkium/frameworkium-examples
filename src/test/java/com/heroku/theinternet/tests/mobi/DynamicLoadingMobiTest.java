@@ -1,12 +1,11 @@
 package com.heroku.theinternet.tests.mobi;
 
-import static com.google.common.truth.Truth.assertThat;
-
-import org.testng.annotations.Test;
-
 import com.frameworkium.core.ui.tests.BaseTest;
 import com.heroku.theinternet.pages.web.DynamicLoadingExamplePage;
 import com.heroku.theinternet.pages.web.WelcomePage;
+import org.testng.annotations.Test;
+
+import static com.google.common.truth.Truth.assertThat;
 
 public class DynamicLoadingMobiTest extends BaseTest {
 

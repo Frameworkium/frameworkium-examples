@@ -13,7 +13,6 @@ import ru.yandex.qatools.htmlelements.element.HtmlElement;
 
 public class DynamicLoadingExamplePage extends BasePage<DynamicLoadingExamplePage> {
 
-
     @Visible
     @Name("Start button")
     @FindBy(css = "#start button")

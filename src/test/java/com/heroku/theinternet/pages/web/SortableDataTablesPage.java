@@ -9,7 +9,6 @@ import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.Table;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class SortableDataTablesPage extends BasePage<SortableDataTablesPage> {
 

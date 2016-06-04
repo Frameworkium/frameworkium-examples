@@ -8,6 +8,11 @@ import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.allure.annotations.Step;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 
+import java.util.List;
+
+import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOfAllElements;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfAllElements;
+
 public class PlanJourneyPage extends BasePage<PlanJourneyPage> {
 
     @Name("From Field")
@@ -15,10 +20,18 @@ public class PlanJourneyPage extends BasePage<PlanJourneyPage> {
     @FindBy(css = "input#InputFrom")
     private WebElement fromField;
 
+    @Name("List of from suggestions")
+    @FindBy(css = "#search-filter-form-0 div.tt-dataset-stop-points-search div.tt-suggestion")
+    private List<WebElement> fromSuggestions;
+
     @Name("To Field")
     @Visible
     @FindBy(css = "input#InputTo")
     private WebElement toField;
+
+    @Name("List of to suggestions")
+    @FindBy(css = "#search-filter-form-1 div.tt-dataset-stop-points-search div.tt-suggestion")
+    private List<WebElement> toSuggestions;
 
     @Name("Plan my Journey Button")
     @Visible
@@ -30,9 +43,16 @@ public class PlanJourneyPage extends BasePage<PlanJourneyPage> {
     public JourneyPlannerResultsPage planJourney(String from, String to) {
 
         fromField.sendKeys(from);
+        clickFirstSuggestion(fromSuggestions);
         toField.sendKeys(to);
+        clickFirstSuggestion(toSuggestions);
         planJourneyButton.click();
         return PageFactory.newInstance(JourneyPlannerResultsPage.class);
+    }
+
+    private void clickFirstSuggestion(List<WebElement> suggestions) {
+        wait.until(visibilityOfAllElements(suggestions)).get(0).click();
+        wait.until(invisibilityOfAllElements(suggestions));
     }
 
 }

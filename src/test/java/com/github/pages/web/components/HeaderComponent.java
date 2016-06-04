@@ -45,8 +45,7 @@ public class HeaderComponent extends HtmlElement {
 
     @Step("Search for the text '{0}'")
     public SearchResultsPage search(String searchText) {
-        searchBox.sendKeys(searchText);
-        searchBox.sendKeys(Keys.ENTER);
+        searchBox.sendKeys(searchText + Keys.ENTER);
         return PageFactory.newInstance(SearchResultsPage.class);
     }
 }

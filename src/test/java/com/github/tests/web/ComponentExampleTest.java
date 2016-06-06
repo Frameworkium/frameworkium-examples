@@ -3,9 +3,10 @@ package com.github.tests.web;
 import com.frameworkium.core.ui.tests.BaseTest;
 import com.github.pages.web.ExplorePage;
 import com.github.pages.web.HomePage;
-import com.github.pages.web.SearchResultsPage;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Issue;
+
+import java.util.List;
 
 import static com.google.common.truth.Truth.assertThat;
 
@@ -22,11 +23,9 @@ public class ComponentExampleTest extends BaseTest {
         assertThat(explorePage.getTitle()).isEqualTo("Explore · GitHub");
 
         // Search for "Selenium" and check SeleniumHQ/selenium is one of the returned repos.
-        SearchResultsPage searchResultsPage = explorePage.with().theHeader().search("Selenium");
-        assertThat(searchResultsPage.getRepoNames()).contains("SeleniumHQ/selenium");
-
-        // Go back to the homepage
-        HomePage homepage = searchResultsPage.with().theHeader().clickLogo();
-        assertThat(homepage.getTitle()).contains("GitHub");
+        List<String> searchResults = explorePage.with().theHeader()
+                .search("Selenium")
+                .getRepoNames();
+        assertThat(searchResults).contains("SeleniumHQ/selenium");
     }
 }

@@ -8,8 +8,8 @@ import ru.yandex.qatools.htmlelements.annotations.Name;
 
 public class JourneyPlannerResultsPage extends BasePage<JourneyPlannerResultsPage> {
 
-    @Name("Page Title Area")
     @Visible
+    @Name("Page Title Area")
     @FindBy(css = "h1 span.hero-headline")
     private WebElement pageTitleArea;
 

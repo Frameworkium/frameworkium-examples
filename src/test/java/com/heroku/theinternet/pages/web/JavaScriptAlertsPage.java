@@ -2,10 +2,11 @@ package com.heroku.theinternet.pages.web;
 
 import com.frameworkium.core.ui.annotations.Visible;
 import com.frameworkium.core.ui.pages.BasePage;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.allure.annotations.Step;
 import ru.yandex.qatools.htmlelements.annotations.Name;
+import ru.yandex.qatools.htmlelements.element.Button;
+import ru.yandex.qatools.htmlelements.element.TextBlock;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
@@ -14,21 +15,21 @@ public class JavaScriptAlertsPage extends BasePage<JavaScriptAlertsPage> {
     @Visible
     @Name("JS Alert button")
     @FindBy(css = "button[onclick='jsAlert()']")
-    private WebElement jsAlertButton;
+    private Button jsAlertButton;
 
     @Visible
     @Name("JS Confirm button")
     @FindBy(css = "button[onclick='jsConfirm()']")
-    private WebElement jsConfirmButton;
+    private Button jsConfirmButton;
 
     @Visible
     @Name("JS Prompt button")
     @FindBy(css = "button[onclick='jsPrompt()']")
-    private WebElement jsPromptButton;
+    private Button jsPromptButton;
 
     @Name("Result area")
     @FindBy(css = "p#result")
-    private WebElement resultArea;
+    private TextBlock resultArea;
 
     @Step("Click alert")
     public JavaScriptAlertsPage clickAlertButtonAndAccept() {

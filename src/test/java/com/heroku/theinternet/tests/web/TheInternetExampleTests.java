@@ -57,7 +57,8 @@ public class TheInternetExampleTests extends BaseTest {
         // Assert on the order of the headings
         assertThat(headings)
                 .named("Order of headings")
-                .containsExactly("B", "A");
+                .containsExactly("B", "A")
+                .inOrder();
     }
 
     @Issue("HEROKU-4")

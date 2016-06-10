@@ -46,7 +46,7 @@ public class CarParkOccupancyResponse extends BaseService<CarParkOccupancyRespon
 
     private int getSumFromBays(ToIntFunction<Bay> bayToIntFunction) {
         return stream(carParkOccupancies)         // create a Stream of the CPO array
-                .flatMap(cpo -> stream(cpo.bays)) // create a single Stream of Bays from each list of Bays in each CPO
+                .flatMap(cpo -> stream(cpo.bays)) // flatMap (to a single Stream of Bays) each list of Bays in each CPO
                 .mapToInt(bayToIntFunction)       // get the number of something from bays
                 .sum();
     }

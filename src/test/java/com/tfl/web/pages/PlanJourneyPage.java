@@ -15,8 +15,8 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfAllE
 
 public class PlanJourneyPage extends BasePage<PlanJourneyPage> {
 
-    @Name("From Field")
     @Visible
+    @Name("From Field")
     @FindBy(css = "input#InputFrom")
     private WebElement fromField;
 
@@ -24,8 +24,8 @@ public class PlanJourneyPage extends BasePage<PlanJourneyPage> {
     @FindBy(css = "#search-filter-form-0 div.tt-dataset-stop-points-search div.tt-suggestion")
     private List<WebElement> fromSuggestions;
 
-    @Name("To Field")
     @Visible
+    @Name("To Field")
     @FindBy(css = "input#InputTo")
     private WebElement toField;
 
@@ -33,8 +33,8 @@ public class PlanJourneyPage extends BasePage<PlanJourneyPage> {
     @FindBy(css = "#search-filter-form-1 div.tt-dataset-stop-points-search div.tt-suggestion")
     private List<WebElement> toSuggestions;
 
-    @Name("Plan my Journey Button")
     @Visible
+    @Name("Plan my Journey Button")
     @FindBy(css = "input.plan-journey-button")
     private WebElement planJourneyButton;
 

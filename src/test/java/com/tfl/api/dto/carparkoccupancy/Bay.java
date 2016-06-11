@@ -1,4 +1,4 @@
-package com.tfl.api.entities;
+package com.tfl.api.dto.carparkoccupancy;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.apache.commons.lang3.builder.EqualsBuilder;

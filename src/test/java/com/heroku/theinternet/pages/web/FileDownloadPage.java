@@ -15,7 +15,7 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.jayway.restassured.RestAssured.when;
+import static io.restassured.RestAssured.when;
 
 public class FileDownloadPage extends BasePage<FileDownloadPage> {
 

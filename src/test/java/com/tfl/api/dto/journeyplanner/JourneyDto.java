@@ -1,9 +1,12 @@
-package com.tfl.api.entities.JourneyPlanner;
+package com.tfl.api.dto.journeyplanner;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.util.List;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Journey {
+public class JourneyDto {
+
     public Integer duration;
-    public Leg[] legs;
+    public List<LegDto> legs;
 }

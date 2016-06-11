@@ -1,8 +1,9 @@
-package com.tfl.api.entities;
+package com.tfl.api.dto.journeyplanner;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Places {
-    public Place[] places;
+public class LegDto {
+
+    public Integer duration;
 }

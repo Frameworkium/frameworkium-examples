@@ -1,9 +1,12 @@
-package com.tfl.api.entities.JourneyPlanner;
+package com.tfl.api.dto.journeyplanner;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.util.List;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Disambiguation {
-    public DisambiguationOption[] disambiguationOptions;
+
+    public List<DisambiguationOption> disambiguationOptions;
     public String matchStatus;
 }

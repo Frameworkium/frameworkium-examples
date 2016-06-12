@@ -11,7 +11,7 @@ import static com.tfl.api.constant.Endpoint.JOURNEY_PLANNER;
 public class DisambiguationService extends BaseTFLService {
 
     public DisambiguationResult getDisambiguationResult(String from, String to) {
-        return performRequest(JOURNEY_PLANNER.getUrl(from, to))
+        return request(JOURNEY_PLANNER.getUrl(from, to))
                 .as(DisambiguationResult.class);
     }
 

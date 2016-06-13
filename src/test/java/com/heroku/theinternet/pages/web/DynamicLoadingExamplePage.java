@@ -20,8 +20,8 @@ public class DynamicLoadingExamplePage extends BasePage<DynamicLoadingExamplePag
     @FindBy(css = "#start button")
     private Button startButton;
 
-    @Invisible  // make sure it's really not there
-    @Timeout(1) // used to speed up the wait for Invisible TypifiedElements
+    @Invisible  // make sure it's not there
+    @Timeout(0) // used to speed up the wait for Invisible TypifiedElements
     @Name("Hidden element")
     @FindBy(id = "finish")
     private TextBlock dynamicElement;

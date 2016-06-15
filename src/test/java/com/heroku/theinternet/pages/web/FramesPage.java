@@ -15,7 +15,6 @@ public class FramesPage extends BasePage<FramesPage> {
     @FindBy(linkText = "iFrame")
     private WebElement iFrameLink;
 
-
     @Step("Click iFrame link")
     public IFramePage clickIFrameLink() {
         iFrameLink.click();

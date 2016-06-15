@@ -17,8 +17,8 @@ import ru.yandex.qatools.htmlelements.element.TextInput;
 @FindBy(css = "header")
 public class HeaderComponent extends HtmlElement {
 
-    @Name("Home Logo/Link")
     @Visible
+    @Name("Home Logo/Link")
     @FindBy(css = "a.header-logo-invertocat")
     private Link homeLink;
 
@@ -26,8 +26,8 @@ public class HeaderComponent extends HtmlElement {
     @FindBy(name = "q")
     private TextInput searchBox;
 
-    @Name("Explore Link")
     @Visible
+    @Name("Explore Link")
     @FindBy(css = "header nav a.nav-item-explore")
     private Link exploreLink;
 

@@ -201,18 +201,17 @@ public class TheInternetExampleTests extends BaseTest {
     @Test(description = "JQuery UI")
     public void jqueryUI() {
 
-        // Navigate to the jQuery UI page
-        JQueryUIMenuPage jqueryUIMenuPage =
-                WelcomePage.open().then().clickJQueryUILink();
-
-        // Browse to the UI page
-        JQueryUIPage UIPage = jqueryUIMenuPage.clickBackToUI();
-
-        // Click the menu link to return to the menu page
-        jqueryUIMenuPage = UIPage.clickMenuLink();
+        String excelFileLink = WelcomePage.open().then()
+                // Navigate to the jQuery UI page
+                .clickJQueryUILink()
+                // Browse to the UI page
+                .clickBackToUI()
+                // Click the menu link to return to the menu page
+                .clickMenuLink()
+                .getExcelFileURLAsString();
 
         // Check that the excel file link matches the string
-        assertThat(jqueryUIMenuPage.getExcelFileURLAsString()).isEqualTo(
+        assertThat(excelFileLink).isEqualTo(
                 "http://the-internet.herokuapp.com/download/jqueryui/menu/menu.xls");
     }
 

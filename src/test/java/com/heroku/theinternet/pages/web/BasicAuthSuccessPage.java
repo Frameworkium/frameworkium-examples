@@ -13,9 +13,4 @@ public class BasicAuthSuccessPage extends BasePage<BasicAuthSuccessPage> {
     @Name("Header text")
     @FindBy(css = "div.example h3")
     private WebElement headerText;
-
-    @Step("Return the text displayed in the header")
-    public String getHeaderText() {
-        return headerText.getText();
-    }
 }

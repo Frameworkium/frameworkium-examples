@@ -14,12 +14,12 @@ import java.util.stream.Collectors;
 
 public class SearchResultsPage extends BasePage<SearchResultsPage> {
 
-    @Name("Header")
     @Visible
+    @Name("Header")
     private HeaderComponent header;
 
-    @Name("Repository Links")
     @Visible
+    @Name("Repository Links")
     @FindBy(css = "h3 > a")
     private List<Link> repoLinks;
 

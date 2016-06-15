@@ -7,8 +7,8 @@ import java.util.Map;
 
 /**
  * A builder object for parameters to the BikePointsService.
- * This makes test maintainable easier if parameter identifiers change but not
- * their logical meaning.
+ * This makes test maintenance easier if parameter identifiers change but not
+ * their logical meaning. e.g. "lon" -> "long"
  */
 public class BikePointsParamsBuilder {
 

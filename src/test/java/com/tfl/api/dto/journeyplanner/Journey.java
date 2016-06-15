@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class JourneyDto {
+public class Journey {
 
     public Integer duration;
-    public List<LegDto> legs;
+    public List<Leg> legs;
 }

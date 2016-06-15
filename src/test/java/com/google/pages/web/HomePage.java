@@ -10,8 +10,8 @@ import ru.yandex.qatools.htmlelements.annotations.Name;
 
 public class HomePage extends BasePage<HomePage> {
 
-    @Name("Search Input Box")
     @Visible
+    @Name("Search Input Box")
     @FindBy(css = "input#lst-ib")
     private WebElement searchInputBox;
 

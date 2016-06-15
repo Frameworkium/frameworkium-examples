@@ -85,11 +85,6 @@ public class TheInternetExampleTests extends BaseTest {
         DynamicLoadingExamplePage dynamicLoadingExamplePage =
                 WelcomePage.open().then().clickDynamicLoading().then().clickExample1();
 
-        // Assert that the element is hidden
-        assertThat(dynamicLoadingExamplePage.isElementDisplayed())
-                .named("element visibility")
-                .isFalse();
-
         // Click start and wait for element to be displayed
         dynamicLoadingExamplePage.clickStart().then().waitForElementToBeDisplayed();
 
@@ -97,6 +92,16 @@ public class TheInternetExampleTests extends BaseTest {
         assertThat(dynamicLoadingExamplePage.isElementDisplayed())
                 .named("element visibility")
                 .isTrue();
+
+        // Navigate to the dynamic loading element not yet rendered page
+        DynamicLoadingExamplePage dynamicLoadingPage =
+                WelcomePage.open().then().clickDynamicLoading().then().clickExample2();
+
+        // Click start and wait for element to be displayed
+        dynamicLoadingPage.clickStart().then().waitForElementToBeDisplayed();
+
+        // Assert that the element is indeed present
+        assertThat(dynamicLoadingPage.isElementDisplayed()).named("element presence").isTrue();
     }
 
     @Issue("HEROKU-6")

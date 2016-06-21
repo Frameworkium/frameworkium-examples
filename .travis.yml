@@ -11,6 +11,9 @@ install: true
 
 notifications:
   slack: qaengineering:eTRqy0JhQOUtKHNO8mKLc8NC
+    on_success: change # default: always
+    on_failure: always # default: always
+    on_start: never   # default: never
 
 env:
   global:

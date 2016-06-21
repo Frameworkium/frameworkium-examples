@@ -17,8 +17,8 @@ public class JQueryUIPage extends BasePage<JQueryUIPage> {
 
     @Step("Click menu")
     public JQueryUIMenuPage clickMenuLink() {
-        menuLink.click();
 
+        menuLink.click();
         return PageFactory.newInstance(JQueryUIMenuPage.class);
     }
 }

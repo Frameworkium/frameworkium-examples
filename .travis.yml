@@ -22,12 +22,13 @@ env:
     - THREAD_COUNT=2
     - SELENIUM_MAJ_VER=2.53
     - SELENIUM_VER=$SELENIUM_MAJ_VER.0
+    # override MAVEN_OPTS to suppress maven dep download logging
+    - MAVEN_SKIP_RC=true
+    - MAVEN_OPTS=-Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
 
 before_script:
   - export DISPLAY=:99.0
   - /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16
-  # override MAVEN_OPTS to suppress maven dep download logging
-  -  echo "MAVEN_OPTS='-Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn'" > ~/.mavenrc
 
 script:
   # install

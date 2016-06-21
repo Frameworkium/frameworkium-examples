@@ -17,7 +17,7 @@ env:
     # set PATH to include desired firefox as the firefox-addon doesn't seem to work properly
     - PATH="/tmp/firefox:$PATH"
     - CAPTURE_URL="http://capture.ham1.co.uk:5000"
-    - SUT_NAME="frameworkium-core"
+    - SUT_NAME="frameworkium"
     - SUT_VERSION=$TRAVIS_BRANCH
     - THREAD_COUNT=2
     - SELENIUM_MAJ_VER=2.53
@@ -54,3 +54,5 @@ script:
   - mvn verify -Dthreads=$THREAD_COUNT -Dconfig=FirefoxGrid.yaml -DjiraURL="http://52.29.130.45:8080" -DjqlQuery="issueKey=TEST-1" -DresultVersion="BUILD TEST VERSION" -DzapiCycleRegex="Test Cycle" -DjiraUsername=frameworkium -DjiraPassword=frameworkium
   # Run on sauce
   # - mvn verify -Dsauce=true -Dplatform=ios -Dbrowser=safari -DplatformVersion=8.0 -Ddevice=iPad -DcaptureURL=$CAPTURE_URL -DsutName="$SUT_NAME" -DsutVersion="$SUT_VERSION"
+  # generate allure report
+  - mvn site

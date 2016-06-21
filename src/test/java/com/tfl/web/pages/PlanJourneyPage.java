@@ -1,5 +1,6 @@
 package com.tfl.web.pages;
 
+import com.frameworkium.core.ui.ExtraExpectedConditions;
 import com.frameworkium.core.ui.annotations.Visible;
 import com.frameworkium.core.ui.pages.BasePage;
 import com.frameworkium.core.ui.pages.PageFactory;
@@ -51,7 +52,11 @@ public class PlanJourneyPage extends BasePage<PlanJourneyPage> {
     }
 
     private void clickFirstSuggestion(List<WebElement> suggestions) {
-        wait.until(visibilityOfAllElements(suggestions)).get(0).click();
+        // not strictly needed, just demoing ExtraExpectedConditions
+        wait.until(ExtraExpectedConditions.jQueryAjaxDone());
+
+        wait.until(visibilityOfAllElements(suggestions));
+        suggestions.get(0).click();
         wait.until(invisibilityOfAllElements(suggestions));
     }
 

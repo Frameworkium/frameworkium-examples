@@ -1,5 +1,6 @@
 package com.heroku.theinternet.tests.web;
 
+import com.frameworkium.core.common.retry.RetryFlakyTest;
 import com.frameworkium.core.ui.tests.BaseTest;
 import com.heroku.theinternet.pages.web.*;
 import org.openqa.selenium.Keys;
@@ -208,8 +209,9 @@ public class TheInternetExampleTests extends BaseTest {
     }
 
     @Issue("HEROKU-10")
-    @Test(description = "JQuery UI")
-    public void jqueryUI() {
+    @Test(description = "JQuery UI",
+            retryAnalyzer = RetryFlakyTest.class)
+    public void jQuery_UI() {
 
         WelcomePage.open().then()
                 // Navigate to the jQuery UI page
@@ -222,7 +224,7 @@ public class TheInternetExampleTests extends BaseTest {
 
     @Issue("HEROKU-11")
     @Test(description = "Javascript Alerts")
-    public void javascriptAlerts() {
+    public void javascript_alerts() {
 
         // Navigate to the javascript alerts page
         JavaScriptAlertsPage javascriptAlerts =
@@ -252,7 +254,7 @@ public class TheInternetExampleTests extends BaseTest {
 
     @Issue("HEROKU-12")
     @Test(description = "Key Presses")
-    public void keypresses() {
+    public void key_presses() {
 
         // Navigate to the key presses page
         KeyPressesPage keyPressesPage = WelcomePage

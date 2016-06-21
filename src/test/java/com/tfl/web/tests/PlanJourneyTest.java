@@ -1,9 +1,8 @@
 package com.tfl.web.tests;
 
+import com.frameworkium.core.common.retry.RetryFlakyTest;
 import com.frameworkium.core.ui.tests.BaseTest;
-import com.tfl.web.pages.HomePage;
-import com.tfl.web.pages.JourneyPlannerResultsPage;
-import com.tfl.web.pages.PlanJourneyPage;
+import com.tfl.web.pages.*;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Issue;
 
@@ -12,7 +11,8 @@ import static com.google.common.truth.Truth.assertThat;
 public class PlanJourneyTest extends BaseTest {
 
     @Issue("TFL-1")
-    @Test(description = "Plan a journey test")
+    @Test(description = "Plan a journey test",
+            retryAnalyzer = RetryFlakyTest.class)
     public final void planJourneyTest() {
 
         // Navigate to homepage

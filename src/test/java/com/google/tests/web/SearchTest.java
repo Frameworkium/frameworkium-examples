@@ -19,8 +19,9 @@ public class SearchTest extends BaseTest {
 
         // Check that the results contains the expected result
         String expectedTitle = "\"Hello, World!\" program - Wikipedia, the free encyclopedia";
-        assertThat(
-                resultsPage.getResultTitles().anyMatch(expectedTitle::equals))
+        assertThat(resultsPage
+                .getResultTitles()
+                .anyMatch(expectedTitle::equals))
                 .isTrue();
     }
 }

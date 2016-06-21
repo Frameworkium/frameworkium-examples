@@ -4,16 +4,20 @@ import com.frameworkium.core.ui.tests.BaseTest;
 import com.heroku.theinternet.pages.web.*;
 import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Features;
 import ru.yandex.qatools.allure.annotations.Issue;
+import ru.yandex.qatools.allure.annotations.Stories;
 
 import java.io.File;
 import java.util.List;
 
 import static com.google.common.truth.Truth.assertThat;
 
+@Features("The Internet")
 public class TheInternetExampleTests extends BaseTest {
 
     @Issue("HEROKU-1")
+    @Stories("Basic Auth Login")
     @Test(description = "Basic Auth")
     public void basicAuth() {
 
@@ -28,6 +32,7 @@ public class TheInternetExampleTests extends BaseTest {
     }
 
     @Issue("HEROKU-2")
+    @Stories("Check Checkboxes")
     @Test(description = "Checkboxes")
     public void checkBoxes() {
 

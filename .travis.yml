@@ -11,9 +11,6 @@ install: true
 
 notifications:
   slack: qaengineering:eTRqy0JhQOUtKHNO8mKLc8NC
-    on_success: change # default: always
-    on_failure: always # default: always
-    on_start: never   # default: never
 
 env:
   global:
@@ -25,6 +22,8 @@ env:
     - THREAD_COUNT=2
     - SELENIUM_MAJ_VER=2.53
     - SELENIUM_VER=$SELENIUM_MAJ_VER.0
+    # suppress maven dep download logging
+    - MAVEN_OPTS=-Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn $MAVEN_OPTS
 
 before_script:
   - "export DISPLAY=:99.0"

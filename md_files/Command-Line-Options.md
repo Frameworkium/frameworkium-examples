@@ -1,3 +1,7 @@
+---
+title: Command Line Options
+---
+
 Tests can be executed by running `mvn clean verify` followed by any properties you wish to specify.
 
 ## General

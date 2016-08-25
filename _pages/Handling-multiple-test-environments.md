@@ -7,33 +7,26 @@ order: 7
 ---
 
 ### Problem
-When a team have multiple staging environments for different purpose within the same project, we face the problem where the test websites has different URLs but are essentially the same thing. This poses a problem that leads to having multiple copies of code that handles each URL.
-Here is how to have all of the different URLs in one, easy to maintain place.
-
-Example of 2 staging environments with the same website:
-***staging environment #1***
-[http://staging1/welcome.com] (https://github.com/robertgates55/frameworkium/wiki/Handling-multiple-test-environments)
-
-***staging environment #2***
-[http://staging2/welcome.com] (https://github.com/robertgates55/frameworkium/wiki/Handling-multiple-test-environments)
+When a team have multiple staging environments for different purpose within the same project (eg QA, DevInt, Staging), we often need to parameterise multiple variables (Eg urls, usernames, passwords)
 
 ### Solution
-In order to cater to multiple URLs of the same project, we store the URLs in a properties file and feed them in  with ```getResourcesAsStream```. In the same vein, we could use the properties file to store other details such as login credentials
+Store the details for all environments in a properties file, and pass an environemnt 'key' at runtime to tell the code which parameters to use.
 
 #### Create a properties file
 The properties file must be in your */resources* folder. In your properties file, define the key and value pair for each URL and any other information.
 In this case,
-key1 points to http://staging1
-key2 points to http://staging2
+* `qa` points to http://qa.com
+* `staging` points to http://staging.com
+
 ```
 //config.properties file
-key1.baseURL=http://staging1/
-key1.username=ninja
-key1.password=turtle
+qa.baseURL=http://qa.com
+qa.username=ninja
+qa.password=turtle
 
-key2.baseURL=http://staging2/
-key2.username=rick
-key2.password=morty
+staging.baseURL=http://staging.com
+staging.username=rick
+staging.password=morty
 
 //add more keys as needed
 ```
@@ -46,7 +39,7 @@ public class Config {
     /* initialise data, the key defaults to this when none is specified at command line */
     static {
         initPropertiesFromFile();
-        environmentPrefix = System.getProperty("environmentKey", "key1") + ".";
+        environmentPrefix = System.getProperty("environmentKey", "staging") + ".";
     }
 
     private static void initPropertiesFromFile() {
@@ -78,7 +71,16 @@ public class Config {
 ```
 
 #### Use the values from the Config in the Page Object/Test
----
+
+In your *tests* layer:
+```java
+      XYZPage xyzPage = XYZPage.open();
+      xYZPage.typeNameTextBox(Config.getUsername())
+             .then().typePasswordTextBox(Config.getPassword())
+             .then().clickLoginButton();
+```
+
+And in your *pages* layer:
 ```java
     @Step("Navigate to XYZ Page")
     public static XYZPage open() {
@@ -86,18 +88,11 @@ public class Config {
                 Config.getBaseURL() + "welcome.com");
     }
 ```
----
-```java
-      XYZPage xyzPage = XYZPage.open();
-      xYZPage.typeNameTextBox(Config.getUsername())
-             .then().typePasswordTextBox(Config.getPassword())
-             .then().clickLoginButton();
-```
----
 #### Specify which environment to use via command line when executing tests
 Choose which environment to run your test in by specifying  the corresponding "key"
-```
-mvn -clean -verify -DenvironmentKey=key1
+
+`mvn -clean -verify -DenvironmentKey=staging`
+
 OR
-mvn -clean -verify -DenvironmentKey=key2
-```
+
+`mvn -clean -verify -DenvironmentKey=qa`

@@ -57,6 +57,27 @@ public void tryAnUpload(File fileToUpload)
 }
 ```
 
+
+**Updated Solution**
+
+The solution is to use a javascript executor in your page object to modify the style of the input button such that selenium can interact with it. The method below demonstrates this.
+
+``` java
+@ForceVisible
+@Name("Upload input")
+@FindBy(css="div#upload-button input")
+private WebElement uploadInput;
+
+
+@Step("Upload a file")
+public void tryAnUpload(File fileToUpload)
+{
+  //Send the file path directly to the input button via sendKeys - this performs the upload
+  uploadInput.sendKeys(fileToUpload.getAbsolutePath());
+}
+```
+We've now added the `@ForceVisible` annotation for this scenario. On page load, frameworkium will try & unhide the control by throwing similar javascript to the above at it. If you don't want to have that happen at page load time, remove the @ForceVisible, and instead do `this.visibility.forceVisible(uploadInput);` when you need it.
+
 ## Isn't that a bit hacky?
 Yes, but automation testing is about simulating user's behaviour as best we can. We could use some other tool (eg autoIt, Sikuli, call the upload javascript directly etc) to click the button and enter the file path using a file picker; but the additional flakiness we're likely to introduce by doing so will likely outweigh the benefit.
 

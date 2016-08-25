@@ -11,6 +11,7 @@ order: 3
 You shouldn't need to do many waits - the pagefactory layer and @Visible tags will handle the majority of your waits behind the scenes.
 
 However - there are times when you'll need to wait. For example:
+
  - we want to click a button
  - the button is initially hidden; but made visible by linking the 'more' arrow
 

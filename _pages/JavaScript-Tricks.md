@@ -60,8 +60,6 @@ public void tryAnUpload(File fileToUpload)
 
 **Updated Solution**
 
-The solution is to use a javascript executor in your page object to modify the style of the input button such that selenium can interact with it. The method below demonstrates this.
-
 ``` java
 @ForceVisible
 @Name("Upload input")

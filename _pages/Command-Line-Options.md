@@ -63,16 +63,19 @@ mvn clean verify -Dbrowser=chrome
 ```
 
 Running web tests on Firefox 34.0.5 with Selenium Grid:
+
 ```bash
 mvn clean verify -Dbrowser=firefox -DbrowserVersion=34.0.5 -DgridURL=http://localhost:4444/wd/hub
 ```
 
 Running test methods which match the pattern`testM*`on Firefox 36 with Selenium Grid and Capture:
+
 ```bash
 mvn clean verify -Dtest=TestClass#testM* -Dbrowser=firefox -DbrowserVersion=36 -DgridURL=http://grid:4444/wd/hub -DsutName="My Project" -DsutVersion=0.0.1 -DcaptureURL=http://capture:5000
 ```
 
 Running mobile web tests on Chrome,  using their device emulation:
+
 ```bash
 mvn clean verify -Dbrowser=chrome -Ddevice="Apple iPad 3 / 4"
 ```
@@ -100,6 +103,7 @@ export BROWSER_STACK_USERNAME=<username>
 export BROWSER_STACK_ACCESS_KEY=<access_key>
 mvn clean verify -DbrowserStack=true -Dbrowser=ios -Ddevice="iPad Air"
 ```
+
 NB - platform and platformVersion (os & os_version in BrowserStack config) are not required or supported when running on mobile devices
 
 
@@ -111,7 +115,8 @@ export SAUCE_ACCESS_KEY=<access_key>
 mvn clean verify -Dsauce=true -Dplatform=android -DappPath=<path_to_.apk>
 ```
 
-Run regression tests (as marked in JIRA with the label REGRESSION) and log test results against the v1.1.2 version in JIRA
+Run regression tests (as marked in JIRA with the label REGRESSION) and log test results against the v1.1.2 version in JIRA:
+
 ```bash
 mvn clean verify -Dbrowser=firefox -DjiraURL=http://jira:8080 -DjiraResultVersion=v1.1.2 -DjqlQuery=labels=REGRESSION
 ```

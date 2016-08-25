@@ -14,7 +14,9 @@ Store the details for all environments in a properties file, and pass an environ
 
 #### Create a properties file
 The properties file must be in your */resources* folder. In your properties file, define the key and value pair for each URL and any other information.
-In this case,
+
+In this case:
+
 * `qa` points to http://qa.com
 * `staging` points to http://staging.com
 
@@ -30,7 +32,9 @@ staging.password=morty
 
 //add more keys as needed
 ```
+
 #### Create a config property reader
+
 ```java
 public class Config {
     private static final Properties properties = new Properties();
@@ -73,6 +77,7 @@ public class Config {
 #### Use the values from the Config in the Page Object/Test
 
 In your *tests* layer:
+
 ```java
       XYZPage xyzPage = XYZPage.open();
       xYZPage.typeNameTextBox(Config.getUsername())
@@ -81,6 +86,7 @@ In your *tests* layer:
 ```
 
 And in your *pages* layer:
+
 ```java
     @Step("Navigate to XYZ Page")
     public static XYZPage open() {
@@ -88,6 +94,7 @@ And in your *pages* layer:
                 Config.getBaseURL() + "welcome.com");
     }
 ```
+
 #### Specify which environment to use via command line when executing tests
 Choose which environment to run your test in by specifying  the corresponding "key"
 

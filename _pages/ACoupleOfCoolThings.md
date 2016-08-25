@@ -44,6 +44,7 @@ Which is nicer, because:
 *(NB If you've never heard of [PageFactory](https://github.com/SeleniumHQ/selenium/wiki/PageFactory), it's a pattern for using page objects that's part of the selenium libraries - a sort of selenium+)*
 
 #### Frameworkium then builds on this:
+
 ``` java
 //somewhere at the top of your class
 @Visible

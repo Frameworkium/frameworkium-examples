@@ -2,7 +2,7 @@
 layout: post
 title:  "Tests"
 category: wiki
-section: "1 - Basics"
+section: "2 - Basics"
 order: 2
 ---
 ## Extend BaseTest

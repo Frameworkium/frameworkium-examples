@@ -2,10 +2,10 @@
 layout: post
 title:  "Command Line Options"
 category: wiki
-section: 1 - Basics
+section: 2 - Basics
 order: 1
 ---
-Tests can be executed by running`mvn clean verify`followed by any properties you wish to specify.
+Tests can be executed by running `mvn clean verify` followed by any properties you wish to specify.
 
 ## General
 

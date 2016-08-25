@@ -2,7 +2,7 @@
 layout: post
 title:  "Page Objects"
 category: wiki
-section: 1 - Basics
+section: 2 - Basics
 order: 3
 ---
 

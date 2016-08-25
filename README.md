@@ -38,7 +38,7 @@ export SAUCE_ACCESS_KEY=<access_key>
 mvn clean verify -Dplatform=ios -Dbrowser=safari -Dsauce=true 
 ```
 
-A full list of arguments can be found on the [project wiki][wiki].
+A full list of arguments can be found on the [guidance page](http://frameworkium.github.io/frameworkium/)
 
 ### Reporting
 
@@ -50,7 +50,7 @@ mvn site
 
 ## Further Information
 
-Frameworkium sets you up for other stuff too - check out the [project wiki][wiki] for further info.
+Frameworkium sets you up for other stuff too - check out the [guidance page](http://frameworkium.github.io/frameworkium/) for further info.
 
 [status-svg]: https://travis-ci.org/Frameworkium/frameworkium.svg?branch=master
 [status]: https://travis-ci.org/Frameworkium/frameworkium
@@ -59,4 +59,4 @@ Frameworkium sets you up for other stuff too - check out the [project wiki][wiki
 [mvn]: https://maven.apache.org/download.cgi
 [frameworkium-core]: https://github.com/Frameworkium/frameworkium-core
 [allure]: http://allure.qatools.ru
-[wiki]: https://github.com/Frameworkium/frameworkium/wiki
+[wiki]: http://frameworkium.github.io/frameworkium

@@ -1,9 +1,10 @@
 # Setup
-title:        Frameworkium
+title:        frameworkium
 tagline:      "A quick-start automation project for web, app, & api testing"
 baseurl:      "/frameworkium"
 paginate:     1
-include: ['_pages']
+include:      ['_pages']
+logo:         "assets/colours1.png"
 
 # About/contact
 author:

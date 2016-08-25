@@ -1,5 +1,5 @@
 ---
-layout: pots
+layout: post
 title:  "Selenium Grid"
 category: wiki
 section: 6 - Advanced Usage

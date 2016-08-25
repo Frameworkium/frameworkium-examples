@@ -64,6 +64,13 @@ a {
     .page-header {
       padding: 2rem 1rem; } }
 
+.project-logo {
+  height: 80px;
+  width: 80px;
+  border-radius: 8px;
+  border: 0px solid;
+  }
+
 .project-name {
   margin-top: 0;
   margin-bottom: 0.1rem; }

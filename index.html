@@ -6,7 +6,7 @@ title: {{ site.name }}
 {% assign items_grouped = wiki_pages | group_by: 'section' %}
 
 <div>
-  <h2>Contents:</h2>
+  <h1>Usage Guide:</h1>
 {% for group in items_grouped %}
   <ul>{{ group.name }}
   {% assign sorted_pages = group.items | sort: 'order' %}

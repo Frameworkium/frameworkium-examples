@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "JavaScript Hacks"
-date:   2016-08-24 17:50:00
 category: wiki
+section: "9 - Other"
 order: 8
 ---
 
@@ -10,7 +10,7 @@ order: 8
 
 Your tests are supposed to be simulating user actions and user flows, so injecting javascript is not to be used unless some weirdness means that selenium cannot do something that a user can.
 
-### Unhiding hidden controls
+## Unhiding hidden controls
 
 **Example**
 
@@ -57,7 +57,7 @@ public void tryAnUpload(File fileToUpload)
 }
 ```
 
-### Isn't that a bit hacky?
+## Isn't that a bit hacky?
 Yes, but automation testing is about simulating user's behaviour as best we can. We could use some other tool (eg autoIt, Sikuli, call the upload javascript directly etc) to click the button and enter the file path using a file picker; but the additional flakiness we're likely to introduce by doing so will likely outweigh the benefit.
 
 Ultimately it's about choosing the simplest (& thus least flaky!) approach to get the job done.

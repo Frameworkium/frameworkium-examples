@@ -2,10 +2,11 @@
 layout: post
 title:  "Native Controls"
 category: wiki
+section: 6 - Advanced Usage
 order: 7
 ---
 
-# Alerts/Dialog boxes
+## Alerts/Dialog boxes
 
 [This test](https://github.com/robertgates55/frameworkium/blob/master/src/test/java/com/frameworkium/tests/web/TheInternetHerokuWebTest.java#L202) demonstrates the use of the `switchTo().alert()` functionality that selenium uses to interact with javascript alert popups. The page object [here](https://github.com/robertgates55/frameworkium/blob/master/src/test/java/com/frameworkium/pages/web/JavaScriptAlertsPage.java) contains the methods that accept, dismiss, cancel, ok, and enter text to a variety of different native JS popups. These are summarised below:
 
@@ -23,7 +24,7 @@ driver.switchTo().alert().sendKeys(textToEnter);
 Credentials credentials = new UsernamePasswordCredentials("username", "password");
 driver.switchTo().alert().authenticationWith(credentials);
 ```
-# Handling file pickers - eg 'Choose Files' button
+## Handling file pickers - eg 'Choose Files' button
 
 In order to upload a file to a site, the 'choose files' input control is used. To a user, this will open a file browser on whatever platform they're on. To selenium, clicking this link will open a screen that it then cannot interact with.
 

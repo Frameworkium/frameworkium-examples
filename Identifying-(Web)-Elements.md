@@ -2,6 +2,7 @@
 layout: post
 title:  "Identifying Web Elements"
 category: wiki
+section: 4 - Page Object Guidance
 order: 5
 ---
 As per the examples on the [Page Objects](https://github.com/Frameworkium/frameworkium/wiki/Page-Objects) page, we identify elements on Web pages using the @FindBy annotation, and passing in selector strings.
@@ -27,7 +28,7 @@ eg: `//div[contains(.,'Click here')]` will select the div `<div>Click here</div>
 
 Xpath test plugins for chrome and firefox are available, which allow you to test your selector before putting it into your page.
 
-##Tips
+###Tips
 * If you can, try to select the actual element that you want to perform the operation on. eg `<div id="link-button"><a href="blah">Link</a></div>` -> `css="div#link-button a"` will be more robust to _click_ than `css="div#link-button"` since it's actually the link that you want - eg some browsers will treat the entire div as the link, others may not
 
 * **Element Visibility** -  Selenium will not find hidden controls on the page. This is on purpose, since it's trying to simulate the activities of a real user. However, if it's the ONLY way, you can use javascript injection to 'unhide' controls. See [this]() example.

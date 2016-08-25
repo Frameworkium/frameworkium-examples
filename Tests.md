@@ -2,9 +2,10 @@
 layout: post
 title:  "Tests"
 category: wiki
+section: "1 - Basics"
 order: 2
 ---
-# Extend BaseTest
+## Extend BaseTest
 
 Test classes must extend `com.frameworkium.tests.internal.BaseTest`. This handles the `setup` and `teardown` of the WebDriver / AppiumDriver sessions.
 
@@ -13,7 +14,7 @@ For example:
 public class DynamicLoadingWebTest extends BaseTest { ... }
 ```
 
-# Look - no drivers!
+## Look - no drivers!
 
 As you can see in the example tests there are no references to WebDriver or AppiumDriver thanks to Page Objects and Google Guice. This results in more readable tests which only deal with the services offered by your application and not the details and mechanics of it. For further explanation see the Page Objects page.
 ```java

@@ -2,9 +2,11 @@
 layout: pots
 title:  "Selenium Grid"
 category: wiki
-order: 10
+section: 6 - Advanced Usage
+order: 1
 ---
-eady shown that you can use Frameworkium to run your tests on a grid, just by specifying the gridURL parameter at runtime:
+
+We've already shown that you can use Frameworkium to run your tests on a grid, just by specifying the gridURL parameter at runtime:
 ```bash
 mvn clean verify -DgridURL=http://someurl:4444/wd/hub
 ```

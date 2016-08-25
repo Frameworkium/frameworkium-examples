@@ -2,6 +2,7 @@
 layout: post
 title:  "Waits"
 category: wiki
+section: 4 - Page Object Guidance
 order: 3
 ---
 

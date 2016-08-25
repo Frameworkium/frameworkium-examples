@@ -2,10 +2,11 @@
 layout: post
 title:  "Multiple Test Environments"
 category: wiki
+section: 6 - Advanced Usage
 order: 7
 ---
 
-#### Problem
+### Problem
 When a team have multiple staging environments for different purpose within the same project, we face the problem where the test websites has different URLs but are essentially the same thing. This poses a problem that leads to having multiple copies of code that handles each URL.
 Here is how to have all of the different URLs in one, easy to maintain place.
 
@@ -16,10 +17,10 @@ Example of 2 staging environments with the same website:
 ***staging environment #2***
 [http://staging2/welcome.com] (https://github.com/robertgates55/frameworkium/wiki/Handling-multiple-test-environments)
 
-#### Solution
+### Solution
 In order to cater to multiple URLs of the same project, we store the URLs in a properties file and feed them in  with ```getResourcesAsStream```. In the same vein, we could use the properties file to store other details such as login credentials
 
-##### Create a properties file
+#### Create a properties file
 The properties file must be in your */resources* folder. In your properties file, define the key and value pair for each URL and any other information.
 In this case,
 key1 points to http://staging1
@@ -36,7 +37,7 @@ key2.password=morty
 
 //add more keys as needed
 ```
-#####Create a config property reader
+#### Create a config property reader
 ```java
 public class Config {
     private static final Properties properties = new Properties();
@@ -76,7 +77,7 @@ public class Config {
     }
 ```
 
-##### Use the values from the Config in the Page Object/Test
+#### Use the values from the Config in the Page Object/Test
 ---
 ```java
     @Step("Navigate to XYZ Page")
@@ -93,7 +94,7 @@ public class Config {
              .then().clickLoginButton();
 ```
 ---
-#####Specify which environment to use via command line when executing tests
+#### Specify which environment to use via command line when executing tests
 Choose which environment to run your test in by specifying  the corresponding "key"
 ```
 mvn -clean -verify -DenvironmentKey=key1

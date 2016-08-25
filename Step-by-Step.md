@@ -6,7 +6,7 @@ category: hidden
 order: 5
 ---
 
-# A Step by Step Guide
+## A Step by Step Guide
 
 ## Development Machine Setup
 You can either:

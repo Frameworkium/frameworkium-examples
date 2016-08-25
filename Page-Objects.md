@@ -2,10 +2,11 @@
 layout: post
 title:  "Page Objects"
 category: wiki
+section: 1 - Basics
 order: 3
 ---
 
-# Extend Base Page
+## Extend Base Page
 
 Test classes must extend com.frameworkium.pages.internal.BasePage. This handles the setup and teardown of the WebDriver / AppiumDriver sessions.
 
@@ -13,9 +14,9 @@ Test classes must extend com.frameworkium.pages.internal.BasePage. This handles 
 public class LoginPage extends BasePage<LoginPage> {
 ```
 
-# Pages - Elements at the top, Operations at the bottom
+## Pages - Elements at the top, Operations at the bottom
 
-## Elements
+### Elements
 ```java
 	  @Name("Username text field")
 	  @Visible
@@ -36,7 +37,7 @@ public class LoginPage extends BasePage<LoginPage> {
 - The @FindBy annotation is a selenium annotation - see help [here](https://selenium.googlecode.com/git/docs/api/java/org/openqa/selenium/support/FindBy.html) - that simplifies location of elements
 - Finally, elements should be `private`, as they should only be used by this class!
 
-## Operations
+### Operations
 ```java
 	@Step("Enter credentials and return logged in homepage")
 	public LoggedInHomepage validLogin(String username, String password)

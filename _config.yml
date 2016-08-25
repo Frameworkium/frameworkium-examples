@@ -3,6 +3,7 @@ title:        Frameworkium
 tagline:      "A quick-start automation project for web, app, & api testing"
 baseurl:      "/frameworkium"
 paginate:     1
+include: ['_pages']
 
 # About/contact
 author:

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "What it's for"
-section: 2 - Whats The Point?
+section: 1 - Whats The Point?
 order: 1
 category: wiki
 ---

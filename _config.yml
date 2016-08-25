@@ -8,20 +8,18 @@ logo:         "assets/colours1.png"
 
 # About/contact
 author:
-  name:       Author name
-  url:        http://yourhomepage.com
+  name:       Frameworkium Team
+  url:        https://github.com/Frameworkium
 
 # Gems
 gems:
   - jekyll-paginate
 
 #Others
-# markdown: kramdown
+markdown: kramdown
 
 highlighter: rouge
 
-markdown: kramdown
-
-kramdown:
-  input: GFM
-  syntax_highlighter: rouge
+# kramdown:
+#   input: GFM
+#   syntax_highlighter: rouge

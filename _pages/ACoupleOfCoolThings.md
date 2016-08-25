@@ -35,9 +35,11 @@ wait.until(ExpectedConditions.visibilityOf(button));
 button.click();
 ```
 
-Which is nicer, because
-* you've put the css selector for that control in *one* place, rather than repeating it every time you use it. It changes? You update the 1 instance, rather than 5
-* pagefactory removes the need for quite so much `driver.` action - again reducing the reuse, overlap, repetition, etc
+Which is nicer, because:
+
+1. you've put the css selector for that control in *one* place, rather than repeating it every time you use it. It changes? You update the 1 instance, rather than 5
+
+2. pagefactory removes the need for quite so much `driver.` action - again reducing the reuse, overlap, repetition, etc
 
 *(NB If you've never heard of [PageFactory](https://github.com/SeleniumHQ/selenium/wiki/PageFactory), it's a pattern for using page objects that's part of the selenium libraries - a sort of selenium+)*
 

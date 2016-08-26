@@ -13,7 +13,7 @@ Say you're expecting an element on a webpage, and you want to wait until it's th
 
 #### Vanilla selenium might look like:
 
-``` java
+```java
 WebElement button = driver.findElement(By.cssSelector("button#search_button");
 WebDriverWait wait = new WebDriverWait(driver, 10);
 wait.until(ExpectedConditions.visibilityOf(button));

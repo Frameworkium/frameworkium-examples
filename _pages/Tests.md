@@ -7,7 +7,7 @@ order: 3
 ---
 ## Extend BaseTest
 
-Test classes must extend `com.frameworkium.tests.internal.BaseTest`. This handles the `setup` and `teardown` of the WebDriver / AppiumDriver sessions.
+Test classes must extend `com.frameworkium.core.ui.tests.BaseTest`. This handles the `setup` and `teardown` of the WebDriver / AppiumDriver sessions (if you're not needing drivers - eg you're writing some API tests, you should extend `com.frameworkium.core.api.tests.BaseTest` instead)
 
 For example:
 ```java

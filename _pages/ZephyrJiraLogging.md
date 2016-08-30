@@ -38,7 +38,7 @@ Feature: My Lovely Feature that needs testing
 
 ### 2 - Make sure test is in Zephyr for Jira test plan
 
-Make a Zephyr for Jira test plan, and make sure your your test is in a particular version & test cycle (NB can't be 'Ad Hoc')
+Make a Zephyr for Jira test plan, and make sure your your test is in a particular version & test cycle *(NB: the cycle can't be 'Ad Hoc', and the version can't be 'Unscheduled')*
 
 ### 3 - Provide JIRA details at runtime
 

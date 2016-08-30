@@ -15,9 +15,14 @@ When some of these tests are automated and others are run manually, it can be di
 ### 1 - Annotate or Tag your tests
 
 ```java
-@TestCaseId("JIRA-1411")
-public void myLovelyTest() {
-	//some testing
+public class ComponentExampleTest extends BaseTest {
+
+  @TestCaseId("JIRA-1411")
+  @Test
+  public void myLovelyTest() {
+  	//some testing
+  }
+
 }
 ```
 
@@ -40,7 +45,7 @@ Make a Zephyr for Jira test plan, and make sure your your test is in a particula
 ```bash
 mvn clean verify -DjiraURL=http://some/jira -DjiraUsername=user1 -DjiraPassword=pword -DresultVersion="Version 2.14.8"
 # If you have the same test in multiple test cycles, you can specify the cycle with:
-# -zapiCycleRegEx="Some Cycle"
+# -DzapiCycleRegEx="Some Cycle"
 ```
 
 

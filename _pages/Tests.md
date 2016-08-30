@@ -3,7 +3,7 @@ layout: post
 title:  "Tests"
 category: wiki
 section: "2 - Basics"
-order: 2
+order: 3
 ---
 ## Extend BaseTest
 
@@ -29,6 +29,7 @@ As you can see in the example tests there are no references to WebDriver or Appi
 		LoggedInHomepage homepage = loginPage.login("user", "password");
 	}
 ```
+
 - The @Issue annotation will be used for JIRA & ZAPI reporting, JQL Query executions, and linked to within the Allure report
 - The @Story annotation allows you to utilise Allure's Features and Stories hierachy - and make larger test suites more easy to manage
 - The testng @Test annotation contains the description of the test, and can include a number of other details *(`alwaysRun`, `dataProvider`, `dataProviderClass`, `dependsOnGroups`, `dependsOnMethods`, `description`, `enabled`, `expectedExceptions`, `groups`, `invocationCount`, `invocationTimeOut`, `invocationcounts`, `priority`, `successPercentage`, `singleThreaded`, `timeOut`, `threadPoolSize`)* - see [TestNG Annotations](http://testng.org/doc/documentation-main.html#annotations) for further details

@@ -3,7 +3,7 @@ layout: post
 title:  "Page Objects"
 category: wiki
 section: 2 - Basics
-order: 3
+order: 4
 ---
 
 ## Extend Base Page

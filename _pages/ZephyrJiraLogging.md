@@ -23,7 +23,7 @@ public void myLovelyTest() {
 
 OR, if using BDD:
 
-```cucumber
+```
 @TestCaseId:JIRA-1411
 Feature: My Lovely Feature that needs testing
 
@@ -38,7 +38,7 @@ Make a Zephyr for Jira test plan, and make sure your your test is in a particula
 ### 3 - Provide JIRA details at runtime
 
 ```bash
-mvn clean verify -DjiraURL=http://some/jira -DjiraUsername=user1 -DjiraPassword=pword -resultVersion="Version 2.14.8"
+mvn clean verify -DjiraURL=http://some/jira -DjiraUsername=user1 -DjiraPassword=pword -DresultVersion="Version 2.14.8"
 # If you have the same test in multiple test cycles, you can specify the cycle with:
 # -zapiCycleRegEx="Some Cycle"
 ```

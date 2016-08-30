@@ -7,6 +7,8 @@ order: 1
 ---
 Tests can be executed by running `mvn clean verify` followed by any properties you wish to specify.
 
+*NB see also the "Using Config yaml files..." entry for using config files to provide some or all of these params instead*
+
 ## General
 
 Property | Description | Values

@@ -5,7 +5,7 @@ platform:
 platformVersion:
 device:
 captureURL:
-gridURL: http://localhost:4444/wd/hub
+gridURL: http://192.168.0.103:4444/wd/hub
 build:
 appPath:
 sauce:

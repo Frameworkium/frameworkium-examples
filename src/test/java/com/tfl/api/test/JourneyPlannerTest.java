@@ -28,18 +28,4 @@ public class JourneyPlannerTest extends BaseTest {
 
         assertThat(shortestJourneyDuration).isLessThan(30);
     }
-
-    @Test
-    public void journey_planner_national_search_journey_duration() {
-        Itinerary itineraryResult = new ItineraryService()
-                .getNationalItinerary(
-                        "Blue Fin Building, Southwark",
-                        "Surrey Research Park, Guildford"
-                );
-
-        int shortestJourneyDuration = itineraryResult.getShortestJourneyDuration();
-
-        assertThat(shortestJourneyDuration).isGreaterThan(45);
-    }
-
 }

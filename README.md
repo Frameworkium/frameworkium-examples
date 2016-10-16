@@ -3,16 +3,19 @@ Frameworkium [![Build Status][status-svg]][status]
 
 This project is based on Ardesco's [Selenium-Maven-Template][ardesco] and 
 Joe VDW's [Bootstrapium][bootstrapium] with some handy added extras for getting 
-started quickly with Selenium and Appium.
+started quickly with Selenium, Appium and [Rest Assured][rest-assured].
 
 This is a sample project which utilises [frameworkium-core][frameworkium-core], 
 a framework for writing maintainable Selenium and REST API tests that also makes 
-integrating with other test things, e.g. JIRA, much easier.
+integrating with other test things (e.g. JIRA) much easier.
 
 ## Getting started
 
 After setting up [apache maven][mvn], open the `frameworkium` directory in a 
 terminal/command prompt and run `mvn clean verify` to run the example tests using Firefox.
+
+However, this only works for Firefox versions earlier than 47. You will need to either:
+downgrade Firefox, use [Marionette][marionette], use a different browser or use a grid.
 
 ### Stuff you can do
 
@@ -21,6 +24,12 @@ No problem, just provide the 'browser' argument:
 
 ```
 mvn clean verify -Dbrowser=chrome 
+```
+
+For chrome, [ChromeDriver][chromedriver] needs to be on your path or specified
+as an argument:
+```
+mvn clean verify -Dbrowser=chrome -Dwebdriver.chrome.driver=c:\path\to\your\chromedriver.exe
 ```
 
 Want to run tests using a grid and in parallel?
@@ -38,11 +47,12 @@ export SAUCE_ACCESS_KEY=<access_key>
 mvn clean verify -Dplatform=ios -Dbrowser=safari -Dsauce=true 
 ```
 
-A full list of arguments can be found on the [guidance page](http://frameworkium.github.io/frameworkium/)
+A full list of arguments can be found on the [guidance page][guidance].
 
 ### Reporting
 
-After running your tests, you can generate an [Allure][allure] test report by simply running:
+After running your tests, you can generate an [Allure][allure] test report by 
+simply running:
 
 ```
 mvn site 
@@ -50,13 +60,17 @@ mvn site
 
 ## Further Information
 
-Frameworkium sets you up for other stuff too - check out the [guidance page](http://frameworkium.github.io/frameworkium/) for further info.
+Frameworkium sets you up for other stuff too - check out the 
+[guidance page][guidance] for further info.
 
 [status-svg]: https://travis-ci.org/Frameworkium/frameworkium.svg?branch=master
 [status]: https://travis-ci.org/Frameworkium/frameworkium
 [ardesco]: https://github.com/Ardesco/Selenium-Maven-Template
 [bootstrapium]: https://github.com/jvanderwee/bootstrapium
+[rest-assured]: http://rest-assured.io/
 [mvn]: https://maven.apache.org/download.cgi
+[marionette]: https://developer.mozilla.org/en-US/docs/Mozilla/QA/Marionette
+[chromedriver]: https://sites.google.com/a/chromium.org/chromedriver/home
 [frameworkium-core]: https://github.com/Frameworkium/frameworkium-core
+[guidance]: http://frameworkium.github.io/frameworkium/
 [allure]: http://allure.qatools.ru
-[wiki]: http://frameworkium.github.io/frameworkium

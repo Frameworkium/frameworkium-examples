@@ -25,7 +25,7 @@ public class BikePointsTest extends BaseTest {
     }
 
     @TestCaseId("BP-1")
-    public void all_bikes_contains_something_and_there_are_a_lot_of_them() {
+    public void all_bikes_contains_a_known_place_and_there_are_a_lot_of_them() {
 
         List<String> allNames = bikePoints.getAllNames();
 

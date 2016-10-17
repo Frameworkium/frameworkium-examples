@@ -31,8 +31,8 @@ public class BikePoints {
 
     @Step
     public Place getRandomBikePoint() {
-        int randomIndex = ThreadLocalRandom.current().nextInt(bikePoints.size());
-        return bikePoints.get(randomIndex);
+        return bikePoints.get(
+                ThreadLocalRandom.current().nextInt(bikePoints.size()));
     }
 
 }

@@ -6,6 +6,8 @@ import com.google.pages.web.ResultsPage;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
+import java.util.stream.Collectors;
+
 import static com.google.common.truth.Truth.assertThat;
 
 public class SearchTest extends BaseTest {
@@ -18,10 +20,8 @@ public class SearchTest extends BaseTest {
         ResultsPage resultsPage = HomePage.open().then().runSearch("Hello World");
 
         // Check that the results contains the expected result
-        String expectedTitle = "\"Hello, World!\" program - Wikipedia, the free encyclopedia";
-        assertThat(resultsPage
-                .getResultTitles()
-                .anyMatch(expectedTitle::equals))
-                .isTrue();
+        String expectedTitle = "\"Hello, World!\" program - Wikipedia";
+        assertThat(resultsPage.getResultTitles())
+                .contains(expectedTitle);
     }
 }

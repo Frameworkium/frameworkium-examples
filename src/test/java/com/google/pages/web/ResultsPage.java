@@ -9,6 +9,7 @@ import ru.yandex.qatools.htmlelements.element.Link;
 import ru.yandex.qatools.htmlelements.element.TextBlock;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class ResultsPage extends BasePage<ResultsPage> {
@@ -28,10 +29,11 @@ public class ResultsPage extends BasePage<ResultsPage> {
      * entire list which is relatively expensive.
      */
     @Step("Get search result titles")
-    public Stream<String> getResultTitles() {
+    public List<String> getResultTitles() {
 
         return resultTitles.stream()
-                .map(Link::getText);
+                .map(Link::getText)
+                .collect(Collectors.toList());
     }
 
 }

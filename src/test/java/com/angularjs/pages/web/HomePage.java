@@ -25,7 +25,7 @@ public class HomePage extends BasePage<HomePage> {
     public DeveloperGuidePage clickDeveloperGuide() {
         // clicking it twice seems to make it actually appear
         developDropdown.click();
-        developDropdown.click();
+//        developDropdown.click();
         developerGuideMenuItem.click();
         return PageFactory.newInstance(DeveloperGuidePage.class);
     }

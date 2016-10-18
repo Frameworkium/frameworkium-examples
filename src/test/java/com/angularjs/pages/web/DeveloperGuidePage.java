@@ -4,6 +4,7 @@ import com.frameworkium.core.ui.annotations.Visible;
 import com.frameworkium.core.ui.pages.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.Link;
 import ru.yandex.qatools.htmlelements.element.TextInput;
@@ -34,6 +35,8 @@ public class DeveloperGuidePage extends BasePage<DeveloperGuidePage> {
     }
 
     public String getGuideTitle() {
+        //Wait for the heading to actually populate with text (even if empty)
+        wait.until(ExpectedConditions.textToBePresentInElement(guideTitle,""));
         return guideTitle.getText();
     }
 

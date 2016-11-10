@@ -98,8 +98,8 @@ And in your *pages* layer:
 #### Specify which environment to use via command line when executing tests
 Choose which environment to run your test in by specifying  the corresponding "key"
 
-`mvn -clean -verify -DenvironmentKey=staging`
+`mvn clean verify -DenvironmentKey=staging`
 
 OR
 
-`mvn -clean -verify -DenvironmentKey=qa`
+`mvn clean verify -DenvironmentKey=qa`

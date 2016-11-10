@@ -24,9 +24,10 @@ driver.switchTo().alert().sendKeys(textToEnter);
 Credentials credentials = new UsernamePasswordCredentials("username", "password");
 driver.switchTo().alert().authenticationWith(credentials);
 ```
+
 ## Handling file pickers - eg 'Choose Files' button
 
-In order to upload a file to a site, the 'choose files' input control is used. To a user, this will open a file browser on whatever platform they're on. To selenium, clicking this link will open a screen that it then cannot interact with.
+In order to upload a file to a site, the 'choose files' input control is used. To a user, this will open a file browser on whatever platform they're on. Selenium cannot interact with this native control.
 
 In order to get around this, we can SendKeys(/path/to/file) directly on the input control - eg `chooseFilesInputButton.sendKeys("/path/to/file");`, which bypasses the file browser that selenium cannot handle.
 
@@ -54,10 +55,11 @@ public FileUploadSuccessPage uploadFile(File filename) {
 
 ### Why not use AutoIt, Sikuli, or something that interacts with the file browser dialog instead?
 
-Running locally, on your machine, with your config etc, a number of solutions may work perfectly well. However, the main problems come when you want to ramp things up - what about:
+Running locally, on your machine, with your config etc., a number of solutions may work perfectly well. However, the main problems come when you want to ramp things up - what about:
 - running tests in parallel?
 - other browsers - does it behave the same?
 - other OSs - mac dialogs are very different to windows etc
 - on a grid - more dependencies required (eg AutoIt must be present on all your grid nodes)
+- reliability
 
-We want to try & keep our test pack as scalable and multi-platform as possible - although we're bypassing the OS's file browser by sending keys directly to the input control here, it's important to remember our main focus is testing _our application_ - not the browser's file picker functionality.
+We want to try and keep our test pack as scalable and multi-platform as possible - although we're bypassing the OS's file browser by sending keys directly to the input control here, it's important to remember our main focus is testing _our application_ - not the browser's file picker functionality.

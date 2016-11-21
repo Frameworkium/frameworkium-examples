@@ -2,7 +2,7 @@ package ai.capture.api.dto.executions;
 
 import java.util.List;
 
-/** Executions message */
+/** Execution results message */
 public class ExecutionResults {
 
     public List<Execution> results;

@@ -61,7 +61,7 @@ public class CarParksTest extends BaseTest {
                 .getNumFreeSpaces();
 
         // Make sure things are sane
-        assertThat(freeSpaces).isAtLeast(1);
+        assertThat(freeSpaces).isAtLeast(0);
         assertThat(freeSpaces).isLessThan(10000);
     }
 

@@ -16,7 +16,7 @@ public class DocumentationTest extends BaseTest {
                 .clickDeveloperGuide()
                 .searchDeveloperGuide("Bootstrap")
                 .clickBootstrapSearchItem()
-                .getGuideTitle();
+                .getGuideTitle("Bootstrap");
 
         assertThat(guideTitle)
                 .isEqualTo("Bootstrap");

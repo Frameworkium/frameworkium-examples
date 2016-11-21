@@ -5,6 +5,7 @@ import com.frameworkium.core.ui.pages.BasePage;
 import com.frameworkium.core.ui.pages.PageFactory;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.yandex.qatools.allure.annotations.Step;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.TextInput;
@@ -23,8 +24,12 @@ public class FormAuthenticationPage extends BasePage<FormAuthenticationPage> {
 
     @Visible
     @Name("Login button")
-    @FindBy(xpath = "//button[contains(.,'Login')]")
+    @FindBy(css = "#login > button")
     private WebElement loginButton;
+
+    @Name("Error message")
+    @FindBy(css = "#flash")
+    private WebElement errorMessage;
 
     @Step("Log in - {0}/{1}")
     public <T extends BasePage<T>> T login(
@@ -40,4 +45,8 @@ public class FormAuthenticationPage extends BasePage<FormAuthenticationPage> {
         return PageFactory.newInstance(classOfExpectedPageObject);
     }
 
+    public FormAuthenticationPage expectErrorMessage() {
+        wait.until(ExpectedConditions.visibilityOf(errorMessage));
+        return this;
+    }
 }

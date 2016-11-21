@@ -23,8 +23,8 @@ public class FileUploadPage extends BasePage<FileUploadPage> {
     private WebElement uploadButton;
 
     @Step("Upload a file by choosing file and then clicking upload")
-    public FileUploadSuccessPage uploadFile(File filename) {
-        chooseFilesButton.sendKeys(filename.getAbsolutePath());
+    public FileUploadSuccessPage uploadFile(String filePath) {
+        chooseFilesButton.sendKeys(filePath);
         uploadButton.click();
         return PageFactory.newInstance(FileUploadSuccessPage.class);
     }

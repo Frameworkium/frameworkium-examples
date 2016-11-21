@@ -1,6 +1,5 @@
 package com.tfl.web.pages;
 
-import com.frameworkium.core.ui.ExtraExpectedConditions;
 import com.frameworkium.core.ui.annotations.Visible;
 import com.frameworkium.core.ui.pages.BasePage;
 import com.frameworkium.core.ui.pages.PageFactory;
@@ -11,8 +10,8 @@ import ru.yandex.qatools.htmlelements.annotations.Name;
 
 import java.util.List;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOfAllElements;
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfAllElements;
+import static com.frameworkium.core.ui.ExtraExpectedConditions.notPresentOrInvisible;
+import static com.frameworkium.core.ui.ExtraExpectedConditions.sizeGreaterThan;
 
 public class PlanJourneyPage extends BasePage<PlanJourneyPage> {
 
@@ -52,12 +51,10 @@ public class PlanJourneyPage extends BasePage<PlanJourneyPage> {
     }
 
     private void clickFirstSuggestion(List<WebElement> suggestions) {
-        // not strictly needed, just demoing ExtraExpectedConditions
-        wait.until(ExtraExpectedConditions.jQueryAjaxDone());
 
-        wait.until(visibilityOfAllElements(suggestions));
+        wait.until(sizeGreaterThan(suggestions, 0));
         suggestions.get(0).click();
-        wait.until(invisibilityOfAllElements(suggestions));
+        wait.until(notPresentOrInvisible(suggestions));
     }
 
 }

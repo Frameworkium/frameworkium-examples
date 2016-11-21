@@ -1,52 +1,59 @@
 Frameworkium [![Build Status][status-svg]][status]
 ==================================================
 
-This project is based on Ardesco's [Selenium-Maven-Template][ardesco] and 
-Joe VDW's [Bootstrapium][bootstrapium] with some handy added extras for getting 
-started quickly with Selenium, Appium and [Rest Assured][rest-assured].
-
 This is a *sample project* which utilises [frameworkium-core][frameworkium-core], 
 a framework for writing maintainable Selenium and REST API tests that also makes 
 integrating with other test things (e.g. JIRA) much easier.
 
-As a result:
-* please raise issues against the [frameworkium-core][frameworkium-core] project (https://github.com/Frameworkium/frameworkium-core/issues)
-* please see the frameworkium-core releases page (https://github.com/Frameworkium/frameworkium-core/releases) for information about changes made and features added
-* Don't be worried if it doesn't look like this codebase has been updated recently - chances are, the underlying project has!
-* please update the `pom.xml` downloaded with this sample project to keep up to date with the latest releases of the underlying frameworkium-core project, by modifying the following block:
-```xml
-  <dependencies>
-    <dependency>
-      <groupId>com.github.frameworkium</groupId>
-      <artifactId>frameworkium-core</artifactId>
-      <version>2.1.4</version> <!--Update this number with the latest from the frameworkium-core releases page-->
-    </dependency>
-  </dependencies>
-```
-  
+The Frameworkium project is based on Ardesco's [Selenium-Maven-Template][ardesco] and 
+Joe VDW's [Bootstrapium][bootstrapium]. We have extended it with some handy extras
+for getting started quickly with Selenium, Appium and [Rest Assured][rest-assured].
 
-## Getting started
+As a result:
+* Please [raise issues][core-issues] against the [frameworkium-core][frameworkium-core] project, not this one
+* Please see the [frameworkium-core releases page][core-releases] for information about changes made and new features
+* This example project is not updated as regularly as the [core project][frameworkium-core]
+* To keep up to date with the latest releases of core, modify the following block in the `pom.xml`:
+```xml
+<dependencies>
+  <dependency>
+    <groupId>com.github.frameworkium</groupId>
+    <artifactId>frameworkium-core</artifactId>
+    <!-- Update this with the latest from the frameworkium-core releases page -->
+    <version>2.3.0</version>
+  </dependency>
+</dependencies>
+```
+
+## Getting Started
 
 After setting up [apache maven][mvn], open the `frameworkium` directory in a 
 terminal/command prompt and run `mvn clean verify` to run the example tests using Firefox.
 
-However, this only works for Firefox versions earlier than 47. You will need to either:
-downgrade Firefox, use [Marionette][marionette], use a different browser or use a grid.
+However, this now only works provided you have the [geckodriver][geckodriver] 
+on your path and are using Firefox version 48 or above.
 
-### Stuff you can do
+### Browsers
 
-Want to run the tests on a different browser?
-No problem, just provide the 'browser' argument:
+You can provide the 'browser' argument to chose a browser to run the tests in.
 
-```
-mvn clean verify -Dbrowser=chrome 
-```
+#### Drivers
+Since frameworkium-core v2.3.0 (which included Selenium v3.0.1) each browser 
+requires a "driver".
 
 For chrome, [ChromeDriver][chromedriver] needs to be on your path or specified
 as an argument:
 ```
-mvn clean verify -Dbrowser=chrome -Dwebdriver.chrome.driver=c:\path\to\your\chromedriver.exe
+mvn clean verify -Dbrowser=chrome -Dwebdriver.chrome.driver=c:\path\to\chromedriver.exe
 ```
+
+For Firefox 48 and above, [geckodriver][geckodriver] needs to be on your path or specified
+as an argument:
+```
+mvn clean verify -Dbrowser=firefox -Dwebdriver.firefox.driver=c:\path\to\geckodriver.exe
+```
+
+### Selenium Grid
 
 Want to run tests using a grid and in parallel?
 ```
@@ -55,11 +62,13 @@ mvn clean verify -Dbrowser=chrome -DgridURL=http://localhost:4444/wd/hub -Dthrea
 
 All you need to do is ensure the browser is installed in the default location.
 
+### Sauce Labs
+
 Running mobile web tests using Appium on Sauce Labs is only slightly more involved:
 
 ```bash
-export SAUCE_USERNAME=<username>
-export SAUCE_ACCESS_KEY=<access_key>
+export SAUCE_USERNAME=username
+export SAUCE_ACCESS_KEY=access_key
 mvn clean verify -Dplatform=ios -Dbrowser=safari -Dsauce=true 
 ```
 
@@ -76,7 +85,7 @@ mvn site
 
 ## Further Information
 
-Frameworkium sets you up for other stuff too - check out the 
+Frameworkium sets you up for other stuff too - check out the
 [guidance page][guidance] for further info.
 
 [status-svg]: https://travis-ci.org/Frameworkium/frameworkium.svg?branch=master
@@ -84,9 +93,12 @@ Frameworkium sets you up for other stuff too - check out the
 [ardesco]: https://github.com/Ardesco/Selenium-Maven-Template
 [bootstrapium]: https://github.com/jvanderwee/bootstrapium
 [rest-assured]: http://rest-assured.io/
+[frameworkium-core]: https://github.com/Frameworkium/frameworkium-core
+[core-issues]: https://github.com/Frameworkium/frameworkium-core/issues
+[core-releases]: https://github.com/Frameworkium/frameworkium-core/releases
 [mvn]: https://maven.apache.org/download.cgi
+[geckodriver]: https://github.com/mozilla/geckodriver/releases
 [marionette]: https://developer.mozilla.org/en-US/docs/Mozilla/QA/Marionette
 [chromedriver]: https://sites.google.com/a/chromium.org/chromedriver/home
-[frameworkium-core]: https://github.com/Frameworkium/frameworkium-core
 [guidance]: http://frameworkium.github.io/frameworkium/
 [allure]: http://allure.qatools.ru

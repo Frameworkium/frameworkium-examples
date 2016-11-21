@@ -5,10 +5,6 @@ This is a *sample project* which utilises [frameworkium-core][frameworkium-core]
 a framework for writing maintainable Selenium and REST API tests that also makes 
 integrating with other test things (e.g. JIRA) much easier.
 
-The Frameworkium project is based on Ardesco's [Selenium-Maven-Template][ardesco] and 
-Joe VDW's [Bootstrapium][bootstrapium]. We have extended it with some handy extras
-for getting started quickly with Selenium, Appium and [Rest Assured][rest-assured].
-
 As a result:
 * Please [raise issues][core-issues] against the [frameworkium-core][frameworkium-core] project, not this one
 * Please see the [frameworkium-core releases page][core-releases] for information about changes made and new features
@@ -24,6 +20,10 @@ As a result:
   </dependency>
 </dependencies>
 ```
+
+The Frameworkium project is based on Ardesco's [Selenium-Maven-Template][ardesco] and 
+Joe VDW's [Bootstrapium][bootstrapium]. We have extended it with some handy extras
+for getting started quickly with Selenium, Appium and [Rest Assured][rest-assured].
 
 ## Getting Started
 

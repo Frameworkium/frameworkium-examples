@@ -50,7 +50,7 @@ mvn clean verify -Dbrowser=chrome -Dwebdriver.chrome.driver=c:\path\to\chromedri
 For Firefox 48 and above, [geckodriver][geckodriver] needs to be on your path or specified
 as an argument:
 ```
-mvn clean verify -Dbrowser=firefox -Dwebdriver.firefox.driver=c:\path\to\geckodriver.exe
+mvn clean verify -Dbrowser=firefox -Dwebdriver.gecko.driver=c:\path\to\geckodriver.exe
 ```
 
 Firefox 47 and below have the driver built in, as such tests can be run by specifying

@@ -9,6 +9,11 @@ import ru.yandex.qatools.htmlelements.annotations.Name;
 public class JourneyPlannerResultsPage extends BasePage<JourneyPlannerResultsPage> {
 
     @Visible
+    @Name("Results viewport")
+    @FindBy(css = ".journey-planner-results")
+    private WebElement resultsViewport;
+
+    @Visible
     @Name("Page Title Area")
     @FindBy(css = "h1 span.hero-headline")
     private WebElement pageTitleArea;

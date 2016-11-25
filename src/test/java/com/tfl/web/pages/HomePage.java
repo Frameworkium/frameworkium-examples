@@ -22,7 +22,8 @@ public class HomePage extends BasePage<HomePage> {
 
     @Step("Navigate to the TFL homepage")
     public static HomePage open() {
-        return PageFactory.newInstance(HomePage.class, "http://tfl.gov.uk");
+        // alternative to PageFactory that creates a page object instance with URL
+        return new HomePage().get("http://tfl.gov.uk");
     }
 
     @Step("Go to the plan journey page")

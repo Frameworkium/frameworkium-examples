@@ -40,9 +40,13 @@ public class ChromeIncognitoImpl extends AbstractDriver {
 ```
 
 and then run your tests with either :
+
 `mvn clean verify -Dbrowser=custom -DcustomBrowserImpl=ChromeIncognitoImpl`
+
 or more simply:
+
 `mvn clean verify -DcustomBrowserImpl=ChromeIncognitoImpl`
+
 (as whenever `-DcustomBrowserImpl` is provided, the browser type defaults to `custom`)
 
 See [here](https://github.com/Frameworkium/frameworkium-core/tree/master/src/main/java/com/frameworkium/core/ui/driver/drivers) for the default implementations used in frameworkium-core, and if you make a better default implementation (or just something cool) submit us a pull request (or gist, or anything)! 

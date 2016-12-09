@@ -13,19 +13,17 @@ Tests can be executed by running `mvn clean verify` followed by any properties y
 
 Property | Description | Values
 -------- | ----------- | ------
-`browser`|  The browser on which you wish to run the tests. Defaults to `firefox` if not specified. |`firefox`, `chrome`, `safari`, `ie`, `opera`, `phantomjs`,`legacyfirefox`,`electron`,`custom`
-`browserVersion`| The browser version on which you wish to run the tests. Not mandatory and is only taken into consideration when running remotely e.g. on Selenium Grid,  Sauce Labs or BrowserStack | e.g. `8.0`
 `groups`| The TestNG test groups which you wish to run. All tests groups will run if not specified. | e.g.`checkintest`
-`test`| The test class,  or list of test classes (separated by commas),  to run. Can include wildcards. |`TflLoginWebTests, Heroku*`
-`gridURL`| The URL of your Selenium Grid hub. Mandatory if you wish to run your tests on your Selenium Grid. | e.g.`http://localhost:4444/wd/hub`
+`test`| The test class,  or list of test classes (separated by commas),  to run. Can include wildcards. | e.g. `TflLoginWebTests, Heroku*`
 `threads`| The number of threads to use. Defaults to 1 if not specified. | e.g. `3`
 `build`| The build version or app version to log to Sauce Labs,  BrowserStack,  or Capture. Not mandatory. | e.g. `build-1234`
-`customBrowserImpl`| Used alongside the `-Dbrowser=custom` param. Allows users to specify classname of their own browser implementation, for example for specifying a custom set of DesiredCapabilities | e.g. `ChromeIncognitoBrowserImpl`
 
 ## Browser Properties/capabilities
 
 Property | Description | Values
 -------- | ----------- | ------
+`browser`|  The browser on which you wish to run the tests. Defaults to `firefox` if not specified. |`firefox`, `chrome`, `safari`, `ie`, `opera`, `phantomjs`,`legacyfirefox`,`electron`,`custom`
+`browserVersion`| The browser version on which you wish to run the tests. Not mandatory and is only taken into consideration when running remotely e.g. on Selenium Grid,  Sauce Labs or BrowserStack | e.g. `8.0`
 `maximise`| Maximise browser on opening (if possible) | e.g `true`/`false`
 `resolution`| Set browser dimensions to specific setting (if possible) | e.g. `1024x543`
 `firefoxProfile`| Provide a custom firefox profile when opening firefox - eg containing specific authentication settings preset [EDIT - see `customBrowserImpl` below for preferred method] | e.g. `path/to/myCustomFFProfile.profile`
@@ -36,6 +34,7 @@ Property | Description | Values
 
 Property | Description | Values
 ----|------|------
+`gridURL`| The URL of your Selenium Grid hub. Mandatory if you wish to run your tests on your Selenium Grid. | e.g.`http://localhost:4444/wd/hub` *NB - /wd/hub is required!*
 `browserStack`| Must be set to true if you wish to run on BrowserStack. Defaults to false. |`true`, `false`
 `sauce`| Must be set to true if you wish to run on Sauce Labs. Defaults to false. |`true`, `false`
 `platform`| The platform on which you wish to run the tests. Is only taken into consideration when running remotely. To be specified instead of 'os' when running with BrowserStack. | e.g. `windows`, `ios`, `android`, `OSX`
@@ -60,6 +59,10 @@ Property | Description | Values
 `resultVersion`| The 'Version' to mark the test execution against in Zephyr for JIRA (requires ZAPI) | e.g. `App v1.1.2`
 `zapiCycleRegEx`| If the Zephyr test cycle name contains this string test results will be logged against the matching cycles. If not specified,  no further filtering of cycles will happen. | e.g. `firefox` or `my-special-cycle`
 
+## Capture Integration:
+Property | Description | Values
+----|------|------
+`captureURL`| The base URL of the Capture instance you want to automagically send screenshots and step information to. | e.g. `http://capture:5000`
 
 ## Examples
 

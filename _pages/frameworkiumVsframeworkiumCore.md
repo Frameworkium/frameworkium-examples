@@ -14,7 +14,7 @@ It's updated [pretty frequently](https://github.com/Frameworkium/frameworkium-co
 <dependency>
   <groupId>com.github.frameworkium</groupId>
   <artifactId>frameworkium-core</artifactId>
-  <version>2.0.11</version>
+  <version>2.3.1</version>
 </dependency>
 ```
 

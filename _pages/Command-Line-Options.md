@@ -13,13 +13,24 @@ Tests can be executed by running `mvn clean verify` followed by any properties y
 
 Property | Description | Values
 -------- | ----------- | ------
-`browser`|  The browser on which you wish to run the tests. Defaults to `firefox` if not specified. |`firefox`, `chrome`, `safari`, `ie`, `opera`, `phantomjs`
+`browser`|  The browser on which you wish to run the tests. Defaults to `firefox` if not specified. |`firefox`, `chrome`, `safari`, `ie`, `opera`, `phantomjs`,`legacyfirefox`,`electron`,`custom`
 `browserVersion`| The browser version on which you wish to run the tests. Not mandatory and is only taken into consideration when running remotely e.g. on Selenium Grid,  Sauce Labs or BrowserStack | e.g. `8.0`
 `groups`| The TestNG test groups which you wish to run. All tests groups will run if not specified. | e.g.`checkintest`
 `test`| The test class,  or list of test classes (separated by commas),  to run. Can include wildcards. |`TflLoginWebTests, Heroku*`
 `gridURL`| The URL of your Selenium Grid hub. Mandatory if you wish to run your tests on your Selenium Grid. | e.g.`http://localhost:4444/wd/hub`
 `threads`| The number of threads to use. Defaults to 1 if not specified. | e.g. `3`
 `build`| The build version or app version to log to Sauce Labs,  BrowserStack,  or Capture. Not mandatory. | e.g. `build-1234`
+`customBrowserImpl`| Used alongside the `-Dbrowser=custom` param. Allows users to specify classname of their own browser implementation, for example for specifying a custom set of DesiredCapabilities | e.g. `ChromeIncognitoBrowserImpl`
+
+## Browser Properties/capabilities
+
+Property | Description | Values
+-------- | ----------- | ------
+`maximise`| Maximise browser on opening (if possible) | e.g `true`/`false`
+`resolution`| Set browser dimensions to specific setting (if possible) | e.g. `1024x543`
+`firefoxProfile`| Provide a custom firefox profile when opening firefox - eg containing specific authentication settings preset [EDIT - see `customBrowserImpl` below for preferred method] | e.g. `path/to/myCustomFFProfile.profile`
+`chromeUserDataDir`| Set custom chrome user data directory for custom implementations [EDIT - see `customBrowserImpl` below for preferred method] | e.g. `path/to/chrome_user_data_dir`
+`customBrowserImpl`| Used alongside the `-Dbrowser=custom` param. Allows users to specify classname of their own browser implementation, for example for specifying a custom set of DesiredCapabilities | e.g. `ChromeIncognitoBrowserImpl`
 
 ## Remote Grids/Different devices & platforms
 

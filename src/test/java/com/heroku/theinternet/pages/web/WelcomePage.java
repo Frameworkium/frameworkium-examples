@@ -168,14 +168,14 @@ public class WelcomePage extends BasePage<WelcomePage> {
         return PageFactory.newInstance(SecureFileDownloadPage.class, url);
     }
 
+    private String formatBasicAuthURL(String username, String password, String originalURL) {
+        return String.format("http://%s:%s@%s",
+                username, password, originalURL.replace("http://", ""));
+    }
+
     @Step("Click the Sortable Data Table link")
     public SortableDataTablesPage clickSortableDataTablesLink() {
         sortableDataTablesLink.click();
         return PageFactory.newInstance(SortableDataTablesPage.class);
-    }
-
-    private String formatBasicAuthURL(String username, String password, String originalURL) {
-        return String.format("http://%s:%s@%s",
-                username, password, originalURL.replace("http://", ""));
     }
 }

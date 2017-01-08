@@ -160,16 +160,17 @@ public class TheInternetExampleTests extends BaseTest {
     public void formAuthentication() {
 
         // Navigate to the form authentication page
+        final String username = "tomsmith";
         FormAuthenticationPage formAuthenticationPage = WelcomePage
                 .open().then()
                 .clickFormAuthenticationLink()
                 // Log in with the bad password and expect to land where we are
-                .login("tomsmith", "BadBadPassword", FormAuthenticationPage.class)
+                .login(username, "BadBadPassword", FormAuthenticationPage.class)
                 .expectErrorMessage();
 
         // Log in with the username password provided
         FormAuthenticationSuccessPage successPage = formAuthenticationPage
-                .login("tomsmith", "SuperSecretPassword!", FormAuthenticationSuccessPage.class);
+                .login(username, "SuperSecretPassword!", FormAuthenticationSuccessPage.class);
 
         // Confirm that we're on the success page
         assertThat(successPage.getSource()).contains("Welcome to the Secure Area");
@@ -217,7 +218,7 @@ public class TheInternetExampleTests extends BaseTest {
             retryAnalyzer = RetryFlakyTest.class)
     public void jQuery_UI() {
 
-        throw new SkipException("Doesn't yet work with Selenium 3/Marionette/Geckodriver");
+        throw new SkipException("Doesn't yet work with Firefox/Marionette/Geckodriver");
 
         /*WelcomePage.open().then()
                 // Navigate to the jQuery UI page
@@ -262,7 +263,7 @@ public class TheInternetExampleTests extends BaseTest {
     @Test(description = "Key Presses")
     public void key_presses() {
 
-        throw new SkipException("Doesn't yet work with Selenium 3/Marionette/Geckodriver");
+        throw new SkipException("Doesn't yet work with Firefox/Marionette/Geckodriver");
 
         /* //Navigate to the key presses page
         KeyPressesPage keyPressesPage = WelcomePage

@@ -35,7 +35,7 @@
     <env.config>local</env.config>
     <threads>1</threads>
     <groups/>
-    <aspectj.version>1.8.9</aspectj.version>
+    <aspectj.version>1.8.10</aspectj.version>
   </properties>
 
   <repositories>

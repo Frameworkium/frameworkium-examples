@@ -9,6 +9,8 @@ import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.Link;
 import ru.yandex.qatools.htmlelements.element.TextInput;
 
+import java.util.Arrays;
+
 public class DeveloperGuidePage extends BasePage<DeveloperGuidePage> {
 
     @Name("Developer guide search")
@@ -21,8 +23,12 @@ public class DeveloperGuidePage extends BasePage<DeveloperGuidePage> {
     private Link bootstrapSearchItem;
 
     @Name("Guide article title")
-    @FindBy(css = "h1")
+    @FindBy(css = ".main-grid h1")
     private WebElement guideTitle;
+
+    @Name("Loading")
+    @FindBy(id= "loading")
+    private WebElement loading;
 
     public DeveloperGuidePage searchDeveloperGuide(String inputText) {
         searchField.sendKeys(inputText);
@@ -31,6 +37,8 @@ public class DeveloperGuidePage extends BasePage<DeveloperGuidePage> {
 
     public DeveloperGuidePage clickBootstrapSearchItem() {
         bootstrapSearchItem.click();
+        waitForJavascriptFrameworkToFinish();
+        wait.until(ExpectedConditions.invisibilityOfAllElements(Arrays.asList(loading)));
         return this;
     }
 

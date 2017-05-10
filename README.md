@@ -16,7 +16,7 @@ As a result:
     <groupId>com.github.frameworkium</groupId>
     <artifactId>frameworkium-core</artifactId>
     <!-- Update this with the latest from the frameworkium-core releases page -->
-    <version>2.3.0</version>
+    <version>2.4</version>
   </dependency>
 </dependencies>
 ```

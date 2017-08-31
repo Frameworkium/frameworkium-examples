@@ -1,4 +1,4 @@
-Frameworkium [![Build Status][status-svg]][status]
+Frameworkium Examples [![Build Status][status-svg]][status]
 ==================================================
 
 This is a *sample project* which utilises [frameworkium-core][frameworkium-core], 

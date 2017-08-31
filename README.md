@@ -106,5 +106,5 @@ Frameworkium sets you up for other stuff too - check out the
 [geckodriver]: https://github.com/mozilla/geckodriver/releases
 [marionette]: https://developer.mozilla.org/en-US/docs/Mozilla/QA/Marionette
 [chromedriver]: https://sites.google.com/a/chromium.org/chromedriver/home
-[guidance]: http://frameworkium.github.io/frameworkium/
+[guidance]: http://frameworkium.github.io/
 [allure]: http://allure.qatools.ru

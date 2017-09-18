@@ -6,6 +6,7 @@ import com.github.pages.web.ExplorePage;
 import com.github.pages.web.HomePage;
 import com.github.pages.web.SearchResultsPage;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.allure.annotations.Step;
 import ru.yandex.qatools.htmlelements.annotations.Name;
@@ -28,8 +29,13 @@ public class HeaderComponent extends HtmlElement {
 
     @Visible
     @Name("Explore Link")
-    @FindBy(css = "header nav a.nav-item-explore")
+    @FindBy(partialLinkText = "Explore")
     private Link exploreLink;
+
+    @Visible
+    @Name("Marketing Sign-Up Banner")
+    @FindBy(partialLinkText = "Marketplace")
+    private WebElement marketingLink;
 
     @Step("Go Home")
     public HomePage clickLogo() {
@@ -43,7 +49,7 @@ public class HeaderComponent extends HtmlElement {
         return PageFactory.newInstance(ExplorePage.class);
     }
 
-    @Step("Search for the text '{0}'")
+    @Step("Search for the text \"{0}\"")
     public SearchResultsPage search(String searchText) {
         searchBox.sendKeys(searchText + Keys.ENTER);
         return PageFactory.newInstance(SearchResultsPage.class);

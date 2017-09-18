@@ -8,18 +8,22 @@ import static com.google.common.truth.Truth.assertThat;
 
 public class DocumentationTest extends BaseTest {
 
+    private static String TERM_TO_SEARCH = "Bootstrap";
+
     @Test(description =
             "Tests the AngularJS developer documentation and search function")
     public void documentationTest() {
         String guideTitle = HomePage
                 .open()
-                .clickDeveloperGuide()
-                .searchDeveloperGuide("Bootstrap")
-                .clickBootstrapSearchItem()
-                .getGuideTitle("Bootstrap");
+                .clickDevelopMenu()
+                .clickDeveloperGuideLink()
+                .clickSearchBar()
+                .setSearchBar(TERM_TO_SEARCH)
+                .clickLinkWithTitle(TERM_TO_SEARCH)
+                .getGuideTitle(TERM_TO_SEARCH);
 
         assertThat(guideTitle)
-                .isEqualTo("Bootstrap");
+                .isEqualTo(TERM_TO_SEARCH);
     }
 
 }

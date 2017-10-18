@@ -9,7 +9,8 @@ import ru.yandex.qatools.allure.annotations.Features;
 import ru.yandex.qatools.allure.annotations.Issue;
 import ru.yandex.qatools.allure.annotations.Stories;
 
-import java.net.URL;
+import java.net.URISyntaxException;
+import java.nio.file.Paths;
 import java.util.List;
 
 import static com.google.common.truth.Truth.assertThat;
@@ -139,14 +140,14 @@ public class TheInternetExampleTests extends BaseTest {
 
     @Issue("HEROKU-7")
     @Test(description = "File Upload")
-    public void fileUpload() {
+    public void fileUpload() throws URISyntaxException {
 
         // Navigate to the upload page
         FileUploadPage fileUploadPage = WelcomePage.open().then().clickFileUploadLink();
 
         // Pick a local file we're going to upload
         String fileName = "FirefoxGrid.yaml";
-        String fileToUpload = this.getClass().getClassLoader().getResource(fileName).getFile();
+        String fileToUpload = Paths.get(getClass().getClassLoader().getResource(fileName).toURI()).toFile().getAbsolutePath();
 
         // Upload the file and confirm we land on the success page
         FileUploadSuccessPage successPage = fileUploadPage.uploadFile(fileToUpload);

@@ -12,7 +12,7 @@ public class HomePage extends BasePage<HomePage> {
 
     @Visible
     @Name("Search Input Box")
-    @FindBy(css = "input#lst-ib")
+    @FindBy(name = "q")
     private WebElement searchInputBox;
 
     @Name("Search Button")
@@ -25,10 +25,22 @@ public class HomePage extends BasePage<HomePage> {
         return PageFactory.newInstance(HomePage.class, "http://www.google.com");
     }
 
-    @Step("Search for '{0}'")
-    public ResultsPage runSearch(String searchTerms) {
+    @Step("Search for \"{0}\"")
+    public HomePage setSearchBarText(String searchTerms) {
         searchInputBox.sendKeys(searchTerms);
-        runSearchButton.click();
+        return this;
+    }
+
+    @Step("Click on search bar")
+    public HomePage clickSearchBar() {
+        searchInputBox.click();
+        return this;
+    }
+
+    @Step("Click enter")
+    public ResultsPage clickEnter() {
+        searchInputBox.sendKeys("\n");
         return PageFactory.newInstance(ResultsPage.class);
     }
+
 }

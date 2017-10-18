@@ -6,8 +6,6 @@ import com.google.pages.web.ResultsPage;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
-import java.util.stream.Collectors;
-
 import static com.google.common.truth.Truth.assertThat;
 
 public class SearchTest extends BaseTest {
@@ -17,7 +15,10 @@ public class SearchTest extends BaseTest {
     public void searchTest() {
 
         // Navigate to google and run a search
-        ResultsPage resultsPage = HomePage.open().then().runSearch("Hello World");
+        ResultsPage resultsPage = HomePage.open().then()
+            .clickSearchBar()
+            .setSearchBarText("Hello World")
+            .clickEnter();
 
         // Check that the results contains the expected result
         String expectedTitle = "\"Hello, World!\" program - Wikipedia";

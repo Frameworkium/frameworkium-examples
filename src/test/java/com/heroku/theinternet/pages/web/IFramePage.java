@@ -52,7 +52,7 @@ public class IFramePage extends BasePage<IFramePage> {
         return text;
     }
 
-    @Step("Enter Bold Text: '{0}'")
+    @Step("Enter Bold Text: \"{0}\"")
     public void enterBoldTextInEditor(String text) {
 
         // Click bold button (As it's NOT in the iframe)

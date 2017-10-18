@@ -4,7 +4,7 @@ jdk: oraclejdk8
 dist: xenial
 
 addons:
-  firefox: "50.0"
+  firefox: latest
 
 # disable default mvn install
 install: true
@@ -19,10 +19,10 @@ env:
     - CAPTURE_URL="https://capture.unity.perimeterusa.com:5000"
     - SUT_NAME="frameworkium"
     - SUT_VERSION=$TRAVIS_BRANCH
-    - THREAD_COUNT=2
-    - SELENIUM_MAJ_VER=3.0
-    - SELENIUM_VER=$SELENIUM_MAJ_VER.1
-    - GECKO_VER=0.13.0
+    - THREAD_COUNT=1
+    - SELENIUM_MAJ_VER=3.4
+    - SELENIUM_VER=$SELENIUM_MAJ_VER.0
+    - GECKO_VER=0.19.0
 
 before_script:
   - export DISPLAY=:99.0

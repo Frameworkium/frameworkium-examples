@@ -12,6 +12,7 @@
     <include within="com.tfl..*"/>
     <include within="com.heroku..*"/>
     <include within="com.calcapp..*"/>
+    <include within="com.angularjs..*"/>
     <include within="com.google..*"/>
   </weaver>
 </aspectj>

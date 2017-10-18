@@ -21,7 +21,9 @@ public class CarParksTest extends BaseTest {
     @BeforeClass
     public void setUp() {
         carParkOccupancies = new CarParkOccupancyService().getCarParkOccupancies();
+        pacing(1);
     }
+
 
     public void all_car_park_occupancies_more_than_10_spaces() {
 
@@ -70,6 +72,19 @@ public class CarParksTest extends BaseTest {
 
         assertThat(carParkOccupancies.getTotalNumSpaces())
                 .isEqualTo(carParkOccupancies.getTotalNumFreeAndOccupied());
+    }
+
+    /***
+     * This method is used to overcome 429 status code (too many requests) thrown
+     * when testing the webservice.
+     * @param seconds
+     */
+    private void pacing(long seconds) {
+        try {
+            Thread.sleep(seconds * 1000L);
+        } catch (InterruptedException ie) {
+            ie.printStackTrace();
+        }
     }
 
 }

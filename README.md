@@ -1,5 +1,4 @@
-Frameworkium Examples [![Build Status][status-svg]][status]
-==================================================
+# Frameworkium Examples [![Build Status][status-svg]][status]
 
 This is a *sample project* which utilises [frameworkium-core][frameworkium-core], 
 a framework for writing maintainable Selenium and REST API tests that also makes 
@@ -16,7 +15,7 @@ As a result:
     <groupId>com.github.frameworkium</groupId>
     <artifactId>frameworkium-core</artifactId>
     <!-- Update this with the latest from the frameworkium-core releases page -->
-    <version>2.3.0</version>
+    <version>2.4.3</version>
   </dependency>
 </dependencies>
 ```
@@ -27,7 +26,7 @@ for getting started quickly with Selenium, Appium and [Rest Assured][rest-assure
 
 ## Getting Started
 
-After setting up [apache maven][mvn], open the `frameworkium` directory in a 
+After setting up [apache maven][mvn], open the `frameworkium-examples` directory in a 
 terminal/command prompt and run `mvn clean verify` to run the example tests using Firefox.
 
 However, this now only works provided you have the [geckodriver][geckodriver] 
@@ -35,7 +34,7 @@ on your path and are using Firefox version 48 or above.
 
 ### Browsers
 
-You can provide the 'browser' argument to chose a browser to run the tests in.
+You can provide the `-Dbrowser` argument to chose a browser to run the tests in.
 
 #### Drivers
 Since frameworkium-core v2.3.0 (which included Selenium v3.0.1) each browser 
@@ -94,8 +93,8 @@ mvn site
 Frameworkium sets you up for other stuff too - check out the
 [guidance page][guidance] for further info.
 
-[status-svg]: https://travis-ci.org/Frameworkium/frameworkium.svg?branch=master
-[status]: https://travis-ci.org/Frameworkium/frameworkium
+[status-svg]: https://travis-ci.org/Frameworkium/frameworkium-examples.svg?branch=master
+[status]: https://travis-ci.org/Frameworkium/frameworkium-examples
 [ardesco]: https://github.com/Ardesco/Selenium-Maven-Template
 [bootstrapium]: https://github.com/jvanderwee/bootstrapium
 [rest-assured]: http://rest-assured.io/
@@ -106,5 +105,5 @@ Frameworkium sets you up for other stuff too - check out the
 [geckodriver]: https://github.com/mozilla/geckodriver/releases
 [marionette]: https://developer.mozilla.org/en-US/docs/Mozilla/QA/Marionette
 [chromedriver]: https://sites.google.com/a/chromium.org/chromedriver/home
-[guidance]: http://frameworkium.github.io/
+[guidance]: http://frameworkium.github.io
 [allure]: http://allure.qatools.ru

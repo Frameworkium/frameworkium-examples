@@ -4,9 +4,11 @@ This is a *sample project* which utilises [frameworkium-core][frameworkium-core]
 a framework for writing maintainable Selenium and REST API tests that also makes 
 integrating with other test things (e.g. JIRA) much easier.
 
+Please see the [Frameworkium usage guide][guidance] for more details.
+
 As a result:
 * Please [raise issues][core-issues] against the [frameworkium-core][frameworkium-core] project, not this one
-* Please see the [frameworkium-core releases page][core-releases] for information about changes made and new features
+* See the [frameworkium-core releases page][core-releases] for information about changes and new features
 * This example project is not updated as regularly as the [core project][frameworkium-core]
 * To keep up to date with the latest releases of core, modify the following block in the `pom.xml`:
 ```xml
@@ -15,7 +17,7 @@ As a result:
     <groupId>com.github.frameworkium</groupId>
     <artifactId>frameworkium-core</artifactId>
     <!-- Update this with the latest from the frameworkium-core releases page -->
-    <version>2.4.3</version>
+    <version>2.4.5</version>
   </dependency>
 </dependencies>
 ```
@@ -29,14 +31,15 @@ for getting started quickly with Selenium, Appium and [Rest Assured][rest-assure
 After setting up [apache maven][mvn], open the `frameworkium-examples` directory in a 
 terminal/command prompt and run `mvn clean verify` to run the example tests using Firefox.
 
-However, this now only works provided you have the [geckodriver][geckodriver] 
-on your path and are using Firefox version 48 or above.
+You will need the [geckodriver][geckodriver] on your path if you are using 
+Firefox version 48 or above.
 
 ### Browsers
 
 You can provide the `-Dbrowser` argument to chose a browser to run the tests in.
 
 #### Drivers
+
 Since frameworkium-core v2.3.0 (which included Selenium v3.0.1) each browser 
 requires a "driver".
 
@@ -105,5 +108,5 @@ Frameworkium sets you up for other stuff too - check out the
 [geckodriver]: https://github.com/mozilla/geckodriver/releases
 [marionette]: https://developer.mozilla.org/en-US/docs/Mozilla/QA/Marionette
 [chromedriver]: https://sites.google.com/a/chromium.org/chromedriver/home
-[guidance]: http://frameworkium.github.io
+[guidance]: https://frameworkium.github.io
 [allure]: http://allure.qatools.ru

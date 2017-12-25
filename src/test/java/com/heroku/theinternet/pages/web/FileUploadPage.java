@@ -8,8 +8,6 @@ import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.allure.annotations.Step;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 
-import java.io.File;
-
 public class FileUploadPage extends BasePage<FileUploadPage> {
 
     @Visible

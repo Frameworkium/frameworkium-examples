@@ -2,7 +2,6 @@ package com.tfl.api.test;
 
 import com.frameworkium.core.api.tests.BaseTest;
 import com.tfl.api.dto.journeyplanner.DisambiguationResult;
-import com.tfl.api.dto.journeyplanner.Itinerary;
 import com.tfl.api.service.journeyplanner.DisambiguationService;
 import com.tfl.api.service.journeyplanner.ItineraryService;
 import org.testng.annotations.Test;
@@ -26,6 +25,6 @@ public class JourneyPlannerTest extends BaseTest {
                 .getItinerary(from, to)
                 .getShortestJourneyDuration();
 
-        assertThat(shortestJourneyDuration).isLessThan(30);
+        assertThat(shortestJourneyDuration).isLessThan(31);
     }
 }

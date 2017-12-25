@@ -10,7 +10,6 @@ import ru.yandex.qatools.htmlelements.element.TextBlock;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class ResultsPage extends BasePage<ResultsPage> {
 

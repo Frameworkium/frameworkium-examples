@@ -5,9 +5,7 @@ import com.frameworkium.core.ui.tests.BaseTest;
 import com.heroku.theinternet.pages.web.*;
 import org.testng.SkipException;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Features;
-import ru.yandex.qatools.allure.annotations.Issue;
-import ru.yandex.qatools.allure.annotations.Stories;
+import ru.yandex.qatools.allure.annotations.*;
 
 import java.net.URISyntaxException;
 import java.nio.file.Paths;

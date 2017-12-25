@@ -1,6 +1,5 @@
 package com.tfl.web.tests;
 
-import com.frameworkium.core.common.retry.RetryFlakyTest;
 import com.frameworkium.core.ui.tests.BaseTest;
 import com.tfl.web.pages.*;
 import org.testng.annotations.Test;
@@ -10,9 +9,11 @@ import static com.google.common.truth.Truth.assertThat;
 
 public class PlanJourneyTest extends BaseTest {
 
+    // disabled due to lack of time for maintenance
+    // still useful as an example
     @Issue("TFL-1")
     @Test(description = "Plan a journey test",
-            retryAnalyzer = RetryFlakyTest.class)
+            enabled = false)
     public final void planJourneyTest() {
 
         // Navigate to homepage

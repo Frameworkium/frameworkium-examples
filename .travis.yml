@@ -36,13 +36,14 @@ script:
   - wget --quiet https://github.com/mozilla/geckodriver/releases/download/v${GECKO_VER}/geckodriver-v${GECKO_VER}-linux64.tar.gz
   - tar -xzf geckodriver-v${GECKO_VER}-linux64.tar.gz --directory /tmp
 
-  # Run TheInternetExampleTests on Firefox off the grid
-  - mvn verify -B -Dthreads=${THREAD_COUNT} -Dbrowser=firefox -Dit.test=TheInternetExampleTests -Dwebdriver.gecko.driver=/tmp/geckodriver 2> /dev/null
-
   # Download and setup Grid hub and setup geckodriver grid node
+  # NB this is before the "off-grid" test to ensure grid is fully up in time
   - wget --quiet https://selenium-release.storage.googleapis.com/${SELENIUM_MAJ_VER}/selenium-server-standalone-${SELENIUM_VER}.jar
   - java -jar selenium-server-standalone-${SELENIUM_VER}.jar -role hub > /dev/null 2>&1 &
   - java -jar selenium-server-standalone-${SELENIUM_VER}.jar -role node -hub http://localhost:4444/grid/register -browser browserName=firefox,maxInstances=${THREAD_COUNT} -maxSession ${THREAD_COUNT} -port 5555 > /dev/null 2>&1 &
+
+  # Run TheInternetExampleTests on Firefox off the grid
+  - mvn verify -B -Dthreads=${THREAD_COUNT} -Dbrowser=firefox -Dit.test=TheInternetExampleTests -Dwebdriver.gecko.driver=/tmp/geckodriver 2> /dev/null
 
   # Run all tests on Firefox on the grid via gecko
   - mvn verify -B -Dthreads=${THREAD_COUNT} -Dconfig=FirefoxGrid.yaml # -DcaptureURL=${CAPTURE_URL} -DsutName="${SUT_NAME}" -DsutVersion="${SUT_VERSION}"

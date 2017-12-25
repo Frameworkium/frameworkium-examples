@@ -18,7 +18,7 @@ public class SearchResultsPage extends BasePage<SearchResultsPage> {
     @Name("Header")
     private HeaderComponent header;
 
-    @Visible
+    @Visible(checkAtMost = 1)
     @Name("Repository Links")
     @FindBy(css = "h3 > a")
     private List<Link> repoLinks;

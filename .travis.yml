@@ -40,7 +40,7 @@ script:
   # NB this is before the "off-grid" test to ensure grid is fully up in time
   - wget --quiet https://selenium-release.storage.googleapis.com/${SELENIUM_MAJ_VER}/selenium-server-standalone-${SELENIUM_VER}.jar
   - java -jar selenium-server-standalone-${SELENIUM_VER}.jar -role hub > /dev/null 2>&1 &
-  - java -jar selenium-server-standalone-${SELENIUM_VER}.jar -Dwebdriver.gecko.driver=/tmp/geckodriver -role node -hub http://localhost:4444/grid/register -browser browserName=firefox,maxInstances=${THREAD_COUNT} -maxSession ${THREAD_COUNT} -port 5555 > /dev/null 2>&1 &
+  - java -Dwebdriver.gecko.driver=/tmp/geckodriver -jar selenium-server-standalone-${SELENIUM_VER}.jar -role node -hub http://localhost:4444/grid/register -browser browserName=firefox,maxInstances=${THREAD_COUNT} -maxSession ${THREAD_COUNT} -port 5555 > /dev/null 2>&1 &
 
   # Run TheInternetExampleTests on Firefox off the grid
   - mvn verify -B -Dthreads=${THREAD_COUNT} -Dbrowser=firefox -Dit.test=TheInternetExampleTests -Dwebdriver.gecko.driver=/tmp/geckodriver 2> /dev/null

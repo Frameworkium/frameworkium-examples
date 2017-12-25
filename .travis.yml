@@ -17,7 +17,7 @@ env:
     # - CAPTURE_URL="https://localhost:5000" # disabled until new instance is available
     - SUT_NAME="frameworkium"
     - SUT_VERSION=$TRAVIS_BRANCH
-    - THREAD_COUNT=2
+    - THREAD_COUNT=1
     - SELENIUM_MAJ_VER=3.5
     - SELENIUM_VER=${SELENIUM_MAJ_VER}.3
     - SELENIUM_JAR=selenium-server-standalone-${SELENIUM_VER}.jar
@@ -42,13 +42,13 @@ script:
   - java -Dwebdriver.gecko.driver=/tmp/geckodriver -jar selenium-server-standalone-${SELENIUM_VER}.jar -role node -hub http://localhost:4444/grid/register -browser browserName=firefox,maxInstances=${THREAD_COUNT} -maxSession ${THREAD_COUNT} -port 5555 > /dev/null 2>&1 &
 
   # Run TheInternetExampleTests on Firefox off the grid
-  - mvn verify -B -Dthreads=$THREAD_COUNT -Dbrowser=firefox -Dit.test=TheInternetExampleTests -Dwebdriver.gecko.driver=/tmp/geckodriver 2> /dev/null
+  - mvn verify -B -Dthreads=${THREAD_COUNT} -Dbrowser=firefox -Dit.test=TheInternetExampleTests -Dwebdriver.gecko.driver=/tmp/geckodriver 2> /dev/null
 
   # Run all tests on Firefox on the grid via gecko
-  - mvn verify -B -Dthreads=$THREAD_COUNT -Dconfig=FirefoxGrid.yaml # -DcaptureURL=$CAPTURE_URL -DsutName="$SUT_NAME" -DsutVersion="$SUT_VERSION"
+  - mvn verify -B -Dthreads=${THREAD_COUNT} -Dconfig=FirefoxGrid.yaml # -DcaptureURL=$CAPTURE_URL -DsutName="$SUT_NAME" -DsutVersion="$SUT_VERSION"
 
   # Run TEST-1 and log to Jira
-  - mvn verify -B -Dthreads=$THREAD_COUNT -Dconfig=FirefoxGrid.yaml -DjiraURL="http://52.29.130.45:8080" -DjqlQuery="issueKey=TEST-1" -DresultVersion="BUILD TEST VERSION" -DzapiCycleRegex="Test Cycle" -DjiraUsername=frameworkium -DjiraPassword=frameworkium
+  - mvn verify -B -Dthreads=${THREAD_COUNT} -Dconfig=FirefoxGrid.yaml -DjiraURL="http://52.29.130.45:8080" -DjqlQuery="issueKey=TEST-1" -DresultVersion="BUILD TEST VERSION" -DzapiCycleRegex="Test Cycle" -DjiraUsername=frameworkium -DjiraPassword=frameworkium
 
   # Run on sauce - disabled until we have a sauce account to use
   # - mvn verify -Dsauce=true -Dplatform=ios -Dbrowser=safari -DplatformVersion=8.0 -Ddevice=iPad -DcaptureURL=$CAPTURE_URL -DsutName="$SUT_NAME" -DsutVersion="$SUT_VERSION"

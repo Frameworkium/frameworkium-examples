@@ -25,4 +25,5 @@ maximise:
 resolution:
 proxy:
 maxRetryCount: 2
+reuseBrowser: true
 

@@ -59,9 +59,7 @@ script:
   - mvn install -B --quiet --show-version -DskipTests=true -Dmaven.javadoc.skip=true
 
   # Firefox on the grid
-  # No longer works with 2 threads on Travis, since 29-Dec-2017:
-  # frameworkium 2.5.0, ff 57.0.2, geckodriver 0.19.1
-  - mvn verify -B -Dthreads=1 -Dconfig=FirefoxGrid.yaml
+  - mvn verify -B -Dthreads=${THREAD_COUNT} -Dconfig=FirefoxGrid.yaml -DreuseBrowser=true -Dheadless=true
 
   # Firefox off the grid
   - mvn verify -B -Dthreads=${THREAD_COUNT} -Dbrowser=firefox -DreuseBrowser=true -Dheadless=true 2> /dev/null

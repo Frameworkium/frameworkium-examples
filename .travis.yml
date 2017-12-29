@@ -1,11 +1,13 @@
 language: java
 jdk: oraclejdk8
 
+# docker, see: https://docs.travis-ci.com/user/reference/overview/
 sudo: false
 dist: trusty
 
 addons:
   firefox: latest
+  chrome: stable
 
 install: true # disable default mvn install
 
@@ -18,41 +20,60 @@ env:
     # - SUT_NAME="frameworkium"
     # - SUT_VERSION=${TRAVIS_BRANCH}
     - THREAD_COUNT=2
-    - SELENIUM_MAJ_VER=3.5
-    - SELENIUM_VER=${SELENIUM_MAJ_VER}.3
+    - SELENIUM_MAJ_VER=3.8
+    - SELENIUM_VER=${SELENIUM_MAJ_VER}.1
     - SELENIUM_JAR=selenium-server-standalone-${SELENIUM_VER}.jar
     - GECKO_VER=0.19.1
-    - CHROME_DRIVER_VER=2.33
+    - CHROME_DRIVER_VER=2.34
+    # override Travis default to give browsers more room
+    - _JAVA_OPTIONS="-Xmx1024m -Xms128m"
 
-# setup X to allow non-headless browsers to run
 before_script:
+  # setup X to allow non-headless browsers to run
   - export DISPLAY=:99.0
   - /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16
 
-script:
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V -U -q
+  # Set up Selenium Grid Hub
+  - wget --quiet https://selenium-release.storage.googleapis.com/${SELENIUM_MAJ_VER}/${SELENIUM_JAR}
+  - java -Xmx128m -jar ${SELENIUM_JAR} -role hub > /dev/null 2>&1 &
 
   # Download geckodriver
   - wget --quiet https://github.com/mozilla/geckodriver/releases/download/v${GECKO_VER}/geckodriver-v${GECKO_VER}-linux64.tar.gz
-  - tar -xzf geckodriver-v${GECKO_VER}-linux64.tar.gz --directory /tmp
+  - tar -xzf geckodriver-v${GECKO_VER}-linux64.tar.gz
 
-  # Download and setup Grid hub and setup geckodriver grid node
-  # NB this is before the "off-grid" test to ensure grid is fully up in time
-  - wget --quiet https://selenium-release.storage.googleapis.com/${SELENIUM_MAJ_VER}/selenium-server-standalone-${SELENIUM_VER}.jar
-  - java -jar selenium-server-standalone-${SELENIUM_VER}.jar -role hub > /dev/null 2>&1 &
-  - java -Dwebdriver.gecko.driver=/tmp/geckodriver -jar selenium-server-standalone-${SELENIUM_VER}.jar -role node -hub http://localhost:4444/grid/register -browser browserName=firefox,maxInstances=${THREAD_COUNT} -maxSession ${THREAD_COUNT} -port 5555 > /dev/null 2>&1 &
+  # Download chromedriver
+  - wget --quiet http://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VER}/chromedriver_linux64.zip
+  - unzip chromedriver_linux64.zip
 
-  # Run TheInternetExampleTests on Firefox off the grid
-  - mvn verify -B -Dthreads=${THREAD_COUNT} -Dbrowser=firefox -Dit.test=TheInternetExampleTests -Dwebdriver.gecko.driver=/tmp/geckodriver 2> /dev/null
+  # Wait for grid hub to be up
+  - until $(curl --output /dev/null --silent --fail http://localhost:4444/grid/console); do printf '.'; sleep 1; done
 
-  # Run all tests on Firefox on the grid via gecko
-  - mvn verify -B -Dthreads=${THREAD_COUNT} -Dconfig=FirefoxGrid.yaml # -DcaptureURL=${CAPTURE_URL} -DsutName="${SUT_NAME}" -DsutVersion="${SUT_VERSION}"
+  # Setup Firefox Selenium Grid Node
+  - java -Xmx128m -jar ${SELENIUM_JAR} -role node -hub http://localhost:4444/grid/register -browser browserName=firefox,maxInstances=${THREAD_COUNT} -maxSession ${THREAD_COUNT} -port 5555 > /dev/null 2>&1 &
 
-  # Run TEST-1 and log to Jira
-  - mvn verify -B -Dthreads=${THREAD_COUNT} -Dconfig=FirefoxGrid.yaml -DjiraURL="http://52.29.130.45:8080" -DjqlQuery="issueKey=TEST-1" -DresultVersion="BUILD TEST VERSION" -DzapiCycleRegex="Test Cycle" -DjiraUsername=frameworkium -DjiraPassword=frameworkium
+  # Set up Chrome Selenium Grid Node
+  - java -Xmx128m -jar ${SELENIUM_JAR} -role node -hub http://localhost:4444/grid/register -browser browserName=chrome,maxInstances=${THREAD_COUNT} -maxSession ${THREAD_COUNT} -port 5556 > /dev/null 2>&1 &
 
-  # Run on sauce - disabled until we have a sauce account to use
+script:
+  # Download deps, compile and run checkstyle
+  - mvn install -B --quiet --show-version -DskipTests=true -Dmaven.javadoc.skip=true
+
+  # Firefox on the grid
+  # No longer works with 2 threads on Travis, since 29-Dec-2017:
+  # frameworkium 2.5.0, ff 57.0.2, geckodriver 0.19.1
+  - mvn verify -B -Dthreads=1 -Dconfig=FirefoxGrid.yaml
+
+  # Firefox off the grid
+  - mvn verify -B -Dthreads=${THREAD_COUNT} -Dbrowser=firefox -DreuseBrowser=true -Dheadless=true 2> /dev/null
+
+  # Chrome on the grid
+  - mvn verify -B -Dthreads=${THREAD_COUNT} -Dbrowser=chrome -DreuseBrowser=true -Dheadless=true -DgridURL=http://localhost:4444/wd/hub #-DcaptureURL=${CAPTURE_URL} -DsutName="${SUT_NAME}" -DsutVersion="${SUT_VERSION}"
+
+  # Query Jira for which test to run and then log results to Jira
+  - mvn verify -B -Dbrowser=chrome -DgridURL=http://localhost:4444/wd/hub -DjiraURL="http://52.29.130.45:8080" -DjqlQuery="issueKey=TEST-1" -DresultVersion="BUILD TEST VERSION" -DzapiCycleRegex="Test Cycle" -DjiraUsername=frameworkium -DjiraPassword=frameworkium
+
+  # SauceLabs- disabled until we have a sauce account to use
   # - mvn verify -Dsauce=true -Dplatform=ios -Dbrowser=safari -DplatformVersion=8.0 -Ddevice=iPad -DcaptureURL=${CAPTURE_URL} -DsutName="${SUT_NAME}" -DsutVersion="${SUT_VERSION}"
 
-  # generate allure report
-  - mvn site -B -q
+  # Allure report
+  - mvn site -B --quiet

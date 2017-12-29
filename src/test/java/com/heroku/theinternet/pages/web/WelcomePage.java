@@ -141,12 +141,6 @@ public class WelcomePage extends BasePage<WelcomePage> {
         return PageFactory.newInstance(HoversPage.class);
     }
 
-    @Step("Click the Jquery UI link")
-    public JQueryUIMenuPage clickJQueryUILink() {
-        jqueryUILink.click();
-        return PageFactory.newInstance(JQueryUIMenuPage.class);
-    }
-
     @Step("Click the JavaScript Alerts link")
     public JavaScriptAlertsPage clickJavascriptAlertsLink() {
         javascriptAlertsLink.click();

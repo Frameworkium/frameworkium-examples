@@ -3,7 +3,7 @@ package com.tfl.web.tests;
 import com.frameworkium.core.ui.tests.BaseTest;
 import com.tfl.web.pages.*;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Issue;
+import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 import static com.google.common.truth.Truth.assertThat;
 
@@ -11,7 +11,7 @@ public class PlanJourneyTest extends BaseTest {
 
     // disabled due to lack of time for maintenance
     // still useful as an example
-    @Issue("TFL-1")
+    @TestCaseId("TFL-1")
     @Test(description = "Plan a journey test",
             enabled = false)
     public final void planJourneyTest() {

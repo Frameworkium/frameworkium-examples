@@ -1,9 +1,8 @@
 package com.heroku.theinternet.tests.web;
 
-import com.frameworkium.core.common.retry.RetryFlakyTest;
 import com.frameworkium.core.ui.tests.BaseTest;
 import com.heroku.theinternet.pages.web.*;
-import org.testng.SkipException;
+import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.*;
 
@@ -16,7 +15,7 @@ import static com.google.common.truth.Truth.assertThat;
 @Features("The Internet")
 public class TheInternetExampleTests extends BaseTest {
 
-    @Issue("HEROKU-1")
+    @TestCaseId("HEROKU-1")
     @Stories("Basic Auth Login")
     @Test(description = "Basic Auth")
     public void basicAuth() {
@@ -31,7 +30,7 @@ public class TheInternetExampleTests extends BaseTest {
                 "Congratulations! You must have the proper credentials.");
     }
 
-    @Issue("HEROKU-2")
+    @TestCaseId("HEROKU-2")
     @Stories("Check Checkboxes")
     @Test(description = "Checkboxes")
     public void checkBoxes() {
@@ -48,7 +47,7 @@ public class TheInternetExampleTests extends BaseTest {
                 .doesNotContain(false);
     }
 
-    @Issue("HEROKU-3")
+    @TestCaseId("HEROKU-3")
     @Test(description = "Drag and Drop")
     public void dragAndDrop() {
 
@@ -66,7 +65,7 @@ public class TheInternetExampleTests extends BaseTest {
                 .inOrder();
     }
 
-    @Issue("HEROKU-4")
+    @TestCaseId("HEROKU-4")
     @Test(description = "Dropdown")
     public void dropdown() {
 
@@ -82,7 +81,7 @@ public class TheInternetExampleTests extends BaseTest {
                 .isEqualTo("Option 1");
     }
 
-    @Issue("HEROKU-5")
+    @TestCaseId("HEROKU-5")
     @Test(description = "Dynamic loading")
     public void dynamicLoading() {
 
@@ -109,7 +108,7 @@ public class TheInternetExampleTests extends BaseTest {
         assertThat(dynamicLoadingPage.isElementDisplayed()).named("element presence").isTrue();
     }
 
-    @Issue("HEROKU-6")
+    @TestCaseId("HEROKU-6")
     @Test(description = "File Download")
     public void fileDownload() {
 
@@ -136,7 +135,7 @@ public class TheInternetExampleTests extends BaseTest {
         // assertThat(downloadPage.getSizeOfFile("some-file.txt")).isEqualTo(size);
     }
 
-    @Issue("HEROKU-7")
+    @TestCaseId("HEROKU-7")
     @Test(description = "File Upload")
     public void fileUpload() throws URISyntaxException {
 
@@ -145,7 +144,10 @@ public class TheInternetExampleTests extends BaseTest {
 
         // Pick a local file we're going to upload
         String fileName = "FirefoxGrid.yaml";
-        String fileToUpload = Paths.get(getClass().getClassLoader().getResource(fileName).toURI()).toFile().getAbsolutePath();
+        String fileToUpload =
+                Paths.get(getClass().getClassLoader().getResource(fileName).toURI())
+                        .toFile()
+                        .getAbsolutePath();
 
         // Upload the file and confirm we land on the success page
         FileUploadSuccessPage successPage = fileUploadPage.uploadFile(fileToUpload);
@@ -154,7 +156,7 @@ public class TheInternetExampleTests extends BaseTest {
         assertThat(successPage.getUploadedFiles()).contains(fileName);
     }
 
-    @Issue("HEROKU-8")
+    @TestCaseId("HEROKU-8")
     @Test(description = "Form Authentication")
     public void formAuthentication() {
 
@@ -175,7 +177,7 @@ public class TheInternetExampleTests extends BaseTest {
         assertThat(successPage.getSource()).contains("Welcome to the Secure Area");
     }
 
-    @Issue("HEROKU-15")
+    @TestCaseId("HEROKU-15")
     @Test(description = "iFrames test")
     public void iframes() {
 
@@ -199,36 +201,18 @@ public class TheInternetExampleTests extends BaseTest {
         iframePage.enterBoldTextInEditor(" some more text");
     }
 
-    @Issue("HEROKU-9")
+    @TestCaseId("HEROKU-9")
     @Test(description = "Hovers")
     public void hovers() {
 
-        throw new SkipException("Doesn't yet work with Selenium 3/Marionette/Geckodriver");
-
-        /*// Navigate to the hovers page
+        // Navigate to the hovers page
         HoversPage hoversPage = WelcomePage.open().then().clickHoversLink();
 
         // Confirm that the caption under the first figure contains expected text
-        assertThat(hoversPage.getFirstFigureCaption()).contains("name: user1");*/
+        assertThat(hoversPage.getFirstFigureCaption()).contains("name: user1");
     }
 
-    @Issue("HEROKU-10")
-    @Test(description = "JQuery UI",
-            retryAnalyzer = RetryFlakyTest.class)
-    public void jQuery_UI() {
-
-        throw new SkipException("Doesn't yet work with Firefox/Marionette/Geckodriver");
-
-        /*WelcomePage.open().then()
-                // Navigate to the jQuery UI page
-                .clickJQueryUILink()
-                // Browse to the UI page
-                .clickBackToUI()
-                // Click the menu link to return to the menu page
-                .clickMenuLink();*/
-    }
-
-    @Issue("HEROKU-11")
+    @TestCaseId("HEROKU-11")
     @Test(description = "Javascript Alerts")
     public void javascript_alerts() {
 
@@ -258,23 +242,21 @@ public class TheInternetExampleTests extends BaseTest {
                 .isEqualTo("You entered: " + textToEnter);
     }
 
-    @Issue("HEROKU-12")
+    @TestCaseId("HEROKU-12")
     @Test(description = "Key Presses")
     public void key_presses() {
 
-        throw new SkipException("Doesn't yet work with Firefox/Marionette/Geckodriver");
-
-        /* //Navigate to the key presses page
+        //Navigate to the key presses page
         KeyPressesPage keyPressesPage = WelcomePage
                 .open()
                 .clickKeyPressesLink()
                 .enterKeyPress(Keys.ENTER);
 
         assertThat(keyPressesPage.getResultText())
-                .isEqualTo("You entered: " + Keys.ENTER.name());*/
+                .isEqualTo("You entered: " + Keys.ENTER.name());
     }
 
-    @Issue("HEROKU-13")
+    @TestCaseId("HEROKU-13")
     @Test(description = "Secure file Download")
     public void secureFileDownload() {
 
@@ -289,7 +271,7 @@ public class TheInternetExampleTests extends BaseTest {
                 .isEqualTo("Secure File Downloader");
     }
 
-    @Issue("HEROKU-14")
+    @TestCaseId("HEROKU-14")
     @Test(description = "Table Manipulation & Validation")
     public void sortDataTable() {
 

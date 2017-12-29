@@ -4,7 +4,7 @@ import com.calcapp.pages.app.CalculatorPage;
 import com.frameworkium.core.ui.pages.PageFactory;
 import com.frameworkium.core.ui.tests.BaseTest;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Issue;
+import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 import java.util.Random;
 
@@ -16,7 +16,7 @@ public class CalculatorAppTest extends BaseTest {
      * Example test for https://appium.s3.amazonaws.com/TestApp7.1.app.zip
      */
     @Test(description = "Test sum computation", enabled = false)
-    @Issue("CALC-1")
+    @TestCaseId("CALC-1")
     public void testIOSApp() {
 
         Random rand = new Random();

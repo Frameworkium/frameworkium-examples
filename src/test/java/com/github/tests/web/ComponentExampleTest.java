@@ -4,7 +4,7 @@ import com.frameworkium.core.ui.tests.BaseTest;
 import com.github.pages.web.ExplorePage;
 import com.github.pages.web.HomePage;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Issue;
+import ru.yandex.qatools.allure.annotations.TestCaseId;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public class ComponentExampleTest extends BaseTest {
 
     // disabled due to lack of time for maintenance
     // still useful as an example
-    @Issue("CET-1")
+    @TestCaseId("CET-1")
     @Test(description = "Simple test showing the use of components",
             enabled = false)
     public final void componentExampleTest() {

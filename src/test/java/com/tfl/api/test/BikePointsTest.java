@@ -17,7 +17,12 @@ import static com.google.common.truth.Truth.assertThat;
 @Test
 public class BikePointsTest extends BaseTest {
 
-    private BikePoints bikePoints = new BikePointService().getBikePoints();
+    private BikePoints bikePoints;
+
+    @BeforeClass
+    public void setUp() {
+        bikePoints = new BikePointService().getBikePoints();
+    }
 
     @TestCaseId("BP-1")
     public void all_bikes_contains_a_known_place_and_there_are_a_lot_of_them() {

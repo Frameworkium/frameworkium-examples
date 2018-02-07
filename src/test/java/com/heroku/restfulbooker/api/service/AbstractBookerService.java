@@ -1,16 +1,16 @@
-package ai.capture.api.service;
+package com.heroku.restfulbooker.api.service;
 
-import ai.capture.api.constant.CaptureEndpoint;
 import com.frameworkium.core.api.services.BaseService;
+import com.heroku.restfulbooker.api.constant.BookerEndpoint;
 import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
+import io.restassured.http.Method;
 import io.restassured.response.ExtractableResponse;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.apache.http.HttpStatus;
 
-/** Base Service for Capture specific services. */
-public class BaseCaptureService extends BaseService {
+/** Base Service for RestfulBooker specific services. */
+public abstract class AbstractBookerService extends BaseService {
 
     /**
      * @return a Rest Assured {@link RequestSpecification} with the baseUri
@@ -19,16 +19,16 @@ public class BaseCaptureService extends BaseService {
     @Override
     protected RequestSpecification getRequestSpec() {
         return RestAssured.given()
-                .baseUri(CaptureEndpoint.BASE_URI.getUrl())
+                .baseUri(BookerEndpoint.BASE_URI.getUrl())
                 .relaxedHTTPSValidation() // trusts even invalid certs
                 // .log().all() // uncomment to log each request
-                .contentType(ContentType.JSON)
-                .accept(ContentType.JSON);
+                .contentType("application/json")
+                .accept("application/json");
     }
 
     /**
      * @return a Rest Assured {@link ResponseSpecification} with basic checks
-     *         (and anything else required by most Capture services).
+     *         (and anything else required by most services).
      */
     @Override
     protected ResponseSpecification getResponseSpec() {
@@ -38,6 +38,10 @@ public class BaseCaptureService extends BaseService {
 
     protected ExtractableResponse get(String url) {
         return request(url);
+    }
+
+    protected ExtractableResponse post(Object body, String url) {
+        return request(Method.POST, body, url);
     }
 
 }

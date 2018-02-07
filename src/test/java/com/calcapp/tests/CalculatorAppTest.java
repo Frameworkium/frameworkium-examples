@@ -2,7 +2,7 @@ package com.calcapp.tests;
 
 import com.calcapp.pages.app.CalculatorPage;
 import com.frameworkium.core.ui.pages.PageFactory;
-import com.frameworkium.core.ui.tests.BaseTest;
+import com.frameworkium.core.ui.tests.BaseUITest;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.TestCaseId;
 
@@ -10,7 +10,7 @@ import java.util.Random;
 
 import static com.google.common.truth.Truth.assertThat;
 
-public class CalculatorAppTest extends BaseTest {
+public class CalculatorAppTest extends BaseUITest {
 
     /**
      * Example test for https://appium.s3.amazonaws.com/TestApp7.1.app.zip

@@ -1,6 +1,6 @@
 package com.tfl.api.test;
 
-import com.frameworkium.core.api.tests.BaseTest;
+import com.frameworkium.core.api.tests.BaseAPITest;
 import com.tfl.api.dto.carparkoccupancy.CarParkOccupancies;
 import com.tfl.api.dto.carparkoccupancy.CarParkOccupancy;
 import com.tfl.api.service.carparks.CarParkOccupancyService;
@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import static com.google.common.truth.Truth.assertThat;
 
 @Test
-public class CarParksTest extends BaseTest {
+public class CarParksTest extends BaseAPITest {
 
     private CarParkOccupancies carParkOccupancies;
 

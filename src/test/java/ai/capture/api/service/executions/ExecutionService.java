@@ -7,18 +7,17 @@ import com.google.common.collect.ImmutableMap;
 import org.apache.http.HttpStatus;
 import ru.yandex.qatools.allure.annotations.Step;
 
-/** Encapsulates the Capture Execution service */
+/** Encapsulates the Capture ExecutionResponse service */
 public class ExecutionService extends BaseCaptureService {
 
-    @Step("Create Capture Execution {0}")
-    public ExecutionID createExecution(Execution createMessage) {
+    @Step("Create Capture ExecutionResponse {0}")
+    public ExecutionID createExecution(CreateExecution createMessage) {
 
         return getRequestSpec()
                 .when()
                 .body(createMessage)
                 .post(CaptureEndpoint.EXECUTIONS.getUrl())
                 .then()
-                //.log().all()  // uncomment to log each response
                 .assertThat().statusCode(HttpStatus.SC_CREATED)
                 .extract()
                 .as(ExecutionID.class);
@@ -30,5 +29,10 @@ public class ExecutionService extends BaseCaptureService {
                 ImmutableMap.of("page", page, "pageSize", pageSize),
                 CaptureEndpoint.EXECUTIONS.getUrl())
                 .as(ExecutionResults.class);
+    }
+
+    public ExecutionResponse getExecution(String executionID) {
+        return get(CaptureEndpoint.GET_EXECUTION.getUrl(executionID))
+                .as(ExecutionResponse.class);
     }
 }

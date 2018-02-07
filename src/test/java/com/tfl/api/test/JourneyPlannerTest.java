@@ -1,6 +1,6 @@
 package com.tfl.api.test;
 
-import com.frameworkium.core.api.tests.BaseTest;
+import com.frameworkium.core.api.tests.BaseAPITest;
 import com.tfl.api.dto.journeyplanner.DisambiguationResult;
 import com.tfl.api.service.journeyplanner.DisambiguationService;
 import com.tfl.api.service.journeyplanner.ItineraryService;
@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import static com.google.common.truth.Truth.assertThat;
 
-public class JourneyPlannerTest extends BaseTest {
+public class JourneyPlannerTest extends BaseAPITest {
 
     @Test
     public void journey_planner_london_search_journey_duration() {

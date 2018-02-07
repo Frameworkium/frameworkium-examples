@@ -1,6 +1,6 @@
 package com.tfl.api.test;
 
-import com.frameworkium.core.api.tests.BaseTest;
+import com.frameworkium.core.api.tests.BaseAPITest;
 import com.tfl.api.dto.bikepoints.BikePoints;
 import com.tfl.api.dto.common.Place;
 import com.tfl.api.service.bikepoints.BikePointService;
@@ -15,7 +15,7 @@ import java.util.Map;
 import static com.google.common.truth.Truth.assertThat;
 
 @Test
-public class BikePointsTest extends BaseTest {
+public class BikePointsTest extends BaseAPITest {
 
     private BikePoints bikePoints;
 

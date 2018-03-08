@@ -115,24 +115,9 @@ public class TheInternetExampleTests extends BaseUITest {
         // Navigate to the download page
         FileDownloadPage downloadPage = WelcomePage.open().then().clickFileDownloadLink();
 
-        // If you have the file
-        // File testFile = new File("/Users/robgates55/avatar.jpg");
-        // FileInputStream f = new FileInputStream(testFile.getAbsolutePath());
-        // int size = IOUtils.toByteArray(f).length;
-        // IOUtils.closeQuietly(f);
-
         // Confirm that the some-file.txt file in the list (as other people might be using it!)
         assertThat(downloadPage.getDownloadableFileLinkNames())
                 .contains("some-file.txt");
-
-        // If you know the size to expect
-        // int size = 307;
-
-        // Commenting out the below as this fails due to the uncontrolled
-        // nature of this test, but leaving as a useful example
-
-        // Confirm size of the downloaded file is as expected
-        // assertThat(downloadPage.getSizeOfFile("some-file.txt")).isEqualTo(size);
     }
 
     @TestCaseId("HEROKU-7")

@@ -29,8 +29,6 @@ public class DeveloperGuidePage extends BasePage<DeveloperGuidePage> {
     @FindBy(css = ".main-grid h1")
     private WebElement guideTitle;
 
-    private static String SEARCH_RESULT_LINK_TEMPLATE = "//nav[@id='navbar-main']//a[text()='%s']";
-
     @Step("Click search bar")
     public DeveloperGuidePage clickSearchBar() {
         searchField.click();
@@ -46,7 +44,10 @@ public class DeveloperGuidePage extends BasePage<DeveloperGuidePage> {
     @Step("Click link from search results with title {0}")
     public DeveloperGuidePage clickLinkWithTitle(String linkTitle) {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        WebElement searchResultsLink = driver.findElement(By.xpath(String.format(SEARCH_RESULT_LINK_TEMPLATE, linkTitle)));
+        WebElement searchResultsLink = driver.findElement(
+                By.xpath(String.format(
+                        "//nav[@id='navbar-main']//a[text()='%s']",
+                        linkTitle)));
         wait.until(ExpectedConditions.visibilityOf(searchResultsLink));
         searchResultsLink.click();
         return this;

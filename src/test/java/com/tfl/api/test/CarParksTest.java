@@ -1,6 +1,7 @@
 package com.tfl.api.test;
 
 import com.frameworkium.core.api.tests.BaseAPITest;
+import com.frameworkium.core.common.retry.RetryFlakyTest;
 import com.tfl.api.dto.carparkoccupancy.CarParkOccupancies;
 import com.tfl.api.dto.carparkoccupancy.CarParkOccupancy;
 import com.tfl.api.service.carparks.CarParkOccupancyService;
@@ -51,6 +52,7 @@ public class CarParksTest extends BaseAPITest {
         assertThat(specificCPO.equalsIgnoringBays(randomCPO)).isTrue();
     }
 
+    @Test(retryAnalyzer = RetryFlakyTest.class)
     public void single_car_park_has_sane_number_of_free_spaces() {
 
         String randomCPOID = carParkOccupancies.getRandom().id;
@@ -65,7 +67,6 @@ public class CarParksTest extends BaseAPITest {
         assertThat(freeSpaces).isLessThan(10000);
     }
 
-    @Test
     public void free_and_occupied_equals_total() {
 
         assertThat(carParkOccupancies.getTotalNumSpaces())

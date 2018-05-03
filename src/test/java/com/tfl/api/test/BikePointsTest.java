@@ -20,20 +20,22 @@ public class BikePointsTest extends BaseAPITest {
     private BikePoints bikePoints;
 
     @BeforeClass
-    public void setUp() {
+    public void cache_get_bike_points_results() {
         bikePoints = new BikePointService().getBikePoints();
     }
 
-    @TestCaseId("BP-1")
-    public void all_bikes_contains_a_known_place_and_there_are_a_lot_of_them() {
+    public void there_are_a_lot_of_bike_points() {
 
-        List<String> allNames = bikePoints.getAllNames();
-
-        assertThat(allNames).contains("Evesham Street, Avondale");
-        assertThat(allNames.size()).isAtLeast(700);
+        assertThat(bikePoints.getAllNames().size())
+                .isAtLeast(700);
     }
 
-    @TestCaseId("BP-2")
+    public void known_name_exists_in_all_bike_points() {
+
+        assertThat(bikePoints.getAllNames())
+                .contains("Evesham Street, Avondale");
+    }
+
     public void given_lat_long_of_point_point_appears_in_lat_long_search() {
 
         // Get random bike point

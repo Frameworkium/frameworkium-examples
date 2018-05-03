@@ -1,4 +1,4 @@
-package ai.capture.api.dto.executions;
+package capture.api.dto.executions;
 
 import com.frameworkium.core.api.dto.AbstractDTO;
 

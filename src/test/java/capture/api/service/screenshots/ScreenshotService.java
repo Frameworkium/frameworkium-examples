@@ -1,8 +1,8 @@
-package ai.capture.api.service.screenshots;
+package capture.api.service.screenshots;
 
-import ai.capture.api.constant.CaptureEndpoint;
-import ai.capture.api.dto.screenshots.CreateScreenshot;
-import ai.capture.api.service.BaseCaptureService;
+import capture.api.constant.CaptureEndpoint;
+import capture.api.dto.screenshots.CreateScreenshot;
+import capture.api.service.BaseCaptureService;
 import org.apache.http.HttpStatus;
 
 /** Encapsulates the Capture ExecutionResponse service */

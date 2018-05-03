@@ -1,8 +1,8 @@
-package ai.capture.api.service.executions;
+package capture.api.service.executions;
 
-import ai.capture.api.constant.CaptureEndpoint;
-import ai.capture.api.dto.executions.*;
-import ai.capture.api.service.BaseCaptureService;
+import capture.api.constant.CaptureEndpoint;
+import capture.api.dto.executions.*;
+import capture.api.service.BaseCaptureService;
 import com.google.common.collect.ImmutableMap;
 import org.apache.http.HttpStatus;
 import ru.yandex.qatools.allure.annotations.Step;

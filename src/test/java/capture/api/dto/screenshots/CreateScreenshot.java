@@ -1,4 +1,4 @@
-package ai.capture.api.dto.screenshots;
+package capture.api.dto.screenshots;
 
 import com.frameworkium.core.api.dto.AbstractDTO;
 import org.apache.commons.io.IOUtils;

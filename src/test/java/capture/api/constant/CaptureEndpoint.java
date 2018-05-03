@@ -1,4 +1,4 @@
-package ai.capture.api.constant;
+package capture.api.constant;
 
 import com.frameworkium.core.api.Endpoint;
 

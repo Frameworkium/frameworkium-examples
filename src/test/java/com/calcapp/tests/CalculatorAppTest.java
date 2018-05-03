@@ -19,16 +19,11 @@ public class CalculatorAppTest extends BaseUITest {
     @TestCaseId("CALC-1")
     public void testIOSApp() {
 
-        Random rand = new Random();
-        Integer a = rand.nextInt(100);
-        Integer b = rand.nextInt(100);
-        Integer sum = a + b;
-
         String result = PageFactory
                 .newInstance(CalculatorPage.class)
-                .computeSum(a, b).then()
+                .computeSum(1, 2).then()
                 .getResult();
 
-        assertThat(result).isEqualTo(sum.toString());
+        assertThat(result).isEqualTo("3");
     }
 }

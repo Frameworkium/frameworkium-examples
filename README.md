@@ -68,7 +68,8 @@ Want to run tests using a grid and in parallel?
 mvn clean verify -Dbrowser=chrome -DgridURL=http://localhost:4444/wd/hub -Dthreads=4
 ```
 
-All you need to do is ensure the browser is installed in the default location.
+All you need to do is ensure the browser is installed in the default location
+and that the driver is on the path.
 
 ### Sauce Labs
 

@@ -8,12 +8,12 @@
   <weaver options="">
     <include within="ru.yandex.qatools.allure.*"/>
     <include within="com.frameworkium..*"/>
-    <include within="ai.capture..*"/>
-    <include within="com.angularjs..*"/>
-    <include within="com.calcapp..*"/>
-    <include within="com.github..*"/>
-    <include within="com.google..*"/>
-    <include within="com.heroku..*"/>
-    <include within="com.tfl..*"/>
+    <include within="angularjs..*"/>
+    <include within="calcapp..*"/>
+    <include within="capture..*"/>
+    <include within="github..*"/>
+    <include within="restfulbooker..*"/>
+    <include within="tfl..*"/>
+    <include within="theinternet..*"/>
   </weaver>
 </aspectj>

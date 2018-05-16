@@ -41,7 +41,7 @@ public class WelcomePage extends BasePage<WelcomePage> {
     private Link fileUploadLink;
 
     @Name("Form Authentication Link")
-    @FindBy(linkText = "Form Authentication")
+    @FindBy(linkText = "Form  Authentication")
     private Link formAuthenticationLink;
 
     @Name("Hovers Link")

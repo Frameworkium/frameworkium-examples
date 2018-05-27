@@ -24,16 +24,19 @@ public class EnglishCountiesPage extends BasePage<EnglishCountiesPage> {
     }
 
     public int populationOf(String countyName) {
-        String population = listTable.getCellsByLookup("Population", "County", countyName)
+        String population = listTable
+                .getCellsByLookup("Population", "County", countyName)
                 .findFirst()
                 .orElseThrow(NotFoundException::new)
-                .getText();
-        return Integer.parseInt(population.replaceAll(",", ""));
+                .getText()
+                .replaceAll(",", "");
+        return Integer.parseInt(population);
     }
 
     public Stream<Integer> densities() {
         return listTable.getColumn(e -> e.getText().startsWith("Density"))
                 .map(WebElement::getText)
-                .map(density -> Integer.parseInt(density.replaceAll(",", "")));
+                .map(density -> density.replaceAll(",", ""))
+                .map(Integer::parseInt);
     }
 }

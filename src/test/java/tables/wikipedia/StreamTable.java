@@ -97,16 +97,16 @@ public class StreamTable extends HtmlElement {
     /**
      * {@link #getCellsByLookup(Predicate, Predicate, Predicate)}
      *
-     * @param targetColumnHeaderText the String to match the header containing the return value
-     * @param lookupColumnHeaderText the String to match the header where we want to lookup using {@code lookupCellText}
-     * @param lookupCellText         the String to match the to look up for a match in the lookupColumnHeaderText
-     * @return all WebElements from targetColumnHeaderText which matches {@code lookupCellText} in lookupColumnHeaderText
+     * @param targetColHeaderText the String to match the header containing the return value
+     * @param lookupColHeaderText the String to match the header where we want to lookup using {@code lookupCellText}
+     * @param lookupCellText         the String to match the to look up for a match in the lookupColHeaderText
+     * @return all WebElements from targetColHeaderText which matches {@code lookupCellText} in lookupColHeaderText
      */
     public Stream<WebElement> getCellsByLookup(
-            String targetColumnHeaderText, String lookupColumnHeaderText, String lookupCellText) {
+            String targetColHeaderText, String lookupColHeaderText, String lookupCellText) {
         return getCellsByLookup(
-                element -> element.getText().trim().equals(targetColumnHeaderText),
-                element -> element.getText().trim().equals(lookupColumnHeaderText),
+                element -> element.getText().trim().equals(targetColHeaderText),
+                element -> element.getText().trim().equals(lookupColHeaderText),
                 element -> element.getText().trim().equals(lookupCellText));
     }
 

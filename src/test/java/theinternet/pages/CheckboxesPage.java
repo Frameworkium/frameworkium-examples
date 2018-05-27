@@ -20,7 +20,7 @@ public class CheckboxesPage extends BasePage<CheckboxesPage> {
     @Step("Set all the checkboxes to true")
     public CheckboxesPage checkAllCheckboxes() {
 
-        allCheckboxes.stream().forEach(CheckBox::select);
+        allCheckboxes.forEach(CheckBox::select);
         return this;
     }
 

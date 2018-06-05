@@ -21,7 +21,7 @@ public class HighestMountainPage extends BasePage<HighestMountainPage> {
     public static HighestMountainPage open() {
 
         return PageFactory.newInstance(HighestMountainPage.class,
-                "https://en.wikipedia.org/wiki/List_of_highest_mountains");
+                "https://en.wikipedia.org/wiki/List_of_highest_mountains_on_Earth");
     }
 
     public String getRankByName(String mountainName) {

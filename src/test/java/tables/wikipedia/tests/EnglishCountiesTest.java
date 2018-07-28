@@ -11,7 +11,7 @@ public class EnglishCountiesTest extends BaseUITest {
 
     @TestCaseId("WIKI-2")
     @Test(description = "Playing with English Counties data")
-    public final void exporing_english_counties_data() {
+    public final void exploring_english_counties_data() {
 
         EnglishCountiesPage page = EnglishCountiesPage.open();
 

@@ -9,6 +9,8 @@ import ru.yandex.qatools.allure.annotations.*;
 import java.net.URISyntaxException;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import static com.google.common.truth.Truth.assertThat;
 
@@ -265,13 +267,16 @@ public class TheInternetExampleTests extends BaseUITest {
                 WelcomePage.open().then().clickSortableDataTablesLink();
 
         // Assert that Table 1 contains "http://www.jdoe.com" in the web site column
-        assertThat(sortableDataTablesPage.getTable1ColumnContents("Web Site"))
-                .contains("http://www.jdoe.com");
+        assertThat(sortableDataTablesPage
+                .getTable1ColumnContents("Web Site")
+                .anyMatch(url -> Objects.equals(url, "http://www.jdoe.com")))
+                .isTrue();
 
         List<String> lastNameColumn = sortableDataTablesPage
                 // Sort Table 2 by last name column
                 .sortTable2ByColumnName("Last Name")
-                .getTable2ColumnContents("Last Name");
+                .getTable2ColumnContents("Last Name")
+                .collect(Collectors.toList());
 
         // Confirm that "Bach" is then the first surname in table 2
         assertThat(lastNameColumn.get(0)).isEqualTo("Bach");

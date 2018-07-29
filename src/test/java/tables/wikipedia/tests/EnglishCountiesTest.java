@@ -15,10 +15,10 @@ public class EnglishCountiesTest extends BaseUITest {
 
         EnglishCountiesPage page = EnglishCountiesPage.open();
 
-        assertThat(page.populationOf("Cornwall")).isEqualTo(556_000);
+        assertThat(page.populationOf("Cornwall")).isAtLeast(550_000);
         // at least two counties have population densities of more than 3000
         assertThat(page.densities()
-                .filter(e -> e > 3000)
+                .filter(density -> density > 3000)
                 .limit(2)
                 .count())
                 .isEqualTo(2L);

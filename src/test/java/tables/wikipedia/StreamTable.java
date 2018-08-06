@@ -1,14 +1,11 @@
 package tables.wikipedia;
 
-import org.openqa.selenium.By;
+import org.openqa.selenium.*;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.htmlelements.element.HtmlElement;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -43,7 +40,7 @@ public class StreamTable extends HtmlElement {
 
     public Stream<List<WebElement>> getRowList() {
         return getRows()
-                .map(row -> row.collect(toList()))
+                .map(row -> row.filter(WebElement::isDisplayed).collect(toList()))
                 .filter(row -> !row.isEmpty());
     }
 
@@ -55,6 +52,7 @@ public class StreamTable extends HtmlElement {
      */
     public Stream<WebElement> getColumn(int index) {
         return getRowList()
+                .map(cells -> cells.stream().filter(WebElement::isDisplayed).collect(toList()))
                 .map(row -> row.get(index));
     }
 
@@ -99,7 +97,7 @@ public class StreamTable extends HtmlElement {
      *
      * @param targetColHeaderText the String to match the header containing the return value
      * @param lookupColHeaderText the String to match the header where we want to lookup using {@code lookupCellText}
-     * @param lookupCellText         the String to match the to look up for a match in the lookupColHeaderText
+     * @param lookupCellText      the String to match the to look up for a match in the lookupColHeaderText
      * @return all WebElements from targetColHeaderText which matches {@code lookupCellText} in lookupColHeaderText
      */
     public Stream<WebElement> getCellsByLookup(

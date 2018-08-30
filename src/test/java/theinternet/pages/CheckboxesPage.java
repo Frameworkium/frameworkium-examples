@@ -14,7 +14,7 @@ public class CheckboxesPage extends BasePage<CheckboxesPage> {
 
     @Visible
     @Name("All checkboxes")
-    @FindBy(css = "form input[type='checkbox']")
+    //@FindBy() TODO: Add locator for checkboxes - using xpath= or css=
     private List<CheckBox> allCheckboxes;
 
     @Step("Set all the checkboxes to true")

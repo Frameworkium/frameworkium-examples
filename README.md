@@ -81,6 +81,16 @@ export SAUCE_ACCESS_KEY=access_key
 mvn clean verify -Dplatform=ios -Dbrowser=safari -Dsauce=true 
 ```
 
+### BrowserStack
+
+Running mobile web tests using Appium on BrowserStack:
+
+```bash
+export BROWSER_STACK_USERNAME=username
+export BROWSER_STACK_ACCESS_KEY=access_key
+mvn clean verify -Dplatform=ios -Dbrowser=safari -DbrowserStack=true 
+```
+
 A full list of arguments can be found on the [guidance page][guidance].
 
 ### Reporting

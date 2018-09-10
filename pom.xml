@@ -5,6 +5,8 @@
 
   <groupId>com.github.frameworkium</groupId>
   <artifactId>frameworkium-examples</artifactId>
+  <!-- This version is for this project. To change the version of
+  frameworkium-core, see the dependencies section below. -->
   <version>3.0.0-SNAPSHOT</version>
 
   <name>Frameworkium Examples</name>
@@ -27,11 +29,15 @@
   <distributionManagement/>
 
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <env.config>local</env.config>
+    <!-- Default thread count and groups to run -->
     <threads>1</threads>
     <groups/>
+    <!-- Versions from frameworkium-core -->
     <aspectj.version>1.9.1</aspectj.version>
+    <allure.version>2.7.0</allure.version>
+    <!-- Prevent encoding issues -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
 
   <repositories>
@@ -41,7 +47,7 @@
     </repository>
   </repositories>
 
-  <!-- makes mvn versions:display-plugin-updates faster -->
+  <!-- Makes mvn versions:display-plugin-updates faster -->
   <prerequisites>
     <maven>3.3.9</maven>
   </prerequisites>
@@ -54,64 +60,85 @@
     </dependency>
   </dependencies>
 
-  <build></build>
-
-  <reporting>
-    <excludeDefaults>true</excludeDefaults>
+  <build>
     <plugins>
+      <!-- Compile all the lovely Java code -->
       <plugin>
-        <groupId>ru.yandex.qatools.allure</groupId>
-        <artifactId>allure-maven-plugin</artifactId>
-        <version>2.6</version>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.0</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+
+      <!-- Run all of your lovely tests -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.0</version>
+        <configuration>
+          <!-- See here for how TestNG uses these:
+          http://testng.org/doc/documentation-main.html#parallel-tests -->
+          <parallel>methods</parallel>
+          <threadCount>${threads}</threadCount>
+
+          <systemPropertyVariables>
+            <!-- For Frameworkium screenshots on test failure -->
+            <screenshotDirectory>
+              ${project.build.directory}/screenshots
+            </screenshotDirectory>
+            <!-- Required for writing the allure results -->
+            <allure.results.directory>
+              ${project.build.directory}/allure-results
+            </allure.results.directory>
+          </systemPropertyVariables>
+
+          <!-- This will only run Classes ending in Test or Tests-->
+          <includes>
+            <include>**/*Test.java</include>
+            <include>**/*Tests.java</include>
+          </includes>
+
+          <!-- TestNG Groups to run, can be specified on the command line -->
+          <groups>${groups}</groups>
+
+          <!-- Required for AspectJ to work to enable Allure reporting -->
+          <argLine>
+            -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+          </argLine>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+
+      <!-- Allure 2 reporting. Use mvn allure:report to generate the report -->
+      <plugin>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-maven</artifactId>
+        <version>2.9</version>
+        <configuration>
+          <!-- Keep version in sync with dependencies -->
+          <reportVersion>${allure.version}</reportVersion>
+
+          <!-- Jira specific patterns -->
+          <properties>
+            <allure.issues.tracker.pattern>
+              /browse/%s
+            </allure.issues.tracker.pattern>
+            <allure.tests.management.pattern>
+              /browse/%s
+            </allure.tests.management.pattern>
+          </properties>
+        </configuration>
       </plugin>
     </plugins>
-  </reporting>
+  </build>
 
-  <profiles>
-    <profile>
-      <id>tests</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.8.0</version>
-            <configuration>
-              <source>1.8</source>
-              <target>1.8</target>
-            </configuration>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <version>2.22.0</version>
-            <configuration>
-              <parallel>methods</parallel>
-              <threadCount>${threads}</threadCount>
-              <systemProperties>
-                <screenshotDirectory>
-                  ${project.build.directory}/screenshots
-                </screenshotDirectory>
-                <allure.issues.tracker.pattern>
-                  /browse/%s
-                </allure.issues.tracker.pattern>
-              </systemProperties>
-              <includes>
-                <include>**/*Test.java</include>
-                <include>**/*Tests.java</include>
-              </includes>
-              <groups>${groups}</groups>
-              <testFailureIgnore>false</testFailureIgnore>
-              <argLine>
-                -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-              </argLine>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
 </project>

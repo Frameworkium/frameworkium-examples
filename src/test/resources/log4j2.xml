@@ -9,8 +9,8 @@
         fileName="logs/frameworkium.log"
         filePattern="logs/frameworkium-%d{yyyy-MM-dd}.log"
         append="true">
-      <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
-      <SizeBasedTriggeringPolicy size="10MB" />
+      <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{1} - %msg%n" />
+      <SizeBasedTriggeringPolicy size="7MB" />
     </RollingFile>
   </Appenders>
   <Loggers>

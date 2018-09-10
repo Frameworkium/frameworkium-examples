@@ -4,8 +4,8 @@ import capture.api.constant.CaptureEndpoint;
 import capture.api.dto.executions.*;
 import capture.api.service.BaseCaptureService;
 import com.google.common.collect.ImmutableMap;
+import io.qameta.allure.Step;
 import org.apache.http.HttpStatus;
-import ru.yandex.qatools.allure.annotations.Step;
 
 /** Encapsulates the Capture ExecutionResponse service */
 public class ExecutionService extends BaseCaptureService {
@@ -25,7 +25,7 @@ public class ExecutionService extends BaseCaptureService {
 
     @Step("Get Capture Executions, page={0}, pageSize={1}")
     public ExecutionResults getExecutions(int page, int pageSize) {
-        return request(
+        return get(
                 ImmutableMap.of("page", page, "pageSize", pageSize),
                 CaptureEndpoint.EXECUTIONS.getUrl())
                 .as(ExecutionResults.class);

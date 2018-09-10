@@ -1,10 +1,10 @@
 package theinternet.tests;
 
 import com.frameworkium.core.ui.tests.BaseUITest;
-import theinternet.pages.*;
+import io.qameta.allure.*;
 import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.*;
+import theinternet.pages.*;
 
 import java.net.URISyntaxException;
 import java.nio.file.Paths;
@@ -14,11 +14,11 @@ import java.util.stream.Collectors;
 
 import static com.google.common.truth.Truth.assertThat;
 
-@Features("The Internet")
+@Feature("The Internet")
 public class TheInternetExampleTests extends BaseUITest {
 
-    @TestCaseId("HEROKU-1")
-    @Stories("Basic Auth Login")
+    @TmsLink("HEROKU-1")
+    @Story("Basic Auth Login")
     @Test(description = "Basic Auth")
     public void basicAuth() {
 
@@ -32,8 +32,8 @@ public class TheInternetExampleTests extends BaseUITest {
                 "Congratulations! You must have the proper credentials.");
     }
 
-    @TestCaseId("HEROKU-2")
-    @Stories("Check Checkboxes")
+    @TmsLink("HEROKU-2")
+    @Story("Check Checkboxes")
     @Test(description = "Checkboxes")
     public void checkBoxes() {
 
@@ -49,7 +49,7 @@ public class TheInternetExampleTests extends BaseUITest {
                 .doesNotContain(false);
     }
 
-    @TestCaseId("HEROKU-3")
+    @TmsLink("HEROKU-3")
     @Test(description = "Drag and Drop")
     public void dragAndDrop() {
 
@@ -67,7 +67,7 @@ public class TheInternetExampleTests extends BaseUITest {
                 .inOrder();
     }
 
-    @TestCaseId("HEROKU-4")
+    @TmsLink("HEROKU-4")
     @Test(description = "Dropdown")
     public void dropdown() {
 
@@ -83,7 +83,7 @@ public class TheInternetExampleTests extends BaseUITest {
                 .isEqualTo("Option 1");
     }
 
-    @TestCaseId("HEROKU-5")
+    @TmsLink("HEROKU-5")
     @Test(description = "Dynamic loading")
     public void dynamicLoading() {
 
@@ -110,7 +110,7 @@ public class TheInternetExampleTests extends BaseUITest {
         assertThat(dynamicLoadingPage.isElementDisplayed()).named("element presence").isTrue();
     }
 
-    @TestCaseId("HEROKU-6")
+    @TmsLink("HEROKU-6")
     @Test(description = "File Download")
     public void fileDownload() {
 
@@ -122,7 +122,7 @@ public class TheInternetExampleTests extends BaseUITest {
                 .contains("some-file.txt");
     }
 
-    @TestCaseId("HEROKU-7")
+    @TmsLink("HEROKU-7")
     @Test(description = "File Upload")
     public void fileUpload() throws URISyntaxException {
 
@@ -143,7 +143,7 @@ public class TheInternetExampleTests extends BaseUITest {
         assertThat(successPage.getUploadedFiles()).contains(fileName);
     }
 
-    @TestCaseId("HEROKU-8")
+    @TmsLink("HEROKU-8")
     @Test(description = "Form Authentication")
     public void formAuthentication() {
 
@@ -164,7 +164,7 @@ public class TheInternetExampleTests extends BaseUITest {
         assertThat(successPage.getSource()).contains("Welcome to the Secure Area");
     }
 
-    @TestCaseId("HEROKU-15")
+    @TmsLink("HEROKU-15")
     @Test(description = "iFrames test")
     public void iframes() {
 
@@ -188,7 +188,7 @@ public class TheInternetExampleTests extends BaseUITest {
         iframePage.enterBoldTextInEditor(" some more text");
     }
 
-    @TestCaseId("HEROKU-9")
+    @TmsLink("HEROKU-9")
     @Test(description = "Hovers")
     public void hovers() {
 
@@ -199,7 +199,7 @@ public class TheInternetExampleTests extends BaseUITest {
         assertThat(hoversPage.getFirstFigureCaption()).contains("name: user1");
     }
 
-    @TestCaseId("HEROKU-11")
+    @TmsLink("HEROKU-11")
     @Test(description = "Javascript Alerts")
     public void javascript_alerts() {
 
@@ -229,7 +229,7 @@ public class TheInternetExampleTests extends BaseUITest {
                 .isEqualTo("You entered: " + textToEnter);
     }
 
-    @TestCaseId("HEROKU-12")
+    @TmsLink("HEROKU-12")
     @Test(description = "Key Presses")
     public void key_presses() {
 
@@ -243,7 +243,7 @@ public class TheInternetExampleTests extends BaseUITest {
                 .isEqualTo("You entered: " + Keys.ENTER.name());
     }
 
-    @TestCaseId("HEROKU-13")
+    @TmsLink("HEROKU-13")
     @Test(description = "Secure file Download")
     public void secureFileDownload() {
 
@@ -258,7 +258,7 @@ public class TheInternetExampleTests extends BaseUITest {
                 .isEqualTo("Secure File Downloader");
     }
 
-    @TestCaseId("HEROKU-14")
+    @TmsLink("HEROKU-14")
     @Test(description = "Table Manipulation & Validation")
     public void sortDataTable() {
 

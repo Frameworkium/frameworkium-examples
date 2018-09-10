@@ -1,12 +1,13 @@
 package theinternet.pages;
 
 import com.frameworkium.core.ui.annotations.Visible;
+import com.frameworkium.core.ui.element.StreamTable;
 import com.frameworkium.core.ui.pages.BasePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import ru.yandex.qatools.allure.annotations.Step;
 import ru.yandex.qatools.htmlelements.annotations.Name;
-import tables.wikipedia.StreamTable;
 
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -21,12 +22,14 @@ public class SortableDataTablesPage extends BasePage<SortableDataTablesPage> {
 
     @Visible
     @Name("Table 1")
-    @FindBy(css = "table#table1")
+    @CacheLookup
+    @FindBy(id = "table1")
     private StreamTable table1;
 
     @Visible
     @Name("Table 2")
-    @FindBy(css = "table#table2")
+    @CacheLookup
+    @FindBy(id = "table2")
     private StreamTable table2;
 
     @Step("Get table 1 column {0} contents")
@@ -47,9 +50,7 @@ public class SortableDataTablesPage extends BasePage<SortableDataTablesPage> {
 
     @Step("Sort table {0} by column name {1}")
     private SortableDataTablesPage sortTableByColumnName(StreamTable table, String colHeader) {
-        table.getHeadings()
-                .filter(heading -> Objects.equals(heading.getText(), colHeader))
-                .findFirst()
+        table.getHeading(colHeader)
                 .orElseThrow(NoSuchElementException::new)
                 .click();
         return this;

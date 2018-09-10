@@ -5,7 +5,7 @@
 
   <groupId>com.github.frameworkium</groupId>
   <artifactId>frameworkium-examples</artifactId>
-  <version>2.7.2</version>
+  <version>3.0.0-SNAPSHOT</version>
 
   <name>Frameworkium Examples</name>
   <description>
@@ -31,7 +31,7 @@
     <env.config>local</env.config>
     <threads>1</threads>
     <groups/>
-    <aspectj.version>1.8.13</aspectj.version>
+    <aspectj.version>1.9.1</aspectj.version>
   </properties>
 
   <repositories>
@@ -41,11 +41,16 @@
     </repository>
   </repositories>
 
+  <!-- makes mvn versions:display-plugin-updates faster -->
+  <prerequisites>
+    <maven>3.3.9</maven>
+  </prerequisites>
+
   <dependencies>
     <dependency>
       <groupId>com.github.frameworkium</groupId>
       <artifactId>frameworkium-core</artifactId>
-      <version>2.7.2</version>
+      <version>3.0.0-SNAPSHOT</version>
     </dependency>
   </dependencies>
 
@@ -57,7 +62,7 @@
       <plugin>
         <groupId>ru.yandex.qatools.allure</groupId>
         <artifactId>allure-maven-plugin</artifactId>
-        <version>2.5</version>
+        <version>2.6</version>
       </plugin>
     </plugins>
   </reporting>
@@ -73,7 +78,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.6.0</version>
+            <version>3.8.0</version>
             <configuration>
               <source>1.8</source>
               <target>1.8</target>
@@ -82,7 +87,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
-            <version>2.20.1</version>
+            <version>2.22.0</version>
             <configuration>
               <parallel>methods</parallel>
               <threadCount>${threads}</threadCount>

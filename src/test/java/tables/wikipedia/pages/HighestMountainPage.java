@@ -1,13 +1,13 @@
 package tables.wikipedia.pages;
 
 import com.frameworkium.core.ui.annotations.Visible;
+import com.frameworkium.core.ui.element.StreamTable;
 import com.frameworkium.core.ui.pages.BasePage;
 import com.frameworkium.core.ui.pages.PageFactory;
 import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import tables.wikipedia.StreamTable;
 
 import static java.util.stream.Collectors.toList;
 
@@ -27,7 +27,6 @@ public class HighestMountainPage extends BasePage<HighestMountainPage> {
     public String getRankByName(String mountainName) {
         return getText(mountainName, 0);
     }
-
 
     public String getFirstAscentByName(String mountainName) {
         return getText(mountainName, 8);

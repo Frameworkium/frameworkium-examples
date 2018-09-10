@@ -2,11 +2,11 @@ package tfl.api.test;
 
 import com.frameworkium.core.api.tests.BaseAPITest;
 import com.frameworkium.core.common.retry.RetryFlakyTest;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 import tfl.api.dto.carparkoccupancy.CarParkOccupancies;
 import tfl.api.dto.carparkoccupancy.CarParkOccupancy;
 import tfl.api.service.carparks.CarParkOccupancyService;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 
 import static com.google.common.truth.Truth.assertThat;
 

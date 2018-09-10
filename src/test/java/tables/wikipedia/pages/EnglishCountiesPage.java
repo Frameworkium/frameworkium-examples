@@ -1,13 +1,13 @@
 package tables.wikipedia.pages;
 
 import com.frameworkium.core.ui.annotations.Visible;
+import com.frameworkium.core.ui.element.StreamTable;
 import com.frameworkium.core.ui.pages.BasePage;
 import com.frameworkium.core.ui.pages.PageFactory;
 import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import tables.wikipedia.StreamTable;
 
 import java.util.stream.Stream;
 
@@ -24,8 +24,10 @@ public class EnglishCountiesPage extends BasePage<EnglishCountiesPage> {
     }
 
     public int populationOf(String countyName) {
+        String lookupHeader = "County";
+        String targetHeader = "Population";
         String population = listTable
-                .getCellsByLookup("Population", "County", countyName)
+                .getCellsByLookup(lookupHeader, countyName, targetHeader)
                 .findFirst()
                 .orElseThrow(NotFoundException::new)
                 .getText()
@@ -34,7 +36,8 @@ public class EnglishCountiesPage extends BasePage<EnglishCountiesPage> {
     }
 
     public Stream<Integer> densities() {
-        return listTable.getColumn(e -> e.getText().startsWith("Density"))
+        return listTable
+                .getColumn(e -> e.getText().startsWith("Density"))
                 .map(WebElement::getText)
                 .map(density -> density.replaceAll(",", ""))
                 .map(Integer::parseInt);

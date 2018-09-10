@@ -1,11 +1,11 @@
 package tfl.api.service;
 
 import com.frameworkium.core.api.services.BaseService;
-import tfl.api.constant.Endpoint;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.apache.http.HttpStatus;
+import tfl.api.constant.Endpoint;
 
 /** Base Service for TFL specific services. */
 public class BaseTFLService extends BaseService {

@@ -65,11 +65,12 @@ script:
   # Firefox on the grid
   - mvn verify -B -Dthreads=1 -Dconfig=FirefoxGrid.yaml -DreuseBrowser=true -Dheadless=true -DcaptureURL=${CAPTURE_URL} -DsutName="${SUT_NAME}" -DsutVersion="${SUT_VERSION}"
 
+  # Add offline option (-o) to prevent timeouts fetching snapshot info again
   # Firefox off the grid
-  - mvn verify -B -Dthreads=1 -Dbrowser=firefox -DreuseBrowser=true -Dheadless=true -DcaptureURL=${CAPTURE_URL} -DsutName="${SUT_NAME}" -DsutVersion="${SUT_VERSION}" 2> /dev/null
+  - mvn verify -B -o -Dthreads=1 -Dbrowser=firefox -DreuseBrowser=true -Dheadless=true -DcaptureURL=${CAPTURE_URL} -DsutName="${SUT_NAME}" -DsutVersion="${SUT_VERSION}" 2> /dev/null
 
   # Chrome on the grid
-  - mvn verify -B -Dthreads=${THREAD_COUNT} -Dbrowser=chrome -DreuseBrowser=true -Dheadless=true -DgridURL=http://localhost:4444/wd/hub -DcaptureURL=${CAPTURE_URL} -DsutName="${SUT_NAME}" -DsutVersion="${SUT_VERSION}"
+  - mvn verify -B -o -Dthreads=${THREAD_COUNT} -Dbrowser=chrome -DreuseBrowser=true -Dheadless=true -DgridURL=http://localhost:4444/wd/hub -DcaptureURL=${CAPTURE_URL} -DsutName="${SUT_NAME}" -DsutVersion="${SUT_VERSION}"
 
   # Query Jira for which test to run and then log results to Jira
   # Disabled until we have a JIRA to use

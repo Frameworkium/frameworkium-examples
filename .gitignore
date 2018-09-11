@@ -59,3 +59,4 @@ nbactions.xml
 ajcore.*.txt
 test-output/
 /screenshots/
+.allure

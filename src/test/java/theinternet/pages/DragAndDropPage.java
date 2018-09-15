@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
  */
 public class DragAndDropPage extends BasePage<DragAndDropPage> {
 
-    private static final String JQUERY_JS_URI = "http://code.jquery.com/jquery-1.11.2.min.js";
+    private static final String JQUERY_JS_URI = "https://code.jquery.com/jquery-1.12.4.min.js";
 
     @Visible
     @Name("Box A")

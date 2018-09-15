@@ -46,7 +46,7 @@ before_script:
   - tar -xzf geckodriver-v${GECKO_VER}-linux64.tar.gz
 
   # Download chromedriver
-  - wget --quiet http://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VER}/chromedriver_linux64.zip
+  - wget --quiet https://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VER}/chromedriver_linux64.zip
   - unzip chromedriver_linux64.zip
 
   # Wait for grid hub to be up

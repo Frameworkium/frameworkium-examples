@@ -10,7 +10,6 @@ import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 
 import java.util.NoSuchElementException;
-import java.util.Objects;
 import java.util.stream.Stream;
 
 public class SortableDataTablesPage extends BasePage<SortableDataTablesPage> {

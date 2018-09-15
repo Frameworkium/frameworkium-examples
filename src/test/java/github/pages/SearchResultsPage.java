@@ -30,7 +30,7 @@ public class SearchResultsPage extends BasePage<SearchResultsPage> {
     @Step("Navigate to the Github homepage")
     public static SearchResultsPage open() {
         return PageFactory.newInstance(
-                SearchResultsPage.class, "http://github.com");
+                SearchResultsPage.class, "https://github.com");
     }
 
     @Step("Get the list of code repository names")

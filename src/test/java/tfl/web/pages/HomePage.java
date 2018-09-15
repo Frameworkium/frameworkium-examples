@@ -15,11 +15,6 @@ public class HomePage extends BasePage<HomePage> {
     @FindBy(css = "li.plan-journey a")
     private WebElement planJourneyLink;
 
-    @Name("Tube Line Status Board")
-    @FindBy(css = "div.board-wrapper")
-    private WebElement statusBoard;
-
-
     @Step("Navigate to the TFL homepage")
     public static HomePage open() {
         // alternative to PageFactory that creates a page object instance with URL

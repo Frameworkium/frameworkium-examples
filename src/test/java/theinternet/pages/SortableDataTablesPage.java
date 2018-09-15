@@ -19,13 +19,11 @@ public class SortableDataTablesPage extends BasePage<SortableDataTablesPage> {
     @FindBy(css = "div.example h3")
     private WebElement heading;
 
-    @Visible
     @Name("Table 1")
     @CacheLookup
     @FindBy(id = "table1")
     private StreamTable table1;
 
-    @Visible
     @Name("Table 2")
     @CacheLookup
     @FindBy(id = "table2")

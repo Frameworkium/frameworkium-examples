@@ -1,30 +1,29 @@
 package theinternet.tests;
 
 import com.frameworkium.core.ui.tests.BaseUITest;
+import com.google.common.truth.Truth8;
 import io.qameta.allure.*;
 import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
 import theinternet.pages.*;
 
-import java.net.URISyntaxException;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static com.google.common.truth.Truth.assertThat;
 
 @Feature("The Internet")
 public class TheInternetExampleTests extends BaseUITest {
 
-    @TmsLink("HEROKU-1")
+    @TmsLink("INT-1")
     @Story("Basic Auth Login")
     @Test(description = "Basic Auth")
-    public void basicAuth() {
+    public void basic_auth() {
 
         String pageSource = WelcomePage.open().then()
-                // Navigate to the basic auth page
-                .clickBasicAuth("admin", "admin")
+                .navigateToBasicAuth("admin", "admin")
                 .getSource();
 
         // Assert that the returned page has the text present
@@ -32,31 +31,32 @@ public class TheInternetExampleTests extends BaseUITest {
                 "Congratulations! You must have the proper credentials.");
     }
 
-    @TmsLink("HEROKU-2")
+    @TmsLink("INT-2")
     @Story("Check Checkboxes")
     @Test(description = "Checkboxes")
-    public void checkBoxes() {
+    public void check_boxes() {
 
         // Navigate to the checkboxes page
-        CheckboxesPage checkboxesPage = WelcomePage.open().then().clickCheckboxesLink();
+        Stream<Boolean> checkboxesStatus = WelcomePage.open()
+                .clickCheckboxesLink()
 
-        // Set all checkboxes to checked via alternative method
-        checkboxesPage.checkAllCheckboxes();
+                // Set all checkboxes to checked via alternative method
+                .checkAllCheckboxes()
+                .getAllCheckboxCheckedStatus();
 
         // Assert that all checkboxes are checked
-        assertThat(checkboxesPage.getAllCheckboxCheckedStatus())
+        Truth8.assertThat(checkboxesStatus)
                 .named("check status of checkboxes")
                 .doesNotContain(false);
     }
 
-    @TmsLink("HEROKU-3")
+    @TmsLink("INT-3")
     @Test(description = "Drag and Drop")
-    public void dragAndDrop() {
+    public void drag_and_drop() {
 
         // Navigate to the checkboxes page
         List<String> headings = WelcomePage.open().then()
                 .clickDragAndDropLink()
-                // Drag A onto B
                 .dragAontoB()
                 .getListOfHeadings();
 
@@ -67,7 +67,7 @@ public class TheInternetExampleTests extends BaseUITest {
                 .inOrder();
     }
 
-    @TmsLink("HEROKU-4")
+    @TmsLink("INT-4")
     @Test(description = "Dropdown")
     public void dropdown() {
 
@@ -83,9 +83,9 @@ public class TheInternetExampleTests extends BaseUITest {
                 .isEqualTo("Option 1");
     }
 
-    @TmsLink("HEROKU-5")
+    @TmsLink("INT-5")
     @Test(description = "Dynamic loading")
-    public void dynamicLoading() {
+    public void dynamic_loading() {
 
         // Navigate to the dynamic loading hidden element page
         DynamicLoadingExamplePage dynamicLoadingExamplePage =
@@ -110,42 +110,38 @@ public class TheInternetExampleTests extends BaseUITest {
         assertThat(dynamicLoadingPage.isElementDisplayed()).named("element presence").isTrue();
     }
 
-    @TmsLink("HEROKU-6")
+    @TmsLink("INT-6")
     @Test(description = "File Download")
-    public void fileDownload() {
+    public void file_download() {
 
         // Navigate to the download page
         FileDownloadPage downloadPage = WelcomePage.open().then().clickFileDownloadLink();
 
         // Confirm that the some-file.txt file in the list (as other people might be using it!)
-        assertThat(downloadPage.getDownloadableFileLinkNames())
+        Truth8.assertThat(downloadPage.getDownloadableFileLinkNames())
                 .contains("some-file.txt");
     }
 
-    @TmsLink("HEROKU-7")
+    @TmsLink("INT-7")
     @Test(description = "File Upload")
-    public void fileUpload() throws URISyntaxException {
+    public void file_upload() {
 
         // Navigate to the upload page
         FileUploadPage fileUploadPage = WelcomePage.open().then().clickFileUploadLink();
 
         // Pick a local file we're going to upload
         String fileName = "FirefoxGrid.yaml";
-        String fileToUpload =
-                Paths.get(getClass().getClassLoader().getResource(fileName).toURI())
-                        .toFile()
-                        .getAbsolutePath();
 
         // Upload the file and confirm we land on the success page
-        FileUploadSuccessPage successPage = fileUploadPage.uploadFile(fileToUpload);
+        FileUploadSuccessPage successPage = fileUploadPage.uploadFile(fileName);
 
         // Confirm that the uploaded files list contains our filename
         assertThat(successPage.getUploadedFiles()).contains(fileName);
     }
 
-    @TmsLink("HEROKU-8")
+    @TmsLink("INT-8")
     @Test(description = "Form Authentication")
-    public void formAuthentication() {
+    public void form_authentication() {
 
         // Navigate to the form authentication page
         final String username = "tomsmith";
@@ -164,7 +160,7 @@ public class TheInternetExampleTests extends BaseUITest {
         assertThat(successPage.getSource()).contains("Welcome to the Secure Area");
     }
 
-    @TmsLink("HEROKU-15")
+    @TmsLink("INT-15")
     @Test(description = "iFrames test")
     public void iframes() {
 
@@ -188,7 +184,7 @@ public class TheInternetExampleTests extends BaseUITest {
         iframePage.enterBoldTextInEditor(" some more text");
     }
 
-    @TmsLink("HEROKU-9")
+    @TmsLink("INT-9")
     @Test(description = "Hovers")
     public void hovers() {
 
@@ -199,7 +195,7 @@ public class TheInternetExampleTests extends BaseUITest {
         assertThat(hoversPage.getFirstFigureCaption()).contains("name: user1");
     }
 
-    @TmsLink("HEROKU-11")
+    @TmsLink("INT-11")
     @Test(description = "Javascript Alerts")
     public void javascript_alerts() {
 
@@ -229,7 +225,7 @@ public class TheInternetExampleTests extends BaseUITest {
                 .isEqualTo("You entered: " + textToEnter);
     }
 
-    @TmsLink("HEROKU-12")
+    @TmsLink("INT-12")
     @Test(description = "Key Presses")
     public void key_presses() {
 
@@ -243,24 +239,9 @@ public class TheInternetExampleTests extends BaseUITest {
                 .isEqualTo("You entered: " + Keys.ENTER.name());
     }
 
-    @TmsLink("HEROKU-13")
-    @Test(description = "Secure file Download")
-    public void secureFileDownload() {
-
-        // Navigate to the secure file downloads page
-        String headingText = WelcomePage
-                .open()
-                .clickSecureFileDownloadsLink("admin", "admin")
-                .getHeadingText();
-
-        // Assert that the page contains the text
-        assertThat(headingText)
-                .isEqualTo("Secure File Downloader");
-    }
-
-    @TmsLink("HEROKU-14")
+    @TmsLink("INT-14")
     @Test(description = "Table Manipulation & Validation")
-    public void sortDataTable() {
+    public void sort_data_table() {
 
         // Navigate to the sortable data tables page
         SortableDataTablesPage sortableDataTablesPage =

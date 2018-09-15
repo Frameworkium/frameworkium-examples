@@ -12,14 +12,12 @@ public class PlanJourneyTest extends BaseUITest {
     // disabled due to lack of time for maintenance
     // still useful as an example
     @TmsLink("TFL-1")
-    @Test(description = "Plan a journey test", enabled = false)
+    @Test(enabled = false)
     public final void planJourneyTest() {
 
-        // Navigate to homepage
-        HomePage homePage = HomePage.open();
-
-        // Click the the plan journey link
-        PlanJourneyPage planJourneyPage = homePage.clickPlanJourneyLink();
+        PlanJourneyPage planJourneyPage =
+                HomePage.open()
+                        .clickPlanJourneyLink();
 
         // Plan a journey between two locations
         JourneyPlannerResultsPage resultsPage = planJourneyPage

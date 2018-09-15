@@ -19,7 +19,6 @@ public class HighestMountainPage extends BasePage<HighestMountainPage> {
     private StreamTable listTable;
 
     public static HighestMountainPage open() {
-
         return PageFactory.newInstance(HighestMountainPage.class,
                 "https://en.wikipedia.org/wiki/List_of_highest_mountains_on_Earth");
     }
@@ -49,8 +48,6 @@ public class HighestMountainPage extends BasePage<HighestMountainPage> {
                 .filter(meters -> meters > heightInMeters)
                 .count();
     }
-
-    /* Private (helper) methods */
 
     private int parseHeight(String text) {
         String cleansedText = text

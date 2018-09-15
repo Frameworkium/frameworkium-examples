@@ -8,7 +8,7 @@ import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.Link;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class FileDownloadPage extends BasePage<FileDownloadPage> {
 
@@ -18,11 +18,9 @@ public class FileDownloadPage extends BasePage<FileDownloadPage> {
     private List<Link> allDownloadLinks;
 
     @Step("Return all download link names")
-    public List<String> getDownloadableFileLinkNames() {
-
+    public Stream<String> getDownloadableFileLinkNames() {
         return allDownloadLinks.stream()
-                .map(Link::getText)
-                .collect(Collectors.toList());
+                .map(Link::getText);
     }
 
 }

@@ -1,7 +1,7 @@
 package tfl.api.dto.carparkoccupancy;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import ru.yandex.qatools.allure.annotations.Step;
+import io.qameta.allure.Step;
 
 import java.util.Arrays;
 import java.util.List;

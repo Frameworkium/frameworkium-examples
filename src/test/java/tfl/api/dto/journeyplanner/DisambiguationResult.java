@@ -1,7 +1,7 @@
 package tfl.api.dto.journeyplanner;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import ru.yandex.qatools.allure.annotations.Step;
+import io.qameta.allure.Step;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DisambiguationResult {

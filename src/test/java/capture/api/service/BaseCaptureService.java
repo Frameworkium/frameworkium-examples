@@ -4,7 +4,6 @@ import capture.api.constant.CaptureEndpoint;
 import com.frameworkium.core.api.services.BaseService;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import io.restassured.response.ExtractableResponse;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.apache.http.HttpStatus;
@@ -34,10 +33,6 @@ public class BaseCaptureService extends BaseService {
     protected ResponseSpecification getResponseSpec() {
         return RestAssured.expect().response()
                 .statusCode(HttpStatus.SC_OK);
-    }
-
-    protected ExtractableResponse get(String url) {
-        return request(url);
     }
 
 }

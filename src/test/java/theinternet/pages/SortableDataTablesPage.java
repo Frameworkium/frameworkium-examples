@@ -1,14 +1,16 @@
 package theinternet.pages;
 
 import com.frameworkium.core.ui.annotations.Visible;
+import com.frameworkium.core.ui.element.StreamTable;
 import com.frameworkium.core.ui.pages.BasePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import ru.yandex.qatools.allure.annotations.Step;
 import ru.yandex.qatools.htmlelements.annotations.Name;
-import ru.yandex.qatools.htmlelements.element.Table;
 
-import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.stream.Stream;
 
 public class SortableDataTablesPage extends BasePage<SortableDataTablesPage> {
 
@@ -17,23 +19,23 @@ public class SortableDataTablesPage extends BasePage<SortableDataTablesPage> {
     @FindBy(css = "div.example h3")
     private WebElement heading;
 
-    @Visible
     @Name("Table 1")
-    @FindBy(css = "table#table1")
-    private Table table1;
+    @CacheLookup
+    @FindBy(id = "table1")
+    private StreamTable table1;
 
-    @Visible
     @Name("Table 2")
-    @FindBy(css = "table#table2")
-    private Table table2;
+    @CacheLookup
+    @FindBy(id = "table2")
+    private StreamTable table2;
 
     @Step("Get table 1 column {0} contents")
-    public List<String> getTable1ColumnContents(String colHeader) {
+    public Stream<String> getTable1ColumnContents(String colHeader) {
         return getColumnContents(table1, colHeader);
     }
 
     @Step("Get table 2 column {0} contents")
-    public List<String> getTable2ColumnContents(String colHeader) {
+    public Stream<String> getTable2ColumnContents(String colHeader) {
         return getColumnContents(table2, colHeader);
     }
 
@@ -44,18 +46,16 @@ public class SortableDataTablesPage extends BasePage<SortableDataTablesPage> {
     }
 
     @Step("Sort table {0} by column name {1}")
-    private SortableDataTablesPage sortTableByColumnName(Table table, String colHeader) {
-        table.getHeadings()
-                .get(table.getHeadingsAsString().indexOf(colHeader))
+    private SortableDataTablesPage sortTableByColumnName(StreamTable table, String colHeader) {
+        table.getHeading(colHeader)
+                .orElseThrow(NoSuchElementException::new)
                 .click();
         return this;
     }
 
     @Step("Get column contents of column {1} in table {0}")
-    private List<String> getColumnContents(Table table, String colHeader) {
-
-        int colIndex = table.getHeadingsAsString().indexOf(colHeader);
-        return table.getColumnsAsString().get(colIndex);
+    private Stream<String> getColumnContents(StreamTable table, String colHeader) {
+        return table.getColumn(colHeader).map(WebElement::getText);
     }
 
 }

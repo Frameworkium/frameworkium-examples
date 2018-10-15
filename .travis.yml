@@ -14,17 +14,22 @@ install: true # disable default mvn install
 notifications:
   slack:
     secure: CBl3zx9fyajOXqflYsPMUy0I1pU/6LiLs19UJ6If+YMRWP8kUV35/lrEzbn4zAmdar7FnDkLPXGVMcwNgOQazHTC9jXft0aQIojB4TIT2l+Cn65r0UfKHGexwheO48kbDKTZApkExKUAulDPSaqqfB+ysA8RU4gzHdXnf9Ee1Xx9I0niDHSaDCI3g0ZfjMX2F7f81f7gLB2eWgoj9a9w6/ZX2EcDj433i7QRaZqC2xfyzl/rtot4AiM/7q7FEfwW5JvFQh3iQ3d4L5vGoWXtRLA9qs1K82jbPRHjDPIx6JHUe8tL7r7Idfne7hIqKM9olAFF6YshUKLBU2DhGA3rTYo/pTC0h5e6Dok78NWU+zP9elTZ7UhryI8jxamSBBVHvuVM0Ahcgx5lfbIzCZGfKL4SbR3KyiXMcq3MkS10nbbiFHC3uHB8RWZVHqZccZ5r5+W/WjVAHLrNd61YtdlpkqcGNY66Mw38tlOhpYpKInxamEy2k0bmHgI00mL2GNHy5ChnobuinwRk4dqyDprDPmielmjyHOGizbCLH7zJEpm2tVaXMneq+iIJogJgrK9Mq/noHSABLNoq794G9Rnlh1C/PdbS2E25/zgCspJw+OM0Ne1WAScXum2dVLh5hBFRm0LCi54U2ERKLJgts9PMdyXqU9Q4SX9ad31sg+b+as4=
+
+cache:
+  directories:
+  - $HOME/.m2
+
 env:
   global:
     - CAPTURE_URL="http://ec2-35-176-47-3.eu-west-2.compute.amazonaws.com"
     - SUT_NAME="frameworkium-examples"
     - SUT_VERSION=${TRAVIS_BRANCH}
     - THREAD_COUNT=2
-    - SELENIUM_MAJ_VER=3.11
+    - SELENIUM_MAJ_VER=3.14
     - SELENIUM_VER=${SELENIUM_MAJ_VER}.0
     - SELENIUM_JAR=selenium-server-standalone-${SELENIUM_VER}.jar
-    - GECKO_VER=0.20.1
-    - CHROME_DRIVER_VER=2.38
+    - GECKO_VER=0.21.0
+    - CHROME_DRIVER_VER=2.41
     # override Travis default to give browsers more room
     - _JAVA_OPTIONS="-Xmx1024m -Xms128m"
     # Required to turn on workaround for the following issue:
@@ -41,7 +46,7 @@ before_script:
   - tar -xzf geckodriver-v${GECKO_VER}-linux64.tar.gz
 
   # Download chromedriver
-  - wget --quiet http://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VER}/chromedriver_linux64.zip
+  - wget --quiet https://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VER}/chromedriver_linux64.zip
   - unzip chromedriver_linux64.zip
 
   # Wait for grid hub to be up
@@ -55,16 +60,17 @@ before_script:
 
 script:
   # Download deps, compile and run checkstyle
-  - mvn install -B --quiet --show-version -DskipTests=true -Dmaven.javadoc.skip=true
+  - mvn test-compile -B --show-version -Dmaven.javadoc.skip=true
 
   # Firefox on the grid
-  - mvn verify -B -Dthreads=${THREAD_COUNT} -Dconfig=FirefoxGrid.yaml -DreuseBrowser=true -Dheadless=true -DcaptureURL=${CAPTURE_URL} -DsutName="${SUT_NAME}" -DsutVersion="${SUT_VERSION}"
+  - mvn verify -B -Dthreads=1 -Dconfig=FirefoxGrid.yaml -DreuseBrowser=true -Dheadless=true -DcaptureURL=${CAPTURE_URL} -DsutName="${SUT_NAME}" -DsutVersion="${SUT_VERSION}"
 
+  # Add offline option (-o) to prevent timeouts fetching snapshot info again
   # Firefox off the grid
-  - mvn verify -B -Dthreads=${THREAD_COUNT} -Dbrowser=firefox -DreuseBrowser=true -Dheadless=true -DcaptureURL=${CAPTURE_URL} -DsutName="${SUT_NAME}" -DsutVersion="${SUT_VERSION}"  2> /dev/null
+  - mvn verify -B -o -Dthreads=1 -Dbrowser=firefox -DreuseBrowser=true -Dheadless=true -DcaptureURL=${CAPTURE_URL} -DsutName="${SUT_NAME}" -DsutVersion="${SUT_VERSION}" 2> /dev/null
 
   # Chrome on the grid
-  - mvn verify -B -Dthreads=${THREAD_COUNT} -Dbrowser=chrome -DreuseBrowser=true -Dheadless=true -DgridURL=http://localhost:4444/wd/hub -DcaptureURL=${CAPTURE_URL} -DsutName="${SUT_NAME}" -DsutVersion="${SUT_VERSION}"
+  - mvn verify -B -o -Dthreads=${THREAD_COUNT} -Dbrowser=chrome -DreuseBrowser=true -Dheadless=true -DgridURL=http://localhost:4444/wd/hub -DcaptureURL=${CAPTURE_URL} -DsutName="${SUT_NAME}" -DsutVersion="${SUT_VERSION}"
 
   # Query Jira for which test to run and then log results to Jira
   # Disabled until we have a JIRA to use
@@ -74,4 +80,4 @@ script:
   # - mvn verify -Dsauce=true -Dplatform=ios -Dbrowser=safari -DplatformVersion=8.0 -Ddevice=iPad -DcaptureURL=${CAPTURE_URL} -DsutName="${SUT_NAME}" -DsutVersion="${SUT_VERSION}"
 
   # Allure report
-  - mvn site -B --quiet
+  - mvn allure:report -B

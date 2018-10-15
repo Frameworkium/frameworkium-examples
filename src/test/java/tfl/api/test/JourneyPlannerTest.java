@@ -1,10 +1,10 @@
 package tfl.api.test;
 
 import com.frameworkium.core.api.tests.BaseAPITest;
+import org.testng.annotations.Test;
 import tfl.api.dto.journeyplanner.DisambiguationResult;
 import tfl.api.service.journeyplanner.DisambiguationService;
 import tfl.api.service.journeyplanner.ItineraryService;
-import org.testng.annotations.Test;
 
 import static com.google.common.truth.Truth.assertThat;
 

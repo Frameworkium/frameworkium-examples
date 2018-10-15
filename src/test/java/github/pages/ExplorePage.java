@@ -4,7 +4,7 @@ import com.frameworkium.core.ui.annotations.Visible;
 import com.frameworkium.core.ui.pages.BasePage;
 import com.frameworkium.core.ui.pages.PageFactory;
 import github.pages.components.HeaderComponent;
-import ru.yandex.qatools.allure.annotations.Step;
+import io.qameta.allure.Step;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 
 public class ExplorePage extends BasePage<ExplorePage> {

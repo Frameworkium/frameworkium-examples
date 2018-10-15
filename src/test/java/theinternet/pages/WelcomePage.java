@@ -3,8 +3,8 @@ package theinternet.pages;
 import com.frameworkium.core.ui.annotations.Visible;
 import com.frameworkium.core.ui.pages.BasePage;
 import com.frameworkium.core.ui.pages.PageFactory;
+import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
-import ru.yandex.qatools.allure.annotations.Step;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.Link;
 
@@ -72,19 +72,24 @@ public class WelcomePage extends BasePage<WelcomePage> {
     @FindBy(linkText = "Sortable Data Tables")
     private Link sortableDataTablesLink;
 
-    @Step("Navigate to http://the-internet.herokuapp.com")
+    @Step("Navigate to https://the-internet.herokuapp.com")
     public static WelcomePage open() {
         return PageFactory.newInstance(
-                WelcomePage.class, "http://the-internet.herokuapp.com");
+                WelcomePage.class, "https://the-internet.herokuapp.com");
     }
 
     @Step("Click the Dynamic Loading link - user: {0}, password {1}")
-    public BasicAuthSuccessPage clickBasicAuth(String username, String password) {
+    public BasicAuthSuccessPage navigateToBasicAuth(String username, String password) {
         // For this sort of authentication, Selenium cannot handle the dialog
         // box that appears if you click the link.
         // Instead, we can provide the username and password in the URL:
         String url = formatBasicAuthURL(username, password, basicAuthLink.getReference());
         return PageFactory.newInstance(BasicAuthSuccessPage.class, url);
+    }
+
+    private String formatBasicAuthURL(String username, String password, String originalURL) {
+        return String.format("https://%s:%s@%s",
+                username, password, originalURL.replace("https://", ""));
     }
 
     @Step("Click the Checkboxes link")
@@ -151,20 +156,6 @@ public class WelcomePage extends BasePage<WelcomePage> {
     public KeyPressesPage clickKeyPressesLink() {
         keyPressesLink.click();
         return PageFactory.newInstance(KeyPressesPage.class);
-    }
-
-    @Step("Click the Secure File download link")
-    public SecureFileDownloadPage clickSecureFileDownloadsLink(String username, String password) {
-        // For this sort of authentication, Selenium cannot handle the dialog
-        // box that appears if you click the link.
-        // Instead, we can provide the username and password in the URL:
-        String url = formatBasicAuthURL(username, password, secureFileLink.getReference());
-        return PageFactory.newInstance(SecureFileDownloadPage.class, url);
-    }
-
-    private String formatBasicAuthURL(String username, String password, String originalURL) {
-        return String.format("http://%s:%s@%s",
-                username, password, originalURL.replace("http://", ""));
     }
 
     @Step("Click the Sortable Data Table link")

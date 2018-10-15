@@ -2,10 +2,10 @@ package theinternet.pages;
 
 import com.frameworkium.core.ui.annotations.Visible;
 import com.frameworkium.core.ui.pages.BasePage;
+import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import ru.yandex.qatools.allure.annotations.Step;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 
 import java.util.List;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
  */
 public class DragAndDropPage extends BasePage<DragAndDropPage> {
 
-    private static final String JQUERY_JS_URI = "http://code.jquery.com/jquery-1.11.2.min.js";
+    private static final String JQUERY_JS_URI = "https://code.jquery.com/jquery-1.12.4.min.js";
 
     @Visible
     @Name("Box A")

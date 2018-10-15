@@ -4,8 +4,8 @@ import com.frameworkium.core.ui.annotations.Visible;
 import com.frameworkium.core.ui.pages.BasePage;
 import com.frameworkium.core.ui.pages.PageFactory;
 import github.pages.components.HeaderComponent;
+import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
-import ru.yandex.qatools.allure.annotations.Step;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.Link;
 
@@ -30,7 +30,7 @@ public class SearchResultsPage extends BasePage<SearchResultsPage> {
     @Step("Navigate to the Github homepage")
     public static SearchResultsPage open() {
         return PageFactory.newInstance(
-                SearchResultsPage.class, "http://github.com");
+                SearchResultsPage.class, "https://github.com");
     }
 
     @Step("Get the list of code repository names")

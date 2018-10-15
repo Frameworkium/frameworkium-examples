@@ -1,15 +1,13 @@
 package tfl.api.test;
 
 import com.frameworkium.core.api.tests.BaseAPITest;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 import tfl.api.dto.bikepoints.BikePoints;
 import tfl.api.dto.common.Place;
 import tfl.api.service.bikepoints.BikePointService;
 import tfl.api.service.bikepoints.BikePointsParamsBuilder;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
 
-import java.util.List;
 import java.util.Map;
 
 import static com.google.common.truth.Truth.assertThat;

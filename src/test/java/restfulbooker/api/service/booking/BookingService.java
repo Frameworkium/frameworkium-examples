@@ -1,10 +1,10 @@
 package restfulbooker.api.service.booking;
 
 import com.google.common.collect.ImmutableMap;
+import io.restassured.http.Method;
 import restfulbooker.api.constant.BookerEndpoint;
 import restfulbooker.api.dto.booking.*;
 import restfulbooker.api.service.AbstractBookerService;
-import io.restassured.http.Method;
 
 import java.util.List;
 import java.util.Map;

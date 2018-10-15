@@ -17,7 +17,7 @@ As a result:
     <groupId>com.github.frameworkium</groupId>
     <artifactId>frameworkium-core</artifactId>
     <!-- Update this with the latest from the frameworkium-core releases page -->
-    <version>2.4.5</version>
+    <version>3.0.0-BETA1</version>
   </dependency>
 </dependencies>
 ```
@@ -99,7 +99,7 @@ After running your tests, you can generate an [Allure][allure] test report by
 simply running:
 
 ```
-mvn site 
+mvn allure:report 
 ```
 
 ## Further Information
@@ -117,7 +117,6 @@ Frameworkium sets you up for other stuff too - check out the
 [core-releases]: https://github.com/Frameworkium/frameworkium-core/releases
 [mvn]: https://maven.apache.org/download.cgi
 [geckodriver]: https://github.com/mozilla/geckodriver/releases
-[marionette]: https://developer.mozilla.org/en-US/docs/Mozilla/QA/Marionette
 [chromedriver]: https://sites.google.com/a/chromium.org/chromedriver/home
 [guidance]: https://frameworkium.github.io
-[allure]: http://allure.qatools.ru
+[allure]: https://docs.qameta.io/allure/

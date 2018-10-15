@@ -2,11 +2,11 @@ package restfulbooker.api.tests;
 
 import com.frameworkium.core.api.tests.BaseAPITest;
 import com.frameworkium.core.common.retry.RetryFlakyTest;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 import restfulbooker.api.dto.booking.*;
 import restfulbooker.api.service.booking.BookingService;
 import restfulbooker.api.service.ping.PingService;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 
 import static com.google.common.truth.Truth.assertThat;
 

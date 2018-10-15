@@ -1,9 +1,9 @@
 package tfl.web.tests;
 
 import com.frameworkium.core.ui.tests.BaseUITest;
-import tfl.web.pages.*;
+import io.qameta.allure.TmsLink;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.TestCaseId;
+import tfl.web.pages.*;
 
 import static com.google.common.truth.Truth.assertThat;
 
@@ -11,15 +11,13 @@ public class PlanJourneyTest extends BaseUITest {
 
     // disabled due to lack of time for maintenance
     // still useful as an example
-    @TestCaseId("TFL-1")
-    @Test(description = "Plan a journey test", enabled = false)
+    @TmsLink("TFL-1")
+    @Test(enabled = false)
     public final void planJourneyTest() {
 
-        // Navigate to homepage
-        HomePage homePage = HomePage.open();
-
-        // Click the the plan journey link
-        PlanJourneyPage planJourneyPage = homePage.clickPlanJourneyLink();
+        PlanJourneyPage planJourneyPage =
+                HomePage.open()
+                        .clickPlanJourneyLink();
 
         // Plan a journey between two locations
         JourneyPlannerResultsPage resultsPage = planJourneyPage

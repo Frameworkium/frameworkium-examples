@@ -2,14 +2,14 @@ package restfulbooker.api.tests;
 
 import com.frameworkium.core.api.tests.BaseAPITest;
 import com.frameworkium.core.common.retry.RetryFlakyTest;
+import org.testng.SkipException;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 import restfulbooker.api.dto.booking.Booking;
 import restfulbooker.api.dto.booking.BookingID;
 import restfulbooker.api.dto.booking.search.SearchParamsMapper;
 import restfulbooker.api.service.booking.BookingService;
 import restfulbooker.api.service.ping.PingService;
-import org.testng.SkipException;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 
 import java.util.List;
 

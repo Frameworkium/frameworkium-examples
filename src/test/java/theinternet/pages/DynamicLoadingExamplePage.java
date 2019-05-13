@@ -29,7 +29,9 @@ public class DynamicLoadingExamplePage extends BasePage<DynamicLoadingExamplePag
     @Step("Click Start")
     public DynamicLoadingExamplePage clickStart() {
         startButton.click();
+        /*Repeated in below method. Going by @Step definition, this one should be removed.
         wait.until(visibilityOf(dynamicElement.getWrappedElement()));
+        */
         return this;
     }
 

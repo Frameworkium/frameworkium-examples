@@ -29,7 +29,6 @@ public class DynamicLoadingExamplePage extends BasePage<DynamicLoadingExamplePag
     @Step("Click Start")
     public DynamicLoadingExamplePage clickStart() {
         startButton.click();
-        wait.until(visibilityOf(dynamicElement.getWrappedElement()));
         return this;
     }
 

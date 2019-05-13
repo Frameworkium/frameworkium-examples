@@ -1,40 +1,42 @@
 package TheInternetDoc.tests;
 
-import TheInternetDoc.pages.HomePage;
-import TheInternetDoc.pages.UserAuthenticationPage;
-import TheInternetDoc.pages.UserAuthenticationSuccessPage;
+import TheInternetDoc.pages.*;
 import com.frameworkium.core.ui.tests.BaseUITest;
 import com.google.common.truth.Truth8;
+import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import org.testng.annotations.Test;
-import theinternet.pages.*;
 
 import java.util.stream.Stream;
 
 import static com.google.common.truth.Truth.assertThat;
+import static theinternet.util.Constants.Users.Credentials.INVALIDLOGIN;
+import static theinternet.util.Constants.Users.Credentials.VALIDLOGIN;
 
 @Feature("The Internet")
-public class TheInternetExampleTests extends BaseUITest {
+public class TheInternetExampleDocTests extends BaseUITest {
 
     @TmsLink("INT-8")
+    @Story("User Login")
     @Test(description = "Form Authentication")
+    @Description("Invalid login and assert error message then valid login and assert success message")
     public void form_authentication() {
 
         // Navigate to the form authentication page
-        final String username = "tomsmith";
+        FormAuthenticationPage formAuthentication = HomePage.open()
+                .then()
+                .clickFormAuthenticationLink();
 
-        UserAuthenticationPage formAuthenticationPage = HomePage
-                .open().then()
-                .clickFormAuthenticationLink()
-                // Log in with the bad password and expect to land where we are
-                .badLogin(username, "BadBadPassword")
-                .expectErrorMessage();
+        // Log in with the bad password and expect to land where we are
+        assertThat(formAuthentication
+                .login(INVALIDLOGIN.getUserName(), INVALIDLOGIN.getPassword(), FormAuthenticationPage.class)
+                .expectErrorMessage()).isTrue();
 
         // Log in with the username password provided
-        UserAuthenticationSuccessPage successPage = formAuthenticationPage
-                .goodLogin(username, "SuperSecretPassword!");
+        FormAuthenticationSuccessPage successPage = formAuthentication
+                .login(VALIDLOGIN.getUserName(), VALIDLOGIN.getPassword(), FormAuthenticationSuccessPage.class);
 
         // Confirm that we're on the success page
         assertThat(successPage.getSource()).contains("Welcome to the Secure Area");
@@ -64,8 +66,9 @@ public class TheInternetExampleTests extends BaseUITest {
     public void dynamic_loading() {
 
         // Navigate to the dynamic loading hidden element page
-        DynamicLoadingExamplePage dynamicLoadingExamplePage =
-                HomePage.open().then().clickDynamicLoading().then().clickExample1();
+        DynamicLoadingExamplePage dynamicLoadingExamplePage = HomePage.open().then()
+                .clickDynamicLoading().then()
+                .clickExample1();
 
         // Click start and wait for element to be displayed
         dynamicLoadingExamplePage.clickStart().then().waitForElementToBeDisplayed();

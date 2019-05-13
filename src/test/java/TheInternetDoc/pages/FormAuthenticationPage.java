@@ -8,9 +8,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.yandex.qatools.htmlelements.annotations.Name;
+import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.TextInput;
 
-public class UserAuthenticationPage extends BasePage<UserAuthenticationPage> {
+public class FormAuthenticationPage extends BasePage<FormAuthenticationPage> {
 
     @Visible
     @Name("Username field")
@@ -25,15 +26,19 @@ public class UserAuthenticationPage extends BasePage<UserAuthenticationPage> {
     @Visible
     @Name("Login button")
     @FindBy(css = "#login > button")
-    private WebElement loginButton;
+    private Button loginButton;
 
     @Name("Error message")
     @FindBy(css = "#flash")
     private WebElement errorMessage;
 
-    @Step("Log in - {0}/{1}")
-    public UserAuthenticationSuccessPage goodLogin(
-            String username, String password) {
+    @Step("Click login button")
+    private void clickLogin(){
+        loginButton.click();
+    }
+
+    @Step("Enter login details - {0} | {1} ")
+    public <T extends BasePage<T>> T login(String username, String password, Class<T> classOfExpectedPageObject){
 
         usernameField.clear();
         usernameField.sendKeys(username);
@@ -41,25 +46,18 @@ public class UserAuthenticationPage extends BasePage<UserAuthenticationPage> {
         passwordField.clear();
         passwordField.sendKeys(password);
 
-        loginButton.click();
-        return PageFactory.newInstance(UserAuthenticationSuccessPage.class);
+        clickLogin();
+        return PageFactory.newInstance(classOfExpectedPageObject);
     }
 
-    public UserAuthenticationPage badLogin(
-            String username, String password) {
-
-        usernameField.clear();
-        usernameField.sendKeys(username);
-
-        passwordField.clear();
-        passwordField.sendKeys(password);
-
-        loginButton.click();
-        return PageFactory.newInstance(UserAuthenticationPage.class);
-    }
-
-    public UserAuthenticationPage expectErrorMessage() {
-        wait.until(ExpectedConditions.visibilityOf(errorMessage));
-        return this;
+    @Step("Check for error message")
+    public boolean expectErrorMessage() {
+        try {
+            wait.until(ExpectedConditions.visibilityOf(errorMessage));
+            return true;
+        }
+        catch(Exception e){
+            return false;
+        }
     }
 }

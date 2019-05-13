@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 
-public class UserAuthenticationSuccessPage extends BasePage<UserAuthenticationSuccessPage> {
+public class FormAuthenticationSuccessPage extends BasePage<FormAuthenticationSuccessPage> {
 
     @Visible
     @Name("Logout button")

@@ -8,22 +8,23 @@ import static com.google.common.truth.Truth.assertThat;
 
 public class DocumentationTest extends BaseUITest {
 
-    private static String SEARCH_TERM = "Bootstrap";
-
     @Test(description =
             "Tests the AngularJS developer documentation and search function")
     public void documentationTest() {
+
+        String searchTerm = "Bootstrap";
+
         String guideTitle = HomePage
                 .open()
                 .clickDevelopMenu()
                 .clickDeveloperGuideLink()
                 .clickSearchBar()
-                .setSearchBar(SEARCH_TERM)
-                .clickLinkWithTitle(SEARCH_TERM)
-                .getGuideTitle(SEARCH_TERM);
+                .setSearchBar(searchTerm)
+                .clickLinkWithTitle(searchTerm)
+                .getGuideTitle(searchTerm);
 
         assertThat(guideTitle)
-                .isEqualTo(SEARCH_TERM);
+                .isEqualTo(searchTerm);
     }
 
 }

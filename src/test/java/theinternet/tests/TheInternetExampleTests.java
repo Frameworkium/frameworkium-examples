@@ -15,43 +15,38 @@ import java.util.stream.Stream;
 import static com.google.common.truth.Truth.assertThat;
 
 @Feature("The Internet")
+@Test
 public class TheInternetExampleTests extends BaseUITest {
 
     @TmsLink("INT-1")
     @Story("Basic Auth Login")
-    @Test(description = "Basic Auth")
     public void basic_auth() {
 
         String pageSource = WelcomePage.open().then()
                 .navigateToBasicAuth("admin", "admin")
                 .getSource();
 
-        // Assert that the returned page has the text present
         assertThat(pageSource).contains(
                 "Congratulations! You must have the proper credentials.");
     }
 
     @TmsLink("INT-2")
     @Story("Check Checkboxes")
-    @Test(description = "Checkboxes")
     public void check_boxes() {
 
         // Navigate to the checkboxes page
-        Stream<Boolean> checkboxesStatus = WelcomePage.open()
-                .clickCheckboxesLink()
-
-                // Set all checkboxes to checked via alternative method
-                .checkAllCheckboxes()
-                .getAllCheckboxCheckedStatus();
+        Stream<Boolean> checkboxesStatus =
+                WelcomePage.open()
+                        .clickCheckboxesLink()
+                        .checkAllCheckboxes()
+                        .getAllCheckboxCheckedStatus();
 
         // Assert that all checkboxes are checked
         Truth8.assertThat(checkboxesStatus)
-                .named("check status of checkboxes")
                 .doesNotContain(false);
     }
 
     @TmsLink("INT-3")
-    @Test(description = "Drag and Drop")
     public void drag_and_drop() {
 
         // Navigate to the checkboxes page
@@ -62,13 +57,11 @@ public class TheInternetExampleTests extends BaseUITest {
 
         // Assert on the order of the headings
         assertThat(headings)
-                .named("Order of headings")
                 .containsExactly("B", "A")
                 .inOrder();
     }
 
     @TmsLink("INT-4")
-    @Test(description = "Dropdown")
     public void dropdown() {
 
         // Navigate to the checkboxes page
@@ -79,12 +72,10 @@ public class TheInternetExampleTests extends BaseUITest {
 
         // Assert selected
         assertThat(dropdownPage.getSelectedOptionText())
-                .named("selected option in dropdown")
                 .isEqualTo("Option 1");
     }
 
     @TmsLink("INT-5")
-    @Test(description = "Dynamic loading")
     public void dynamic_loading() {
 
         // Navigate to the dynamic loading hidden element page
@@ -96,7 +87,6 @@ public class TheInternetExampleTests extends BaseUITest {
 
         // Assert that the element is indeed displayed
         assertThat(dynamicLoadingExamplePage.isElementDisplayed())
-                .named("element visibility")
                 .isTrue();
 
         // Navigate to the dynamic loading element not yet rendered page
@@ -107,11 +97,10 @@ public class TheInternetExampleTests extends BaseUITest {
         dynamicLoadingPage.clickStart().then().waitForElementToBeDisplayed();
 
         // Assert that the element is indeed present
-        assertThat(dynamicLoadingPage.isElementDisplayed()).named("element presence").isTrue();
+        assertThat(dynamicLoadingPage.isElementDisplayed()).isTrue();
     }
 
     @TmsLink("INT-6")
-    @Test(description = "File Download")
     public void file_download() {
 
         // Navigate to the download page
@@ -123,7 +112,6 @@ public class TheInternetExampleTests extends BaseUITest {
     }
 
     @TmsLink("INT-7")
-    @Test(description = "File Upload")
     public void file_upload() {
 
         // Navigate to the upload page
@@ -140,7 +128,6 @@ public class TheInternetExampleTests extends BaseUITest {
     }
 
     @TmsLink("INT-8")
-    @Test(description = "Form Authentication")
     public void form_authentication() {
 
         // Navigate to the form authentication page
@@ -161,8 +148,7 @@ public class TheInternetExampleTests extends BaseUITest {
     }
 
     @TmsLink("INT-15")
-    @Test(description = "iFrames test")
-    public void iframes() {
+    public void iframe_test() {
 
         //Navigate to the frames page
         FramesPage framesPage = WelcomePage.open().then().clickFramesLink();
@@ -185,7 +171,6 @@ public class TheInternetExampleTests extends BaseUITest {
     }
 
     @TmsLink("INT-9")
-    @Test(description = "Hovers")
     public void hovers() {
 
         // Navigate to the hovers page
@@ -196,7 +181,6 @@ public class TheInternetExampleTests extends BaseUITest {
     }
 
     @TmsLink("INT-11")
-    @Test(description = "Javascript Alerts")
     public void javascript_alerts() {
 
         // Navigate to the javascript alerts page
@@ -226,7 +210,6 @@ public class TheInternetExampleTests extends BaseUITest {
     }
 
     @TmsLink("INT-12")
-    @Test(description = "Key Presses")
     public void key_presses() {
 
         //Navigate to the key presses page
@@ -263,6 +246,6 @@ public class TheInternetExampleTests extends BaseUITest {
         assertThat(lastNameColumn.get(0)).isEqualTo("Bach");
 
         // Confirm that the column is then ordered by the last name
-        assertThat(lastNameColumn).isOrdered();
+        assertThat(lastNameColumn).isInOrder();
     }
 }

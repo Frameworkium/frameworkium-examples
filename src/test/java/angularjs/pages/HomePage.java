@@ -1,9 +1,9 @@
 package angularjs.pages;
 
+import com.frameworkium.core.ui.UITestLifecycle;
 import com.frameworkium.core.ui.annotations.Visible;
 import com.frameworkium.core.ui.pages.BasePage;
 import com.frameworkium.core.ui.pages.PageFactory;
-import com.frameworkium.core.ui.tests.BaseUITest;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -24,7 +24,7 @@ public class HomePage extends BasePage<HomePage> {
 
     @Step("Open home page")
     public static HomePage open() {
-        BaseUITest.getDriver().manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+        UITestLifecycle.get().getWebDriver().manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
         return PageFactory.newInstance(HomePage.class, "https://angularjs.org/");
     }
 

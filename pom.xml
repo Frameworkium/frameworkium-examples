@@ -5,9 +5,11 @@
 
   <groupId>com.github.frameworkium</groupId>
   <artifactId>frameworkium-examples</artifactId>
-  <!-- This version is for this project. To change the version of
-  frameworkium-core, see the dependencies section below. -->
-  <version>3.0.0 BETA</version>
+  <!--
+  This version tag is for this specific project.
+  To change the version of frameworkium-core, see dependencies section below.
+  -->
+  <version>3</version>
 
   <name>Frameworkium Examples</name>
   <description>
@@ -32,9 +34,11 @@
     <!-- Default thread count and groups to run -->
     <threads>1</threads>
     <groups/>
+
     <!-- Versions from frameworkium-core -->
-    <aspectj.version>1.9.2</aspectj.version>
-    <allure.version>2.10.0</allure.version>
+    <aspectj.version>1.9.4</aspectj.version>
+    <allure.version>2.12.1</allure.version>
+
     <!-- Prevent encoding issues -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -56,8 +60,19 @@
     <dependency>
       <groupId>com.github.frameworkium</groupId>
       <artifactId>frameworkium-core</artifactId>
-      <version>3.0.0-BETA2</version>
+      <version>3.0.0-BETA4</version>
     </dependency>
+
+    <!-- Your own dependencies here -->
+
+    <!-- Used in CreateScreenshot -->
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.5</version>
+      <scope>test</scope>
+    </dependency>
+
   </dependencies>
 
   <build>

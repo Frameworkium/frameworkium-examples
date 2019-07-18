@@ -17,7 +17,7 @@ As a result:
     <groupId>com.github.frameworkium</groupId>
     <artifactId>frameworkium-core</artifactId>
     <!-- Update this with the latest from the frameworkium-core releases page -->
-    <version>3.0.0-BETA2</version>
+    <version>3.0.0</version>
   </dependency>
 </dependencies>
 ```
@@ -40,8 +40,7 @@ You can provide the `-Dbrowser` argument to chose a browser to run the tests in.
 
 #### Drivers
 
-Since frameworkium-core v2.3.0 (which included Selenium v3.0.1) each browser 
-requires a "driver".
+Each browser requires a "driver".
 
 For chrome, [ChromeDriver][chromedriver] needs to be on your path or specified
 as an argument:

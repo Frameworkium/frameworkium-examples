@@ -12,7 +12,7 @@ public class BaseTFLService extends BaseService {
 
     /**
      * @return a Rest Assured {@link RequestSpecification} with the baseUri
-     * (and anything else required by most TFL services).
+     *         (and anything else required by most TFL services).
      */
     @Override
     protected RequestSpecification getRequestSpec() {
@@ -21,7 +21,7 @@ public class BaseTFLService extends BaseService {
 
     /**
      * @return a Rest Assured {@link ResponseSpecification} with basic checks
-     * (and anything else required by most TFL services).
+     *         (and anything else required by most TFL services).
      */
     @Override
     protected ResponseSpecification getResponseSpec() {

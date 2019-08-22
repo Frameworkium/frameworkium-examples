@@ -44,7 +44,7 @@ public class DeveloperGuidePage extends BasePage<DeveloperGuidePage> {
     @Step("Click link from search results with title {0}")
     public DeveloperGuidePage clickLinkWithTitle(String linkTitle) {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        WebElement searchResultsLink = driver.findElement(
+        var searchResultsLink = driver.findElement(
                 By.xpath(String.format(
                         "//nav[@id='navbar-main']//a[text()='%s']",
                         linkTitle)));

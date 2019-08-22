@@ -5,7 +5,6 @@ import com.frameworkium.core.common.retry.RetryFlakyTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import tfl.api.dto.carparkoccupancy.CarParkOccupancies;
-import tfl.api.dto.carparkoccupancy.CarParkOccupancy;
 import tfl.api.service.carparks.CarParkOccupancyService;
 
 import static com.google.common.truth.Truth.assertThat;
@@ -41,10 +40,10 @@ public class CarParksTest extends BaseAPITest {
         // between the first and subsequent service call
         // this is due to using a live service and not controlling test data
 
-        CarParkOccupancy randomCPO = carParkOccupancies.getRandom();
+        var randomCPO = carParkOccupancies.getRandom();
 
         // Get said CPO via ID
-        CarParkOccupancy specificCPO =
+        var specificCPO =
                 new CarParkOccupancyService()
                         .getCarParkOccupancyByID(randomCPO.id);
 

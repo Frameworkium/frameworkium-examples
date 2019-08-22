@@ -2,7 +2,6 @@ package tfl.api.test;
 
 import com.frameworkium.core.api.tests.BaseAPITest;
 import org.testng.annotations.Test;
-import tfl.api.dto.journeyplanner.DisambiguationResult;
 import tfl.api.service.journeyplanner.DisambiguationService;
 import tfl.api.service.journeyplanner.ItineraryService;
 
@@ -12,7 +11,7 @@ public class JourneyPlannerTest extends BaseAPITest {
 
     @Test
     public void journey_planner_london_search_journey_duration() {
-        DisambiguationResult disambiguationResult = new DisambiguationService()
+        var disambiguationResult = new DisambiguationService()
                 .getDisambiguationResult(
                         "Blue Fin Building, Southwark",
                         "Waterloo Station, London"

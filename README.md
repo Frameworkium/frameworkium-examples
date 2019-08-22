@@ -54,12 +54,6 @@ as an argument:
 mvn clean verify -Dbrowser=firefox -Dwebdriver.gecko.driver=c:\path\to\geckodriver.exe
 ```
 
-Firefox 47 and below have the driver built in, as such tests can be run by specifying
-the `legacyFirefox` browser:
-```
-mvn clean verify -Dbrowser=legacyFirefox
-```
-
 ### Selenium Grid
 
 Want to run tests using a grid and in parallel?

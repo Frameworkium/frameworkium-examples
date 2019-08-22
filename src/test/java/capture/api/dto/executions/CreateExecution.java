@@ -19,7 +19,7 @@ public class CreateExecution extends AbstractDTO<CreateExecution> {
      * @return a populated {@link CreateExecution} with sensible defaults.
      */
     public static CreateExecution newCreateInstance() {
-        CreateExecution execution = new CreateExecution();
+        var execution = new CreateExecution();
         execution.testID = "DEFAULT-1";
         execution.browser = Browser.newInstance();
         execution.softwareUnderTest = SoftwareUnderTest.newInstance();

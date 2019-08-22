@@ -9,7 +9,7 @@ public class Command extends AbstractDTO<Command> {
     public String value;
 
     public static Command newInstance() {
-        Command command = new Command();
+        var command = new Command();
         command.action = "click";
         command.using = "id";
         command.value = "my-id";

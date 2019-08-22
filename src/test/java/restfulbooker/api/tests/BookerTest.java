@@ -4,7 +4,8 @@ import com.frameworkium.core.api.tests.BaseAPITest;
 import com.frameworkium.core.common.retry.RetryFlakyTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import restfulbooker.api.dto.booking.*;
+import restfulbooker.api.dto.booking.Booking;
+import restfulbooker.api.dto.booking.BookingID;
 import restfulbooker.api.service.booking.BookingService;
 import restfulbooker.api.service.ping.PingService;
 
@@ -22,11 +23,11 @@ public class BookerTest extends BaseAPITest {
 
     public void create_new_booking() {
         // given some booking data
-        BookingService service = new BookingService();
-        Booking booking = Booking.newInstance();
+        var service = new BookingService();
+        var booking = Booking.newInstance();
 
         // when creating the booking
-        CreateBookingResponse bookingResponse = service.createBooking(booking);
+        var bookingResponse = service.createBooking(booking);
 
         // the booking returned matches the input and is persisted
         assertThat(bookingResponse.booking)
@@ -43,7 +44,7 @@ public class BookerTest extends BaseAPITest {
 
     public void delete_newly_created_booking() {
         // given an existing booking
-        BookingService service = new BookingService();
+        var service = new BookingService();
         int bookingID = service.createBooking(Booking.newInstance()).bookingid;
         // and an auth token
         String authToken = new BookingService().createAuthToken(

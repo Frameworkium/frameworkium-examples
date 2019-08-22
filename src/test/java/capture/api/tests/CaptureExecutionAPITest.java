@@ -1,8 +1,7 @@
 package capture.api.tests;
 
-import capture.api.dto.executions.*;
+import capture.api.dto.executions.CreateExecution;
 import capture.api.dto.screenshots.CreateScreenshot;
-import capture.api.dto.screenshots.Screenshot;
 import capture.api.service.executions.ExecutionService;
 import capture.api.service.screenshots.ScreenshotService;
 import com.frameworkium.core.api.tests.BaseAPITest;
@@ -10,7 +9,6 @@ import org.openqa.selenium.NotFoundException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.google.common.truth.Truth.assertThat;
@@ -37,22 +35,20 @@ public class CaptureExecutionAPITest extends BaseAPITest {
 
     @Test
     public void execution_appears_in_results() {
-        ExecutionResults latestExecutions =
-                new ExecutionService().getExecutions(1, 10);
+        var latestExecutions = new ExecutionService().getExecutions(1, 10);
 
         assertThat(latestExecutions.total)
                 .isAtLeast(latestExecutions.results.size());
 
-        List<ExecutionResponse> filteredExecutions =
-                latestExecutions
-                        .results.stream()
+        var filteredExecutions =
+                latestExecutions.results.stream()
                         .filter(ex -> executionID.equals(ex.executionID))
                         .collect(Collectors.toList());
 
         // ensure only one with our expected ID
         assertThat(filteredExecutions).hasSize(1);
 
-        ExecutionResponse response = filteredExecutions.get(0);
+        var response = filteredExecutions.get(0);
         assertThat(response.createdFrom(createExMessage)).isTrue();
     }
 
@@ -61,21 +57,21 @@ public class CaptureExecutionAPITest extends BaseAPITest {
         String id = new ExecutionService()
                 .createExecution(createExMessage)
                 .executionID;
-        ExecutionResponse execution = new ExecutionService()
+        var response = new ExecutionService()
                 .getExecutions(1, 20)
                 .results.stream()
                 .filter(ex -> id.equals(ex.executionID))
                 .findFirst().orElseThrow(NotFoundException::new);
-        assertThat(execution.currentStatus).isEqualTo("new");
-        assertThat(execution.lastUpdated).isEqualTo(execution.created);
+        assertThat(response.currentStatus).isEqualTo("new");
+        assertThat(response.lastUpdated).isEqualTo(response.created);
     }
 
     @Test
     public void can_add_then_view_screenshot() {
-        CreateScreenshot createScreenshot = CreateScreenshot.newInstance(executionID);
+        var createScreenshot = CreateScreenshot.newInstance(executionID);
         new ScreenshotService().createScreenshot(createScreenshot);
 
-        Screenshot returnedScreenshot =
+        var returnedScreenshot =
                 new ExecutionService().getExecution(executionID).screenshots.get(0);
         assertThat(returnedScreenshot.command).isEqualTo(createScreenshot.command);
         assertThat(returnedScreenshot.imageURL).endsWith(".png");

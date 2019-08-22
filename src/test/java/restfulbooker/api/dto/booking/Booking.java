@@ -13,9 +13,9 @@ public class Booking extends AbstractDTO<Booking> {
     public String additionalneeds;
 
     public static Booking newInstance() {
-        ThreadLocalRandom random = ThreadLocalRandom.current();
+        var random = ThreadLocalRandom.current();
         int randInt = random.nextInt();
-        Booking booking = new Booking();
+        var booking = new Booking();
         booking.firstname = "firstname" + randInt;
         booking.lastname = "lastname" + randInt;
         booking.totalprice = randInt;

@@ -7,7 +7,6 @@ import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
 import theinternet.pages.*;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -50,7 +49,7 @@ public class TheInternetExampleTests extends BaseUITest {
     public void drag_and_drop() {
 
         // Navigate to the checkboxes page
-        List<String> headings = WelcomePage.open().then()
+        var headings = WelcomePage.open().then()
                 .clickDragAndDropLink()
                 .dragAontoB()
                 .getListOfHeadings();
@@ -65,7 +64,7 @@ public class TheInternetExampleTests extends BaseUITest {
     public void dropdown() {
 
         // Navigate to the checkboxes page
-        DropdownPage dropdownPage = WelcomePage.open().then().clickDropdownLink();
+        var dropdownPage = WelcomePage.open().then().clickDropdownLink();
 
         // Drag A onto B
         dropdownPage.selectFromDropdown("Option 1");
@@ -79,7 +78,7 @@ public class TheInternetExampleTests extends BaseUITest {
     public void dynamic_loading() {
 
         // Navigate to the dynamic loading hidden element page
-        DynamicLoadingExamplePage dynamicLoadingExamplePage =
+        var dynamicLoadingExamplePage =
                 WelcomePage.open().then().clickDynamicLoading().then().clickExample1();
 
         // Click start and wait for element to be displayed
@@ -90,7 +89,7 @@ public class TheInternetExampleTests extends BaseUITest {
                 .isTrue();
 
         // Navigate to the dynamic loading element not yet rendered page
-        DynamicLoadingExamplePage dynamicLoadingPage =
+        var dynamicLoadingPage =
                 WelcomePage.open().then().clickDynamicLoading().then().clickExample2();
 
         // Click start and wait for element to be displayed
@@ -104,7 +103,7 @@ public class TheInternetExampleTests extends BaseUITest {
     public void file_download() {
 
         // Navigate to the download page
-        FileDownloadPage downloadPage = WelcomePage.open().then().clickFileDownloadLink();
+        var downloadPage = WelcomePage.open().then().clickFileDownloadLink();
 
         // Confirm that the some-file.txt file in the list (as other people might be using it!)
         Truth8.assertThat(downloadPage.getDownloadableFileLinkNames())
@@ -115,13 +114,13 @@ public class TheInternetExampleTests extends BaseUITest {
     public void file_upload() {
 
         // Navigate to the upload page
-        FileUploadPage fileUploadPage = WelcomePage.open().then().clickFileUploadLink();
+        var fileUploadPage = WelcomePage.open().then().clickFileUploadLink();
 
         // Pick a local file we're going to upload
         String fileName = "FirefoxGrid.yaml";
 
         // Upload the file and confirm we land on the success page
-        FileUploadSuccessPage successPage = fileUploadPage.uploadFile(fileName);
+        var successPage = fileUploadPage.uploadFile(fileName);
 
         // Confirm that the uploaded files list contains our filename
         assertThat(successPage.getUploadedFiles()).contains(fileName);
@@ -131,8 +130,8 @@ public class TheInternetExampleTests extends BaseUITest {
     public void form_authentication() {
 
         // Navigate to the form authentication page
-        final String username = "tomsmith";
-        FormAuthenticationPage formAuthenticationPage = WelcomePage
+        String username = "tomsmith";
+        var formAuthenticationPage = WelcomePage
                 .open().then()
                 .clickFormAuthenticationLink()
                 // Log in with the bad password and expect to land where we are
@@ -140,7 +139,7 @@ public class TheInternetExampleTests extends BaseUITest {
                 .expectErrorMessage();
 
         // Log in with the username password provided
-        FormAuthenticationSuccessPage successPage = formAuthenticationPage
+        var successPage = formAuthenticationPage
                 .login(username, "SuperSecretPassword!", FormAuthenticationSuccessPage.class);
 
         // Confirm that we're on the success page
@@ -150,23 +149,19 @@ public class TheInternetExampleTests extends BaseUITest {
     @TmsLink("INT-15")
     public void iframe_test() {
 
-        //Navigate to the frames page
-        FramesPage framesPage = WelcomePage.open().then().clickFramesLink();
+        var iframePage = WelcomePage.open().then().clickFramesLink().clickIFrameLink();
 
-        //Browse to iframes page
-        IFramePage iframePage = framesPage.clickIFrameLink();
-
-        //Clear text
+        // Clear text
         iframePage.clearTextInEditor();
 
-        //Enter some text in the editor
+        // Enter some text in the editor
         String text = "hello";
         iframePage.enterTextInEditor(text);
 
-        //Assert that it entered it correctly
+        // Assert that it entered it correctly
         assertThat(iframePage.getTextInEditor()).isEqualTo(text);
 
-        //Enter some bold text in the editor
+        // Enter some bold text in the editor
         iframePage.enterBoldTextInEditor(" some more text");
     }
 
@@ -174,7 +169,7 @@ public class TheInternetExampleTests extends BaseUITest {
     public void hovers() {
 
         // Navigate to the hovers page
-        HoversPage hoversPage = WelcomePage.open().then().clickHoversLink();
+        var hoversPage = WelcomePage.open().then().clickHoversLink();
 
         // Confirm that the caption under the first figure contains expected text
         assertThat(hoversPage.getFirstFigureCaption()).contains("name: user1");
@@ -184,7 +179,7 @@ public class TheInternetExampleTests extends BaseUITest {
     public void javascript_alerts() {
 
         // Navigate to the javascript alerts page
-        JavaScriptAlertsPage javascriptAlerts =
+        var javascriptAlerts =
                 WelcomePage.open().then().clickJavascriptAlertsLink();
 
         javascriptAlerts.clickAlertButtonAndAccept();
@@ -212,8 +207,8 @@ public class TheInternetExampleTests extends BaseUITest {
     @TmsLink("INT-12")
     public void key_presses() {
 
-        //Navigate to the key presses page
-        KeyPressesPage keyPressesPage = WelcomePage
+        // Navigate to the key presses page
+        var keyPressesPage = WelcomePage
                 .open()
                 .clickKeyPressesLink()
                 .enterKeyPress(Keys.ENTER);
@@ -227,7 +222,7 @@ public class TheInternetExampleTests extends BaseUITest {
     public void sort_data_table() {
 
         // Navigate to the sortable data tables page
-        SortableDataTablesPage sortableDataTablesPage =
+        var sortableDataTablesPage =
                 WelcomePage.open().then().clickSortableDataTablesLink();
 
         // Assert that Table 1 contains "http://www.jdoe.com" in the web site column
@@ -236,7 +231,7 @@ public class TheInternetExampleTests extends BaseUITest {
                 .anyMatch(url -> Objects.equals(url, "http://www.jdoe.com")))
                 .isTrue();
 
-        List<String> lastNameColumn = sortableDataTablesPage
+        var lastNameColumn = sortableDataTablesPage
                 // Sort Table 2 by last name column
                 .sortTable2ByColumnName("Last Name")
                 .getTable2ColumnContents("Last Name")

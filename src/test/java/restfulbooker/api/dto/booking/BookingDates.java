@@ -14,7 +14,7 @@ public class BookingDates extends AbstractDTO<BookingDates> {
     public String checkout;
 
     public static BookingDates newInstance() {
-        BookingDates dates = new BookingDates();
+        var dates = new BookingDates();
         dates.checkin = LocalDate.now().plusDays(1).format(FORMAT);
         dates.checkout = LocalDate.now().plusDays(10).format(FORMAT);
         return dates;

@@ -49,7 +49,7 @@ public class BookingService extends AbstractBookerService {
     }
 
     public boolean doesBookingExist(int bookingID) {
-        final int statusCode = getRequestSpec()
+        int statusCode = getRequestSpec()
                 .get(BookerEndpoint.BOOKING_ID.getUrl(bookingID))
                 .then()
                 .extract()

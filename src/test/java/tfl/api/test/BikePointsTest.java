@@ -4,11 +4,8 @@ import com.frameworkium.core.api.tests.BaseAPITest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import tfl.api.dto.bikepoints.BikePoints;
-import tfl.api.dto.common.Place;
 import tfl.api.service.bikepoints.BikePointService;
 import tfl.api.service.bikepoints.BikePointsParamsBuilder;
-
-import java.util.Map;
 
 import static com.google.common.truth.Truth.assertThat;
 
@@ -37,17 +34,17 @@ public class BikePointsTest extends BaseAPITest {
     public void given_lat_long_of_point_point_appears_in_lat_long_search() {
 
         // Get random bike point
-        Place randomBP = bikePoints.getRandomBikePoint();
+        var randomBP = bikePoints.getRandomBikePoint();
 
         // Search for lat long of said bike point with 200m radius
-        Map<String, String> params =
+        var params =
                 new BikePointsParamsBuilder()
                         .latitude(randomBP.lat)
                         .longditude(randomBP.lon)
                         .radiusInMeters(200)
                         .build();
 
-        BikePoints searchResults = new BikePointService().searchBikePoints(params);
+        var searchResults = new BikePointService().searchBikePoints(params);
 
         // Then said bike point is part of result set
         assertThat(searchResults.getAllNames())

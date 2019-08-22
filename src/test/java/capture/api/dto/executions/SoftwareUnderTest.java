@@ -8,7 +8,7 @@ public class SoftwareUnderTest extends AbstractDTO<SoftwareUnderTest> {
     public String version;
 
     public static SoftwareUnderTest newInstance() {
-        SoftwareUnderTest sut = new SoftwareUnderTest();
+        var sut = new SoftwareUnderTest();
         sut.name = "frameworkium-core";
         sut.version = "master";
         return sut;

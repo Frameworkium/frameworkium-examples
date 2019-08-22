@@ -58,8 +58,7 @@ public class IFramePage extends BasePage<IFramePage> {
         // Click bold button (As it's NOT in the iframe)
         boldButton.click();
 
-        performActionInIFrame(() ->
-                wysiwygTextBox.sendKeys(text));
+        performActionInIFrame(() -> wysiwygTextBox.sendKeys(text));
 
         // Unclick bold button (still not in the iframe!)
         boldButton.click();

@@ -58,11 +58,11 @@ public class DragAndDropPage extends BasePage<DragAndDropPage> {
      * Fetches Javascript used to be able to simulate Drag and Drop.
      *
      * @return a String containing the Javascript for JQuery (if not already
-     * present on the page) and code for simulating drag and drop.
+     *         present on the page) and code for simulating drag and drop.
      */
     private String javascriptToSimulateDragDrop() {
         if (jQueryJS.isEmpty()) {
-            Boolean isJQueryAvailable = (Boolean) executeJS("return typeof $ !== 'undefined';");
+            var isJQueryAvailable = (Boolean) executeJS("return typeof $ !== 'undefined';");
             if (!isJQueryAvailable) {
                 logger.debug("about to get jQuery");
                 jQueryJS = RestAssured.get(JQUERY_JS_URI).asString();

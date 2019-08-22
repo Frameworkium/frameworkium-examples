@@ -1,12 +1,9 @@
 package github.tests;
 
 import com.frameworkium.core.ui.tests.BaseUITest;
-import github.pages.ExplorePage;
 import github.pages.HomePage;
 import io.qameta.allure.TmsLink;
 import org.testng.annotations.Test;
-
-import java.util.List;
 
 import static com.google.common.truth.Truth.assertThat;
 
@@ -19,13 +16,13 @@ public class ComponentExampleTest extends BaseUITest {
     public final void componentExampleTest() {
 
         // Navigate to homepage then use the nav bar to go to the explore page
-        ExplorePage explorePage = HomePage.open().then().with().theHeader().clickExplore();
+        var explorePage = HomePage.open().then().with().theHeader().clickExplore();
 
         // not a good assertion, improving this is an exercise for the reader
         assertThat(explorePage.getTitle()).isEqualTo("Explore · GitHub");
 
         // Search for "Selenium" and check SeleniumHQ/selenium is one of the returned repos.
-        List<String> searchResults = explorePage.with().theHeader()
+        var searchResults = explorePage.with().theHeader()
                 .search("Selenium")
                 .getRepoNames();
         assertThat(searchResults).contains("SeleniumHQ/selenium");

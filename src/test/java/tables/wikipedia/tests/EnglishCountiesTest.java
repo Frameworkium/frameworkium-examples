@@ -13,12 +13,12 @@ public class EnglishCountiesTest extends BaseUITest {
     @Test(description = "Playing with English Counties data")
     public final void exploring_english_counties_data() {
 
-        EnglishCountiesPage page = EnglishCountiesPage.open();
+        var countiesPage = EnglishCountiesPage.open();
 
-        assertThat(page.populationOf("Cornwall"))
+        assertThat(countiesPage.populationOf("Cornwall"))
                 .isAtLeast(550_000);
         // at least two counties have population densities of more than 3000
-        assertThat(page.densities()
+        assertThat(countiesPage.densities()
                 .filter(density -> density > 3000)
                 .limit(2)
                 .count())

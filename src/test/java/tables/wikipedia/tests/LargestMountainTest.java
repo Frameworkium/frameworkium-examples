@@ -13,7 +13,7 @@ public class LargestMountainTest extends BaseUITest {
     @Test(description = "Playing with data inside highest mountain table")
     public final void exploring_the_highest_mountain_table() {
 
-        HighestMountainPage page = HighestMountainPage.open();
+        var page = HighestMountainPage.open();
 
         assertThat(page.getRankByName("Mount Everest")).isEqualTo("1");
         assertThat(page.getFirstAscentByName("Annapurna I")).isEqualTo("1950");

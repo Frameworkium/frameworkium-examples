@@ -1,7 +1,5 @@
 language: java
-jdk:
-  - oraclejdk8
-  - openjdk11
+jdk: openjdk11
 
 # docker, see: https://docs.travis-ci.com/user/reference/overview/
 sudo: false

@@ -2,8 +2,7 @@ package tfl.api.test;
 
 import com.frameworkium.core.api.tests.BaseAPITest;
 import com.frameworkium.core.common.retry.RetryFlakyTest;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import tfl.api.dto.carparkoccupancy.CarParkOccupancies;
 import tfl.api.service.carparks.CarParkOccupancyService;
 
@@ -35,6 +34,7 @@ public class CarParksTest extends BaseAPITest {
                 .contains("Ruislip Gardens Stn (LUL)");
     }
 
+    @Ignore("Too often gets a 429 error")
     public void single_car_park_request_information_the_same() {
         // N.B. this test might fail if the number of free/used bays changes
         // between the first and subsequent service call

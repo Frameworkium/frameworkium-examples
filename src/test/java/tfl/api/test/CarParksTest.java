@@ -8,7 +8,6 @@ import tfl.api.service.carparks.CarParkOccupancyService;
 
 import static com.google.common.truth.Truth.assertThat;
 
-@Test
 @Ignore("These fail too often with a 429 error")
 public class CarParksTest extends BaseAPITest {
 

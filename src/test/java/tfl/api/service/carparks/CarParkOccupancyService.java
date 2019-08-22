@@ -18,7 +18,7 @@ public class CarParkOccupancyService extends BaseTFLService {
     }
 
     @Step("Get Car Park Occupancy by ID {0}")
-    public CarParkOccupancy getCarParkOccupancyByID(String id) {
+    public CarParkOccupancy getByID(String id) {
         return get(CAR_PARK_OCCUPANCY_BY_ID.getUrl(id))
                 .as(CarParkOccupancy.class);
     }

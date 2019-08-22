@@ -37,12 +37,11 @@ public class BikePointsTest extends BaseAPITest {
         var randomBP = bikePoints.getRandomBikePoint();
 
         // Search for lat long of said bike point with 200m radius
-        var params =
-                new BikePointsParamsBuilder()
-                        .latitude(randomBP.lat)
-                        .longditude(randomBP.lon)
-                        .radiusInMeters(200)
-                        .build();
+        var params = new BikePointsParamsBuilder()
+                .latitude(randomBP.lat)
+                .longditude(randomBP.lon)
+                .radiusInMeters(200)
+                .build();
 
         var searchResults = new BikePointService().searchBikePoints(params);
 

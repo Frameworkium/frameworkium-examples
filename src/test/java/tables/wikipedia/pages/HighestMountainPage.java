@@ -28,7 +28,7 @@ public class HighestMountainPage extends BasePage<HighestMountainPage> {
     }
 
     public String getFirstAscentByName(String mountainName) {
-        return getText(mountainName, 8);
+        return getText(mountainName, 9);
     }
 
     private String getText(String mountainName, int index) {
@@ -44,15 +44,16 @@ public class HighestMountainPage extends BasePage<HighestMountainPage> {
     public long mountainsHigherThan(int heightInMeters) {
         return listTable.getColumn(2)
                 .map(WebElement::getText)
+                .peek(this::parseHeight)
                 .map(this::parseHeight)
                 .filter(meters -> meters > heightInMeters)
                 .count();
     }
 
-    private int parseHeight(String text) {
+    private float parseHeight(String text) {
         String cleansedText = text
                 .replace(",", "")
                 .replaceAll("\\[\\d\\]", "");
-        return Integer.parseInt(cleansedText);
+        return Float.parseFloat(cleansedText);
     }
 }

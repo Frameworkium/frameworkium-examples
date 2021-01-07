@@ -13,13 +13,13 @@ public class SeleniumDownloadPage extends BasePage<SeleniumDownloadPage> {
     private HeaderComponent header;
 
     @Visible
-    @FindBy(css = "#mainContent > p:nth-child(5) > a")
+    @FindBy(css = "body > div.split-section.container.dark-background > div.right > p:nth-child(1) > a")
     private Link latestDownloadLink;
 
     public static SeleniumDownloadPage open() {
         return PageFactory.newInstance(
                 SeleniumDownloadPage.class,
-                "https://www.seleniumhq.org/download/");
+                "https://selenium.dev/downloads/");
     }
 
     public String getLatestVersion() {

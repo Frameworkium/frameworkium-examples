@@ -33,7 +33,7 @@ public class CaptureExecutionAPITest extends BaseAPITest {
                 .executionID;
     }
 
-    @Test(enabled = false) //todo - enable when we have a capture instance to test against
+    @Test
     public void execution_appears_in_results() {
         var latestExecutions = new ExecutionService().getExecutions(1, 10);
 

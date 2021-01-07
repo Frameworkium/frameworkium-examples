@@ -114,10 +114,6 @@
             <include>**/*Test.java</include>
             <include>**/*Tests.java</include>
           </includes>
-          <excludes>
-            <!-- Disable this test until we have a capture instance to test against -->
-            <exclude>**/*CaptureExecutionAPITest.java</exclude>
-          </excludes>
           <!-- TestNG Groups to run, can be specified on the command line -->
           <groups>${groups}</groups>
 

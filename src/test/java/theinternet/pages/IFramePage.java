@@ -16,7 +16,7 @@ public class IFramePage extends BasePage<IFramePage> {
 
     @Name("Bold Button")
     @Visible
-    @FindBy(css = "div[aria-label='Bold'] button")
+    @FindBy(css = "button[aria-label='Bold']")
     private WebElement boldButton;
 
     // This is within the iframe so while it'll be physically visible when the

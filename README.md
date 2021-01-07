@@ -1,4 +1,5 @@
-# Frameworkium Examples [![Build Status][status-svg]][status]
+# Frameworkium Examples 
+![build](https://github.com/frameworkium/frameworkium-examples/workflows/frameworkium-examples%20build/badge.svg)
 
 This is a *sample project* which utilises [frameworkium-core][frameworkium-core], 
 a framework for writing maintainable Selenium and REST API tests that also makes 

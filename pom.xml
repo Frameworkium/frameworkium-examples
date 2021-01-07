@@ -60,7 +60,7 @@
     <dependency>
       <groupId>com.github.frameworkium</groupId>
       <artifactId>frameworkium-core</artifactId>
-      <version>3.0.0</version>
+      <version>3.0.1</version>
     </dependency>
 
     <!-- Your own dependencies here -->
@@ -114,7 +114,6 @@
             <include>**/*Test.java</include>
             <include>**/*Tests.java</include>
           </includes>
-
           <!-- TestNG Groups to run, can be specified on the command line -->
           <groups>${groups}</groups>
 
@@ -122,6 +121,7 @@
           <argLine>
             -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
           </argLine>
+          <failIfNoTests>true</failIfNoTests>
         </configuration>
         <dependencies>
           <dependency>

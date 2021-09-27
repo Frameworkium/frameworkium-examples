@@ -14,13 +14,13 @@ public class HomePage extends BasePage<HomePage> {
     @Visible
     private HeaderComponent header;
 
-    @FindBy(css = ".headerLink + #dropdownButton")
+    @FindBy(css = "button[data-target='#main_navbar']")
     private WebElement menuLink;
 
     public static HomePage open() {
         return PageFactory.newInstance(
-                HomePage.class,
-                "https://selenium.dev/");
+            HomePage.class,
+            "https://selenium.dev/");
     }
 
     public HeaderComponent getHeader() {

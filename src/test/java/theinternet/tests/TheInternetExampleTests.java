@@ -184,11 +184,11 @@ public class TheInternetExampleTests extends BaseUITest {
 
         javascriptAlerts.clickAlertButtonAndAccept();
         assertThat(javascriptAlerts.getResultText())
-                .isEqualTo("You successfuly clicked an alert");
+                .isEqualTo("You successfully clicked an alert");
 
         javascriptAlerts.clickAlertButtonAndDismiss();
         assertThat(javascriptAlerts.getResultText())
-                .isEqualTo("You successfuly clicked an alert");
+                .isEqualTo("You successfully clicked an alert");
 
         javascriptAlerts.clickConfirmButtonAndAccept();
         assertThat(javascriptAlerts.getResultText())

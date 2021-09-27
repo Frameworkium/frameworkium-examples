@@ -8,10 +8,10 @@ import ru.yandex.qatools.htmlelements.element.HtmlElement;
 import ru.yandex.qatools.htmlelements.element.Link;
 import seleniumhq.pages.SeleniumDownloadPage;
 
-@FindBy(id = "header")
+@FindBy(className = "navbar")
 public class HeaderComponent extends HtmlElement {
 
-    @FindBy(css = "#navbar > a:nth-child(3)")
+    @FindBy(css = "#main_navbar [href='/downloads']")
     private Link downloadLink;
 
     public SeleniumDownloadPage clickDownloadLink() {

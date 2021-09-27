@@ -1,10 +1,10 @@
 package seleniumhq.pages;
 
+import com.frameworkium.core.htmlelements.element.Link;
 import com.frameworkium.core.ui.annotations.Visible;
 import com.frameworkium.core.ui.pages.BasePage;
 import com.frameworkium.core.ui.pages.PageFactory;
 import org.openqa.selenium.support.FindBy;
-import ru.yandex.qatools.htmlelements.element.Link;
 import seleniumhq.components.HeaderComponent;
 
 public class SeleniumDownloadPage extends BasePage<SeleniumDownloadPage> {

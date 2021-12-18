@@ -1,5 +1,7 @@
 package angularjs.pages;
 
+import com.frameworkium.core.htmlelements.element.Link;
+import com.frameworkium.core.htmlelements.element.TextInput;
 import com.frameworkium.core.ui.annotations.Visible;
 import com.frameworkium.core.ui.pages.BasePage;
 import io.qameta.allure.Step;
@@ -7,25 +9,19 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import ru.yandex.qatools.htmlelements.annotations.Name;
-import ru.yandex.qatools.htmlelements.element.Link;
-import ru.yandex.qatools.htmlelements.element.TextInput;
 
 import java.util.concurrent.TimeUnit;
 
 public class DeveloperGuidePage extends BasePage<DeveloperGuidePage> {
 
-    @Name("Developer guide search")
     @Visible
     @FindBy(css = "input[name='as_q']")
     private TextInput searchField;
 
-    @Name("Bootstrap search item")
     @Visible
     @FindBy(linkText = "Bootstrap")
     private Link bootstrapSearchItem;
 
-    @Name("Guide article title")
     @FindBy(css = ".main-grid h1")
     private WebElement guideTitle;
 

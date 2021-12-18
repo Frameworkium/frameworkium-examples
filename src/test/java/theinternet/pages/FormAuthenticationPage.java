@@ -1,5 +1,6 @@
 package theinternet.pages;
 
+import com.frameworkium.core.htmlelements.element.TextInput;
 import com.frameworkium.core.ui.annotations.Visible;
 import com.frameworkium.core.ui.pages.BasePage;
 import com.frameworkium.core.ui.pages.PageFactory;
@@ -7,27 +8,22 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import ru.yandex.qatools.htmlelements.annotations.Name;
-import ru.yandex.qatools.htmlelements.element.TextInput;
+
 
 public class FormAuthenticationPage extends BasePage<FormAuthenticationPage> {
 
     @Visible
-    @Name("Username field")
     @FindBy(css = "input#username")
     private TextInput usernameField;
 
     @Visible
-    @Name("Password field")
     @FindBy(css = "input#password")
     private TextInput passwordField;
 
     @Visible
-    @Name("Login button")
     @FindBy(css = "#login > button")
     private WebElement loginButton;
 
-    @Name("Error message")
     @FindBy(css = "#flash")
     private WebElement errorMessage;
 

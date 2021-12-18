@@ -7,7 +7,6 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import ru.yandex.qatools.htmlelements.annotations.Name;
 
 import java.util.NoSuchElementException;
 import java.util.stream.Stream;
@@ -15,16 +14,13 @@ import java.util.stream.Stream;
 public class SortableDataTablesPage extends BasePage<SortableDataTablesPage> {
 
     @Visible
-    @Name("Heading")
     @FindBy(css = "div.example h3")
     private WebElement heading;
 
-    @Name("Table 1")
     @CacheLookup
     @FindBy(id = "table1")
     private StreamTable table1;
 
-    @Name("Table 2")
     @CacheLookup
     @FindBy(id = "table2")
     private StreamTable table2;

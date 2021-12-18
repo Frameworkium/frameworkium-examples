@@ -1,33 +1,28 @@
 package theinternet.pages;
 
+import com.frameworkium.core.htmlelements.element.Button;
+import com.frameworkium.core.htmlelements.element.TextBlock;
 import com.frameworkium.core.ui.annotations.Visible;
 import com.frameworkium.core.ui.pages.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
-import ru.yandex.qatools.htmlelements.annotations.Name;
-import ru.yandex.qatools.htmlelements.element.Button;
-import ru.yandex.qatools.htmlelements.element.TextBlock;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 public class JavaScriptAlertsPage extends BasePage<JavaScriptAlertsPage> {
 
     @Visible
-    @Name("JS Alert button")
     @FindBy(css = "button[onclick='jsAlert()']")
     private Button jsAlertButton;
 
     @Visible
-    @Name("JS Confirm button")
     @FindBy(css = "button[onclick='jsConfirm()']")
     private Button jsConfirmButton;
 
     @Visible
-    @Name("JS Prompt button")
     @FindBy(css = "button[onclick='jsPrompt()']")
     private Button jsPromptButton;
 
-    @Name("Result area")
     @FindBy(css = "p#result")
     private TextBlock resultArea;
 

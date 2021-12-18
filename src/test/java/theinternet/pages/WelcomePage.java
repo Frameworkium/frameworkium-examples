@@ -1,74 +1,59 @@
 package theinternet.pages;
 
+import com.frameworkium.core.htmlelements.element.Link;
 import com.frameworkium.core.ui.annotations.Visible;
 import com.frameworkium.core.ui.pages.BasePage;
 import com.frameworkium.core.ui.pages.PageFactory;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
-import ru.yandex.qatools.htmlelements.annotations.Name;
-import ru.yandex.qatools.htmlelements.element.Link;
+
 
 public class WelcomePage extends BasePage<WelcomePage> {
 
     @Visible
-    @Name("Basic auth link")
     @FindBy(linkText = "Basic Auth")
     private Link basicAuthLink;
 
     @Visible
-    @Name("Checkboxes link")
     @FindBy(linkText = "Checkboxes")
     private Link checkboxesLink;
 
-    @Name("Drag and Drop link")
     @FindBy(linkText = "Drag and Drop")
     private Link dragAndDropLink;
 
-    @Name("Dropdown Link")
     @FindBy(linkText = "Dropdown")
     private Link dropdownLink;
 
-    @Name("Dynamic Loading link")
     @FindBy(linkText = "Dynamic Loading")
     private Link dynamicLoadingLink;
 
-    @Name("File Download Link")
     @FindBy(linkText = "File Download")
     private Link fileDownloadLink;
 
-    @Name("File Upload Link")
     @FindBy(linkText = "File Upload")
     private Link fileUploadLink;
 
-    @Name("Form Authentication Link")
     @FindBy(linkText = "Form Authentication")
     private Link formAuthenticationLink;
 
-    @Name("Hovers Link")
     @FindBy(linkText = "Hovers")
     private Link hoversLink;
 
-    @Name("Frames Link")
     @FindBy(linkText = "Frames")
     private Link framesLink;
 
-    @Name("JQuery UI Link")
     @FindBy(linkText = "JQuery UI Menus")
     private Link jqueryUILink;
 
-    @Name("JavaScript Alerts Link")
     @FindBy(linkText = "JavaScript Alerts")
     private Link javascriptAlertsLink;
 
-    @Name("Key Presses Link")
     @FindBy(linkText = "Key Presses")
     private Link keyPressesLink;
 
-    @Name("Secure File Download Link")
     @FindBy(linkText = "Secure File Download")
     private Link secureFileLink;
 
-    @Name("Sortable Data Tables Link")
     @FindBy(linkText = "Sortable Data Tables")
     private Link sortableDataTablesLink;
 

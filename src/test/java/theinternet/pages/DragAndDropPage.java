@@ -6,7 +6,6 @@ import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import ru.yandex.qatools.htmlelements.annotations.Name;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,16 +22,13 @@ public class DragAndDropPage extends BasePage<DragAndDropPage> {
     private static final String JQUERY_JS_URI = "https://code.jquery.com/jquery-1.12.4.min.js";
 
     @Visible
-    @Name("Box A")
     @FindBy(id = "column-a")
     private WebElement boxA;
 
     @Visible
-    @Name("Box B")
     @FindBy(id = "column-b")
     private WebElement boxB;
 
-    @Name("List of headers")
     @FindBy(css = "header")
     private List<WebElement> boxes;
 
@@ -58,7 +54,7 @@ public class DragAndDropPage extends BasePage<DragAndDropPage> {
      * Fetches Javascript used to be able to simulate Drag and Drop.
      *
      * @return a String containing the Javascript for JQuery (if not already
-     *         present on the page) and code for simulating drag and drop.
+     * present on the page) and code for simulating drag and drop.
      */
     private String javascriptToSimulateDragDrop() {
         if (jQueryJS.isEmpty()) {

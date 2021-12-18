@@ -6,11 +6,9 @@ import com.frameworkium.core.ui.pages.PageFactory;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import ru.yandex.qatools.htmlelements.annotations.Name;
 
 public class HomePage extends BasePage<HomePage> {
 
-    @Name("Plan A Journey Link")
     @Visible
     @FindBy(css = "li.plan-journey a")
     private WebElement planJourneyLink;

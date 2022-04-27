@@ -5,17 +5,14 @@ import com.frameworkium.core.ui.pages.BasePage;
 import com.frameworkium.core.ui.pages.PageFactory;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
-import ru.yandex.qatools.htmlelements.annotations.Name;
-import ru.yandex.qatools.htmlelements.element.Link;
+import com.frameworkium.core.htmlelements.element.Link;
 
 public class DynamicLoadingPage extends BasePage<DynamicLoadingPage> {
 
     @Visible
-    @Name("Example 1: Element on page that is hidden link")
     @FindBy(linkText = "Example 1: Element on page that is hidden")
     private Link example1Link;
 
-    @Name("Example 2: Element rendered after the fact")
     @FindBy(linkText = "Example 2: Element rendered after the fact")
     private Link example2Link;
 

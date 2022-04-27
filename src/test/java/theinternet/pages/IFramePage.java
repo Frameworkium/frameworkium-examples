@@ -5,16 +5,13 @@ import com.frameworkium.core.ui.pages.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import ru.yandex.qatools.htmlelements.annotations.Name;
 
 public class IFramePage extends BasePage<IFramePage> {
 
     @Visible
-    @Name("Wysiwyg editor iframe")
     @FindBy(css = "iframe#mce_0_ifr")
     private WebElement wysiwygIFrame;
 
-    @Name("Bold Button")
     @Visible
     @FindBy(css = "button[aria-label='Bold']")
     private WebElement boldButton;
@@ -22,7 +19,6 @@ public class IFramePage extends BasePage<IFramePage> {
     // This is within the iframe so while it'll be physically visible when the
     // page loads, it WILL NOT be 'visible' to the driver (i.e. selenium will
     // not be able to 'see' it) until we switchTo it - see below
-    @Name("Wysiwyg editor")
     @FindBy(id = "tinymce")
     private WebElement wysiwygTextBox;
 

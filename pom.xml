@@ -60,7 +60,7 @@
     <dependency>
       <groupId>com.github.frameworkium</groupId>
       <artifactId>frameworkium-core</artifactId>
-      <version>3.0.1</version>
+      <version>4.1.0.2</version>
     </dependency>
 
     <!-- Your own dependencies here -->

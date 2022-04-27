@@ -4,8 +4,8 @@ import com.frameworkium.core.ui.UITestLifecycle;
 import com.frameworkium.core.ui.pages.PageFactory;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import ru.yandex.qatools.htmlelements.element.HtmlElement;
-import ru.yandex.qatools.htmlelements.element.Link;
+import com.frameworkium.core.htmlelements.element.HtmlElement;
+import com.frameworkium.core.htmlelements.element.Link;
 import seleniumhq.pages.SeleniumDownloadPage;
 
 @FindBy(className = "navbar")

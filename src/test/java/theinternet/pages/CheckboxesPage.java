@@ -4,8 +4,7 @@ import com.frameworkium.core.ui.annotations.Visible;
 import com.frameworkium.core.ui.pages.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
-import ru.yandex.qatools.htmlelements.annotations.Name;
-import ru.yandex.qatools.htmlelements.element.CheckBox;
+import com.frameworkium.core.htmlelements.element.CheckBox;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -13,7 +12,6 @@ import java.util.stream.Stream;
 public class CheckboxesPage extends BasePage<CheckboxesPage> {
 
     @Visible
-    @Name("All checkboxes")
     @FindBy(css = "form input[type='checkbox']")
     private List<CheckBox> allCheckboxes;
 

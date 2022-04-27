@@ -7,25 +7,21 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import ru.yandex.qatools.htmlelements.annotations.Name;
-import ru.yandex.qatools.htmlelements.element.Link;
-import ru.yandex.qatools.htmlelements.element.TextInput;
+import com.frameworkium.core.htmlelements.element.Link;
+import com.frameworkium.core.htmlelements.element.TextInput;
 
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 
 public class DeveloperGuidePage extends BasePage<DeveloperGuidePage> {
 
-    @Name("Developer guide search")
     @Visible
     @FindBy(css = "input[name='as_q']")
     private TextInput searchField;
 
-    @Name("Bootstrap search item")
     @Visible
     @FindBy(linkText = "Bootstrap")
     private Link bootstrapSearchItem;
 
-    @Name("Guide article title")
     @FindBy(css = ".main-grid h1")
     private WebElement guideTitle;
 
@@ -43,7 +39,7 @@ public class DeveloperGuidePage extends BasePage<DeveloperGuidePage> {
 
     @Step("Click link from search results with title {0}")
     public DeveloperGuidePage clickLinkWithTitle(String linkTitle) {
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         var searchResultsLink = driver.findElement(
                 By.xpath(String.format(
                         "//nav[@id='navbar-main']//a[text()='%s']",
